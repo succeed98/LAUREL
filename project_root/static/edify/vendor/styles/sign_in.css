@@ -1,0 +1,38 @@
+.font-weight {
+    font-weight: 400 !important;
+}
+
+.welcome {
+    color: rgb(94 88 115);
+    font-weight: 700;
+}
+
+.card-body {
+    padding: 37px !important;
+}
+.cover-user .cover-user-img {
+    padding: 0px 0% !important;
+}
+
+.login {
+    background-color: #4E6C8F !important;
+    border: 0px !important;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+    color: #fff;
+}
+
+.login:hover {
+    background-color: #4E6C8F !important;
+    box-shadow: 0px 5px 5px #4E6C8F !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+.social-icon li a:hover {
+    background-color: #4E6C8F !important;
+    border-color: #4E6C8F !important;
+    color: rgb(255 255 255) !important;
+}
+.pl-5, .px-5 {
+    padding-left: 0.5rem!important;
+}

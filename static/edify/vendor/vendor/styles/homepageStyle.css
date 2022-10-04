@@ -1,0 +1,99 @@
+#service {
+    position: relative;
+    top: -30px;
+}
+
+.form-inline {
+    position: relative;
+    top: -40px;
+}
+#popular {
+    position: relative;
+    top: -50px;
+}
+/* #btn{
+    background-color: #400C1F !important;
+    border: none;
+} */
+.form-control{
+    width: 70% !important;
+}
+.customer-testi{
+    border: none !important;
+}
+.curserPointer{
+    cursor: pointer !important;
+    text-decoration: none;
+}
+#businessSolution{
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-weight: 700;
+}
+#listStyling{
+    font-size: 18px;
+}
+.newStyle{
+    background-color: #A47A01 !important;
+}
+#gigBusiness{
+    background-color: #252a3e !important;
+}
+#explore{
+    background-color: #A47A01 !important;
+    border: none !important;
+}
+.style-up{
+    position: relative;
+    top: -6px;
+}
+#worldOfTalent{
+    background-color: #E8EAF6 !important;
+}
+.text-color{
+    color: #616161;
+    font-size: 18px ;
+    font-weight: 600;
+}
+#arrowIcon{
+    position: relative;
+    left: 3%;
+    top: 2.5px;
+}
+.footer {
+    background: #F8F9FC !important;
+    padding: 60px 0;
+    position: relative;
+    color: rgb(70, 71, 73);
+    border-top: solid 1px;
+}
+.footerHeader{
+    font-weight: 600 !important;
+    font-size: 18px !important;
+}
+.footer.footer-bar {
+    padding: 30px 0;
+    border-top: 1px solid !important;
+    background-color: #F8F9FC !important;
+}
+#copyright{
+    font-weight: 600 !important;
+}
+#fa-angle-right{
+    position: relative;
+    top: 2px;
+    margin: 5px;
+}
+#gigsGuide{
+    background-color: #fff !important;
+}
+#talent{
+    background-color: #252a3e !important;
+}
+#getStarted{
+    background-color: #A47A01 !important;
+    border: none;
+}
+#fontSize-Talent{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+
+}

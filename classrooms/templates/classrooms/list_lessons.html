@@ -1,0 +1,242 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br>
+            <div class="container page__container">
+                <div class="">
+                    <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Info: </strong> This page is about the <b>Lessons</b> the teacher has created.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pt-32pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">Teacher's dashboard</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Lesson
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+            <!-- BEFORE Page Content -->
+
+            <!-- Start Overview -->
+            <div class="container page__container">
+
+                <div class="row mb-lg-8pt">
+                    <div class="col-lg-12">
+                        <div class="mb-4">
+                            <div class="form-group row">
+                                <!-- <div class="col-lg-6" data-toggle="tooltip" data-title="Select Subjects"
+                                    data-placement="top" data-boundary="window">
+                                    <select name="food_selector" data-placeholder="Select Subjects" required="required"
+                                        class="custom-select">
+                                        <option value="1">All</option>
+                                        <option value="4">English</option>
+                                        <option value="4">Science</option>
+                                        <option value="4">Mathematics</option>
+                                    </select>
+                                </div> -->
+
+                                <div class="col-lg-6" data-toggle="tooltip" data-title="Select Term"
+                                    data-placement="top" data-boundary="window">
+                                    <select name="food_selector" data-placeholder="Select Term" required="required"
+                                        class="custom-select">
+                                        <option value="1">Term 1</option>
+                                        <option value="2">Term 2</option>
+                                        <option value="3">Term 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Class -->
+
+                    </div>
+                </div>
+
+                <div class="page-separator d-block">
+                    <div class="page-separator">
+                        <div class="page-separator__text">lessons total <span class="material-icons">
+                                arrow_right_alt
+                            </span> {{lesson_count}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Overview -->
+
+            <div class="container page__container page-section">
+
+                <!-- <div class="row justify-content-end mb-3">
+                    <button type="button" class="btn pulse btn-md shadow classes" id="uploadStudentButton"
+                    data-toggle="tooltip" data-title="Click to Add Lesson" data-placement="top" data-boundary="window">add Lesson</button>
+                </div> -->
+                
+
+                <div class="row card-group-row">
+                    {% if lessons %}
+                    {% for lesson in lessons %}
+                    <div class="card-group-row__col col-md-6">
+                        <a href="javascript:void(0)">
+                            <div class="card card-group-row__card card-sm" data-toggle="tooltip"
+                                data-title="Click to View Lesson" data-placement="top" data-boundary="window"
+                                style="cursor: pointer;">
+                                <div class="card-body d-flex align-items-center">
+                                    <a href="{% url 'teacher:lesson_content' lesson.id %}"
+                                        class="avatar overlay overlay--primary avatar-4by3 mr-12pt">
+                                        <img src="{% static  'assets/students/Math_kid.jpg' %}" alt="Angular Routing In-Depth"
+                                            class="avatar-img rounded">
+                                        <span class="overlay__content"></span>
+                                    </a>
+                                    <div class="flex mr-12pt">
+                                        <a class="card-title" href="{% url 'teacher:lesson_content' lesson.id %}">{{lesson.name}}</a>
+                                        <div class="card-subtitle text-50">{{lesson.subject}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="progress rounded-0" style="height: 4px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 25%;"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex mr-2">
+                                            <a href="{% url 'teacher:create_update_lesson' lesson.id %}" class="btn btn-dark btn-sm shadow-sm">
+
+                                                <i class="material-icons icon--left">menu_book</i> Add content to lesson
+
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    {% endfor %}
+                    {% else %}
+                        <p class="lead">
+                            No lessons created yet!... Add New Lessons Below
+                            <br><br>
+                        </p>
+                    {% endif %}
+                </div>
+
+                <div class="mb-32pt">
+
+                    <ul class="pagination justify-content-start pagination-xsm m-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true" class="material-icons">chevron_left</span>
+                                <span>Prev</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Page 1">
+                                <span>1</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Page 2">
+                                <span>2</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span>Next</span>
+                                <span aria-hidden="true" class="material-icons">chevron_right</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                
+            
+            </div>
+
+            <!-- Start izModal for adding classes -->
+            <div id="modal" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+                data-iziModal-title="Lesson" data-iziModal-subtitle="Adding of Lesson" data-iziModal-icon="icon-home">
+                <div style="padding: 50px">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div>
+                            <h4>Add New Lesson</h4>
+                        </div>
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="classroom" class="col-4 col-form-label">Class/Grade:</label>
+                            <div class="col-8">
+                                {{form.classroom}}
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">Subject:</label>
+                            <div class="col-8">
+                                {{form.subject}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">Topic:</label>
+                            <div class="col-8">
+                                <input id="name" name="name" placeholder="" type="text" required="required"
+                                    class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="term" class="col-4 col-form-label">Term:</label>
+                            <div class="col-8">
+                                {{form.term}}
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn btn-primary pulse btn-md" id="addAnswer"
+                                >Add Lesson</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+{% endblock content %}

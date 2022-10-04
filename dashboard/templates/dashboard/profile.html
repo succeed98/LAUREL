@@ -1,0 +1,105 @@
+
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <br>
+            <div class="page-section border-bottom">
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
+                    <img src="{{user.user.profile.url}}" width="104"
+                        class="mr-md-32pt mb-32pt mb-md-0" alt="student">
+                    <div class="flex mb-32pt mb-md-0">
+                        <h2 class="text-dark mb-0">{{user.user.first_name}}  {{user.user.last_name}}</h2>
+                        
+                        {% if user.user.is_student %}
+
+                        <p class="lead text-dark d-flex align-items-center">Student <span
+                            class="ml-16pt d-flex align-items-center"><span
+                                class="material-icons sidebar-menu-icon sidebar-menu-icon--left">poll</span> {{user.classroom.name}}
+                            </span></p>
+
+                            
+                        {% endif %}
+
+                        {% if user.user.is_project_manager %}
+
+                        <p class="lead text-dark d-flex align-items-center">Project Manager 
+                            
+                        </p>
+
+                            
+                        {% endif %}
+
+                        {% if user.user.is_teacher %}
+
+                        <p class="lead text-dark d-flex align-items-center">Teacher 
+                            
+                        </p>
+
+                            
+                        {% endif %}
+
+                        {% if user.user.is_headteacher %}
+
+                        <p class="lead text-dark d-flex align-items-center">Head Master 
+                            
+                        </p>
+
+                            
+                        {% endif %}
+                            
+                        
+                    </div>
+                    <!-- <a href="" class="btn btn-outline-white">Follow</a> -->
+                </div>
+            </div>
+
+            <div class="page-section bg-white border-bottom-2">
+
+                <div class="container page__container">
+                    <div class="page-separator">
+                        <div class="page-separator__text bg-white">Profile Details</div>
+                    </div>
+                    <div class="row ">
+                        
+                        <div class="col-md-6">
+                            
+                            <ul class="list-unstyled">
+                                <li class="d-flex align-items-center">
+                                    <h6 class="text-70">First Name:{{user.user.first_name}}</h6>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <h6 class="text-70">Last Name:{{user.user.last_name}}</h6>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <h6 class="text-70">Gender:{{user.user.gender}}</h6>
+                                </li>
+                                <!-- <li class="d-flex align-items-center">
+                                    <h6 class="text-70">Current Grade:</h6>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <h6 class="text-70">Active Status:</h6>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="d-flex align-items-center">
+                                    <h6 class="text-70">Phone Number:{{user.user.phone_number}}  </h6>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <h6 class="text-70">Email:{{user.user.email}}</h6>
+                                </li>
+                                
+                                  
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+{% endblock content %}
+          

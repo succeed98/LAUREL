@@ -1,0 +1,116 @@
+{% extends 'bases/base_main.html' %} 
+{% load static %} 
+{% block content %}
+
+<div class="container page__container">
+  <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+      <h1 class="mb-0">Settings  Page</h1>
+  </div>
+   </div>
+  
+
+
+
+
+   <div class="container page__container">
+      <div class="row"> 
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="container rounded bg-white mt-5 mb-5">
+              <div class="row">
+                  <div class="col-md-3 border-right">
+                          <div class="d-flex flex-column align-items-center text-center p-3 py-5"> <div class="avatar avatar-xxl">
+                              
+                            {% if request.user.profile %}
+                              <img src="{{request.user.profile.url}}"
+                                    alt="Avatar"
+                                    class="avatar-img rounded-circle"> 
+                            {% else %}
+                              <img src="{% static 'assets/images/user/user.png' %}"
+                                    alt="Avatar"
+                                    class="avatar-img rounded-circle"> 
+                            {% endif %}
+
+                          </div><br>
+                          <div class="media-body">
+                              <div class="custom-file">
+                                  {{user_form.profile}}
+                                  {% comment %} <label class="custom-file-label" for="inputGroupFile01">Upload Profile Photo</label> {% endcomment %}
+                              </div>
+                          </div>
+                          <br>
+                          <span class="font-weight-bold">{{request.user.first_name}} {{request.user.last_name}}</span>
+                          
+                          {% if request.user.is_student %}
+                            <span class="font-weight-bold">Student</span>
+                          {% elif request.user.is_teacher %}
+                            <span class="font-weight-bold">Teacher</span>
+                          {% elif request.user.is_headteacher %}
+                            <span class="font-weight-bold">HeadTeacher</span>
+                          {% elif request.user.is_project_manager %}
+                            <span class="font-weight-bold">Project Manager</span>
+                          {% else %}
+
+                          {% endif %}
+                          {% comment %} 
+                          <span class="text-black-50">Rapiad Academy School</span>
+                          <span class="text-black-50">markmensah@mail.com.my</span> {% endcomment %}
+                          <span> </span>
+                        </div>
+                  </div>
+                  <div class="col-md-5 border-right">
+                      <div class="p-3 py-5">
+                          <div class="d-flex justify-content-between align-items-center mb-3">
+                              <h4 class="text-right">Profile Settings</h4>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12 mt-2">
+                                <label class="labels">First Name</label>
+                                {{user_form.first_name}}
+                              </div>
+                              <div class="col-md-12 mt-2">
+                                <label class="labels">Last Name</label>
+                                {{user_form.last_name}}
+                              </div>
+                              <div class="col-md-12 mt-2">
+                                <label class="labels">Email</label>
+                                {{user_form.email}}
+                              </div>
+                              <div class="col-md-12 mt-2">
+                                <label class="labels">Mobile No.</label>
+                                {{user_form.phone_number}}
+                              </div>
+                              <div class="col-md-12 mt-2">
+                                <label class="labels">Gender</label>
+                                {{user_form.gender}}
+                              </div>
+                          </div>
+                          {% comment %} {{user_form.as_p}} {% endcomment %}
+                          <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                      </div>
+                    </form>
+                  </div>
+
+                  <form action="{% url 'authentication:change_password' %}" method="POST">
+                    {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="p-3 py-3">
+                              <div class="d-flex justify-content-between align-items-center experience"><h4 class="text-right">Login Credentials</h4></div><br>
+                              <div class="col-md-12"><label class="labels">Old Password</label><input type="password" class="form-control" name="old_password" placeholder="Enter Password"> </div> <br>
+                              <div class="col-md-12"><label class="labels">New Password</label><input type="password" class="form-control" name="new_password1" placeholder="Enter Password"> </div> <br>
+                              <div class="col-md-12"><label class="labels">Confirm Password</label><input type="password" class="form-control" name="new_password2" placeholder="Enter Password"> </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% comment %} <div class="text-center"><input class="btn btn-primary profile-button" type="submit" value="Change Password"> {% endcomment %}
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Change Password</button></div>
+
+                  </form>
+              </div>
+          </div>
+    
+      </div>
+      </div>
+
+{% endblock content %}

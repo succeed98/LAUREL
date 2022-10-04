@@ -1,0 +1,545 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .bkm-img {
+        width: 450px;
+        height: 255px;
+        border-radius: 10px;
+    }
+</style>
+<br><br>
+
+
+            <div class="container page__container">
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-warning alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Welcome To Edify Student Dashboard: </strong> This page is for the
+                                    <b>Student</b> for
+                                    performing his/her various duties
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-32pt">
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="students_dashboard.html">Student</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Courses
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            
+
+            <!-- Start Overview -->
+            <div class="container page__container">
+                <div class="page-section">
+
+                    <div class="page-separator">
+                        <div class="page-separator__text">Courses</div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-lg-6">
+                                <div class="mb-4">
+                                    <img src="{% static 'assets/students/blob.jpg' %}" width="450" height="270" id="people"
+                                        class="img-fluid shadow bkm-img" style="cursor: pointer;" alt="Image">
+                                </div>
+    
+                        </div>
+                        <div class="col-lg-3">
+
+                            <div style="display:block" id="div1" class="mb-4" data-toggle="tooltip"
+                                data-title="Click to Enroll Course" data-placement="top" data-boundary="window"
+                                onclick="enrollCourseNow();">
+                                <div class="card shadow hoverableClasses classes border-0 bgClassess" id="classes">
+
+                                    <div class="card-header d-flex align-items-center border-0 bgClassess">
+                                        <!-- <div class="h2 mb-0 mr-3 text-light">6</div> -->
+                                        <div class="flex">
+                                            <p class="card-title text-light">Course Name</p>
+                                            <p class="card-subtitle text-light">Enroll Now</p>
+                                        </div>
+                                        <!-- <span class="material-icons" style="color: white !important; font-size: 25px !important;">menu_book</span> -->
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="chart" style="height: 27px;">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <!-- View Enrolled Courses -->
+                            <a href="view_course.html">
+                                <div style="display:none" id="div2" class="mb-4" data-toggle="tooltip"
+                                    data-title="Click to Enroll Course" data-placement="top" data-boundary="window"
+                                    onclick="">
+                                    <div class="card shadow hoverableClasses classes border-0 bgClassess" id="classes">
+
+                                        <div class="card-header d-flex align-items-center border-0 bgClassess">
+                                            <!-- <div class="h2 mb-0 mr-3 text-light">6</div> -->
+                                            <div class="flex">
+                                                <p class="card-title text-light">Course Name</p>
+                                                <p class="card-subtitle text-light">View Course</p>
+                                            </div>
+                                            <!-- <span class="material-icons" style="color: white !important; font-size: 25px !important;">menu_book</span> -->
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="chart" style="height: 27px;">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <!--End View Enrolled Courses -->
+                            <!-- End Class -->
+
+                            <!-- Start Topic Forum -->
+                            <a href="forum.html">
+                                <div class="mb-4" data-toggle="tooltip" data-title="Click to see Discusions"
+                                    data-placement="bottom" data-boundary="window">
+                                    <div class="card shadow hoverableTeachers teachers">
+                                        <div class="card-header d-flex align-items-center border-0 teachers">
+                                            <!-- <div class="h2 mb-0 mr-3 text-light">0</div> -->
+                                            <div class="flex">
+                                                <p class="card-title text-light">Topic Forum</p>
+                                                <p class="card-subtitle text-light">Forum Discussion</p>
+                                            </div>
+                                            <span class="material-icons"
+                                                style="color: white !important; font-size: 25px !important;">forum</span>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="chart" style="height: 27px;">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- End Topic Forum -->
+
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- Start Edify Admin -->
+                            <a href="message_inbox.html">
+                                <div class="mb-4" data-toggle="tooltip" data-title="chat your Instructor"
+                                    data-placement="top" data-boundary="window">
+                                    <div class="card shadow hoverableSubjects subjects" id="subject">
+                                        <div class="card-header d-flex align-items-center border-0 subjects">
+                                            <!-- <div class="h2 mb-0 mr-3 text-light">0</div> -->
+                                            <div class="flex">
+                                                <p class="card-title text-light">Edify Admin</p>
+                                                <p class="card-subtitle text-light">Instructor</p>
+                                            </div>
+                                            <span class="material-icons"
+                                                style="color: white !important; font-size: 25px !important;">chat</span>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="chart" style="height: 24px;">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- End Edify Admin -->
+
+                            <!-- Start Announcement -->
+                            <a href="announcements.html">
+                                <div class="mb-4" data-toggle="tooltip" data-title="Click to see Announcements"
+                                    data-placement="bottom" data-boundary="window">
+                                    <div class="card shadow hoverableStudents students bg-warning">
+                                        <div class="card-header d-flex align-items-center border-0 students bg-warning">
+                                            <!-- <div class="h2 mb-0 mr-3 text-light">0</div> -->
+                                            <div class="flex">
+                                                <p class="card-title text-light">Announcement</p>
+                                                <p class="card-subtitle text-light">Announcements</p>
+                                            </div>
+                                            <span class="material-icons"
+                                                style="color: white !important; font-size: 25px !important;">announcement</span>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="chart" style="height: 27px;">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- End Announcement -->
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- End Overview -->
+
+            <!-- Start Chart -->
+            <div class="container page__container">
+                <div class="page-section">
+
+                    <div class="page-separator">
+                        <div class="page-separator__text">Course Content</div>
+                    </div>
+
+                    <div class="row mb-lg-8pt">
+                        <div class="col-lg-4">
+                            <div class="mb-4">
+                                <div class="card shadow border-0" id="cardLearningMaterial">
+                                    <div class="card-body p-1pt scroll" id="style">
+                                        <div class="dropdown-header h4">
+                                            <strong class="h6"> <span>Course Content</span> </strong>
+                                            <strong class="myCourseLeft ">View All</strong>
+                                        </div>
+                                        <hr>
+                                        <!-- Notifications dropdown -->
+                                        <div data-perfect-scrollbar class="position-relative">
+                                            <div class="list-group list-group-flush mb-0">
+
+                                                <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action unread">
+
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-accent">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">Readers Corner</strong>
+                                                            <span class="text-black-70">4/26/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+
+                                                {% comment %} <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action">
+
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-primary">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">Knowledge</strong>
+                                                            <span class="text-black-70">4/26/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a> {% endcomment %}
+
+                                                <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action">
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-warning">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">English Language
+                                                                Vide...</strong>
+                                                            <span class="text-black-70">6/8/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                                <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action">
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-warning">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">English Language
+                                                                Vide...</strong>
+                                                            <span class="text-black-70">6/8/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                                <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action">
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-warning">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">English Language
+                                                                Vide...</strong>
+                                                            <span class="text-black-70">6/8/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <!-- // END Notifications dropdown -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-8">
+
+                            <div class="mb-4">
+                                <div class="card h-150 shadow border-0" id="chartGraphyy" style="cursor: pointer;">
+                                    <div class="card-body pt-0">
+                                        <div class="row mb-40pt">
+                                            <div class="col-lg-12 d-flex align-items-center">
+                                                <div class=" mb-0">
+                                                    <h5 class=" pt-4">Reader Corner</h5>
+                                                    <hr>
+                                                    <p class="text-muted" style="font-size: 15px;">
+                                                        Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                        industry. Lorem Ipsum has been the industry's standard dummy
+                                                        text ever since the 1500s, when an unknown printer took a galley
+                                                        of type and scrambled it to make a type specimen book. <br><br> It has
+                                                        survived not only five centuries, but also the leap into
+                                                        electronic typesetting, remaining essentially unchanged. It was
+                                                        popularised in the 1960s with the release of Letraset sheets
+                                                        containing Lorem Ipsum passages, and more recently with desktop
+                                                        publishing software like Aldus PageMaker including versions of
+                                                        Lorem Ipsum.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Class -->
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- End Chart -->
+
+
+
+            <!-- Start Achievements -->
+            <div class="container page__container">
+                <div class="page-section">
+
+                    <div class="page-separator">
+                        <div class="page-separator__text">Achievements</div>
+                    </div>
+
+                    <div class="row mb-lg-8pt">
+                        <div class="col-lg-6">
+
+                            <div class="mb-4">
+                                <div class="card shadow hoverable points border-0 bg-second" id="points">
+                                    <div class="card-header d-flex align-items-center border-0 points bg-second">
+                                        <div class="h2 mb-0 mr-3 text-light">0</div>
+                                        <div class="flex">
+                                            <p class="card-title text-light">Points</p>
+                                            <p class="card-subtitle text-light">Points acquired</p>
+                                        </div>
+                                        <i class="fas fa-award text-muted ml-2 pointsIcon"></i>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="chart" style="height: 18px;">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Class -->
+
+                            <!-- Start Teachers -->
+                            <div class="mb-4">
+                                <div class="card shadow hoverable trophies bg-second">
+                                    <div class="card-header d-flex align-items-center border-0 bg-second trophies">
+                                        <div class="h2 mb-0 mr-3 text-light">0</div>
+                                        <div class="flex">
+                                            <p class="card-title text-light">Trophies</p>
+                                            <p class="card-subtitle text-light">Trophies won</p>
+                                        </div>
+                                        <i class="fas fa-trophy text-muted ml-2 trophiesIcon"></i>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="chart" style="height: 18px;">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Teachers -->
+
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- Start Subjects -->
+                            <div class="mb-4">
+                                <div class="card shadow hoverable badges bg-second" id="badges">
+                                    <div class="card-header d-flex align-items-center border-0 badges bg-second">
+                                        <div class="h2 mb-0 mr-3 text-light">0</div>
+                                        <div class="flex">
+                                            <p class="card-title text-light">Badges</p>
+                                            <p class="card-subtitle text-light">Badges Achieved</p>
+                                        </div>
+                                        <i class="fas fa-certificate text-muted ml-2 badgesIcon"></i>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="chart" style="height: 18px;">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Subjects -->
+
+                            <!-- Start Students -->
+                            <div class="mb-4">
+                                <div class="card shadow hoverable medals bg-second">
+                                    <div class="card-header d-flex align-items-center border-0 medals bg-second">
+                                        <div class="h2 mb-0 mr-3 text-light">0</div>
+                                        <div class="flex">
+                                            <p class="card-title text-light">Medals</p>
+                                            <p class="card-subtitle text-light">Medals won</p>
+                                        </div>
+                                        <i class="fas fa-medal text-muted ml-2 medalsIcon"></i>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="chart" style="height: 18px;">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Students -->
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- End Achievements -->
+
+
+            <div class="container page__container page-section" style="display: none">
+
+                <div class="row mb-32pt" style="display: none">
+
+                    <div class="col-lg-8 d-flex align-items-center">
+                        <div class="flex" style="max-width: 100%">
+
+                            <div class="chart" style="height: 250px;">
+                                <canvas id="performanceChart" class="chart-canvas js-update-chart-line"
+                                    data-chart-line-border-color="primary" data-chart-prefix="$" data-chart-suffix="k"
+                                    data-chart-points="true">
+                                </canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row mb-32pt" style="display: none">
+
+                    <div class="col-lg-8 d-flex align-items-center">
+                        <div class="flex" style="max-width: 100%">
+
+                            <div class="chart">
+                                <canvas id="ordersChart" class="chart-canvas js-update-chart-bar"
+                                    data-chart-line-background-color="gradient:primary" data-chart-prefix="$"
+                                    data-chart-suffix="k"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-32pt" style="display: none">
+                    <div class="col-lg-4">
+                        <div class="page-separator">
+                            <div class="page-separator__text">Switch Toggle</div>
+                        </div>
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Easily toggle an additional set of data with a
+                            simple interface based on the <code>data</code> attributes.</p>
+                    </div>
+                    <div class="col-lg-8 d-flex align-items-center">
+                        <div class="flex" style="max-width: 100%">
+
+                            <div class="form-group">
+                                <label class="form-label" for="chart-switch-toggle">Show affiliate:</label>
+                                <div class="custom-control custom-checkbox-toggle">
+                                    <input id="chart-switch-toggle" type="checkbox" checked="" aria-checked="true"
+                                        class="custom-control-input" role="switch" data-toggle="chart"
+                                        data-target="#ordersChartSwitch"
+                                        data-add='{"data":{"datasets":[{"data":[15,10,20,12,7,0,8,16,18,16,10,22],"backgroundColor":"#f75c7f","label":"Affiliate","barThickness":20}]}}'>
+                                    <label class="custom-control-label" for="chart-switch-toggle"><span
+                                            class="sr-only">Show affiliate</span></label>
+                                </div>
+                            </div>
+                            <div class="chart">
+                                <canvas id="ordersChartSwitch" class="chart-canvas js-update-chart-bar"
+                                    data-chart-line-background-color="primary" data-chart-prefix="$"
+                                    data-chart-suffix="k"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+{% endblock content %}

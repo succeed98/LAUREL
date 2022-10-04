@@ -1,0 +1,220 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+<br><br>
+            <div class="container page__container">
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Info: </strong> This page shows the <b>Quizzes & assignments</b> for the
+                                    students.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pt-32pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="index.html">student dashboard</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Quizzes & assignments
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+            <div class="pt-2pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <img src="../assets/students/students.png" class="img-fluid" alt=""> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+            <style>
+            </style>
+
+            <!-- Start Overview -->
+            <div class="container page__container">
+                <div class="page-separator d-block">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Recently Added Courses</div>
+                    </div>
+                </div>
+                <br>
+                <div class="card shadow border-0" id="tableCard">
+                    <div class="card-body">
+                        <div class="row align-items-center ">
+                            <div class="col-lg-12 table-responsive">
+                                <table id="example" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-sm">Course Id
+                                            </th>
+                                            <th class="th-sm">Course Name
+                                            </th>
+                                            <th class="th-sm">date
+                                            </th>
+                                            <th class="th-sm">Added By
+                                            </th>
+                                            <th class="th-sm">Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="1">1</td>
+                                            <td>English Language</td>
+                                            <td>00/22/2222</td>
+                                            <td>Edify Admin</td>
+                                            <td>
+                                                <a href="{% url 'student:course_overview' %}">
+                                                    <button type="button" class="btn btn-md btn-primary quizeButton"
+                                                        id="quizeButton" data-toggle="tooltip"
+                                                        data-title="Enroll Now" data-placement="top"
+                                                        data-boundary="window">
+                                                        Enroll Now
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- End Overview -->
+
+            <div class="container page__container">
+                <div class="page-separator">
+                    <div class="page-separator__text">Enrolled Courses</div>
+                </div>
+
+                <div class="row card-group-row">
+
+                    <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
+
+                        <div class="card card-sm card--elevated p-relative o-hidden overlay  js-overlay card-group-row__card border-0 shadow"
+                             data-toggle="popover"
+                             data-trigger="click">
+
+                            <a href="enrolled_courses.html"
+                               class="card-img-top js-image"
+                               data-position=""
+                               data-height="140">
+                                <img src="{% static 'assets/students/readerr.webp' %}"
+                                     alt="course">
+                                <span class="overlay__content">
+                                    <span class="overlay__action d-flex flex-column text-center">
+                                        <i class="material-icons icon-32pt">play_circle_outline</i>
+                                        <span class="card-title text-white">Preview</span>
+                                    </span>
+                                </span>
+                            </a>
+
+                            <div class="card-body flex">
+                                <div class="d-flex">
+                                    <div class="flex">
+                                        <a class="card-title"
+                                           href="enrolled_courses.html">Readers Corner</a>
+                                        <small class="text-50 font-weight-bold mb-4pt">These are asfsdjfasdfds asdfasdfksdf asdfsdjfsd</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row justify-content-between">
+                                    <div class="col-auto d-flex align-items-center">
+                                        <span class="material-icons icon-16pt text-50 mr-4pt">today</span>
+                                        <p class="flex text-50 lh-1 mb-0"><small>26 Apr,2021</small></p>
+                                    </div>
+                                    <div class="col-auto d-flex align-items-center">
+                                        <span class="material-icons icon-16pt text-50 mr-4pt">play_circle_outline</span>
+                                        <p class="flex text-50 lh-1 mb-0"><small>1:54 PM</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-32pt">
+
+                    <ul class="pagination justify-content-start pagination-xsm m-0">
+                        <li class="page-item disabled">
+                            <a class="page-link"
+                               href="#"
+                               aria-label="Previous">
+                                <span aria-hidden="true"
+                                      class="material-icons">chevron_left</span>
+                                <span>Prev</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="#"
+                               aria-label="Page 1">
+                                <span>1</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="#"
+                               aria-label="Page 2">
+                                <span>2</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="#"
+                               aria-label="Next">
+                                <span>Next</span>
+                                <span aria-hidden="true"
+                                      class="material-icons">chevron_right</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+{% endblock content %}

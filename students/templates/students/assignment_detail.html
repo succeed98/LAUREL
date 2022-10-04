@@ -1,0 +1,141 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br>
+
+
+            <div class="pt-32pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">Tercher's dashboard</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Edit Assignment
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+       
+
+            <div class="page-section border-bottom-2">
+                <div class="container page__container">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {{form.media}}
+                        <div class="row">
+                            <div class="col-md-8">
+
+                                <div class="page-separator">
+                                    <div class="page-separator__text">Assignment</div>
+                                </div>
+                                <div class="form-group mb-24pt">
+                                    {{get_assignment.desc|safe}}
+                                </div>
+
+                                
+                                {% if get_submited_assignment %}
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <div class="form-group mb-32pt">
+                                    <label class="form-label">View Submited Assignment Here</label>
+                                    {% for i in get_submited_assignment  %}
+                                      <br>
+                                      <br>
+                                    {{i.desc|safe}}
+                                    {% endfor %}
+
+                                </div>
+                                {% else %}
+
+                                
+                                <div class="form-group mb-32pt">
+                                    <label class="form-label">Answer Assignment Here</label>
+                                    {{form.desc}}
+
+                                </div>
+
+                                <button type="submit" class="btn btn-dark mb-24pt mb-sm-0">Submit Assignment</button>
+                                {% endif %}
+
+                            </div>
+                            <div class="col-md-4">
+
+                                <div class="page-separator">
+                                    <div class="page-separator__text">total marks</div>
+                                </div>
+                                <div class="form-group mb-24pt">
+                                    {{get_assignment.total_marks}} marks
+                                </div>
+
+
+                                <div class="page-separator">
+                                    <div class="page-separator__text">classroom</div>
+                                </div>
+                                <div class="form-group mb-24pt">
+                                    {{get_assignment.classroom}}
+                                </div>
+
+                                <div class="page-separator">
+                                    <div class="page-separator__text">Subject</div>
+                                </div>
+                                <div class="form-group mb-24pt">
+                                    {{get_assignment.subject}}
+                                </div>
+                                
+
+
+                                <div class="page-separator">
+                                    <div class="page-separator__text">Dead Line</div>
+                                </div>
+                                <div class="form-group mb-24pt">
+                                    {{get_assignment.dead_line}}
+                                </div>
+
+                                <div class="page-separator">
+                                    <div class="page-separator__text">Your Score</div>
+                                </div>
+                                <div class="form-group mb-24pt">
+                                    {% for i in get_submited_assignment  %}
+                                  {{i.score}} Marks
+
+                                  {% endfor %}
+                                </div>
+
+
+                                
+
+                                
+
+
+                              
+
+                                <link rel="stylesheet" href="https://cdn.skypack.dev/audiomotion-analyzer?min">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+{% endblock content %}

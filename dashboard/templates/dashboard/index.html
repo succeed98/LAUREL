@@ -1,0 +1,782 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .img-fluid {
+        width: 450px;
+        height: 280px;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="navbar navbar-expand pr-0 navbar-light border-bottom-2 shadow" id="info-navbar" data-primary>
+
+                <!-- <div class="flex"></div> -->
+
+                <!-- Navbar Menu -->
+
+                <div class="flex"></div>
+
+                <div class="nav navbar-nav flex-nowrap d-flex mr-16pt">
+
+                    <!-- Total Classes Added -->
+                    <div class="nav-item dropdown dropdown-notifications dropdown-xs-down-full" data-toggle="tooltip"
+                        data-title="Total Classes Added" data-placement="top" data-boundary="window">
+                        <button class="nav-link btn-flush dropdown-toggle text-light" type="button"
+                            data-toggle="dropdown" data-caret="false" style="font-size: 14px;">
+                            <i class="material-icons ml-2" style="font-size: 14px;">class</i>Programs <span class="ml-1">{{classroom_count}}</span>
+                        </button>
+                    </div>
+                    <!-- // END Total Classes Added -->
+
+                    <!-- Total Teachers Added -->
+                    <div class="nav-item ml-16pt dropdown dropdown-notifications dropdown-xs-down-full"
+                        data-toggle="tooltip" data-title="Total Teachers Added" data-placement="top"
+                        data-boundary="window">
+                        <button class="nav-link btn-flush dropdown-toggle text-light" type="button"
+                            data-toggle="dropdown" data-caret="false" style="font-size: 14px;">
+                            <i class="material-icons" style="font-size: 14px;">supervised_user_circle</i> Lecturers
+                            <span class="ml-1">{{teacher_count}}</span>
+                        </button>
+                    </div>
+                    <!-- // END Total Teachers Added -->
+
+                    <!-- Total Students Added -->
+                    <div class="nav-item ml-16pt dropdown dropdown-notifications dropdown-xs-down-full"
+                        data-toggle="tooltip" data-title="Total Students Added" data-placement="top"
+                        data-boundary="window">
+                        <button class="nav-link btn-xs btn-flush dropdown-toggle text-light" type="button"
+                            data-toggle="dropdown" data-caret="false" style="font-size: 14px;">
+                            <i class="material-icons" style="font-size: 14px;">people</i> Students
+                            <span class="ml-1">{{student_count}}</span>
+                        </button>
+                    </div>
+                    <!-- // END Total Students Added -->
+                </div>
+
+                <!-- // END Navbar Menu -->
+
+
+
+            </div>
+
+<br><br>
+
+
+<div class="container page__container">
+       
+    <div class="flex mb-32pt mb-md-0">
+        <h3 class="text-dark mb-0 ml-10pt"> Welcome , {{request.user.first_name}} {{request.user.last_name}}</h3>
+
+    </div>
+ </div>
+
+{% comment %} <div class="pt-32pt">
+    <div
+        class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="index.html">Project Manager</a></li>
+
+                    <li class="breadcrumb-item active">
+
+                        Dashboard
+
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+
+    </div>
+</div> {% endcomment %}
+
+
+<!-- Page Content -->
+
+<!-- Start Overview -->
+<div class="container page__container">
+    <div class="page-section">
+
+        <div class="page-separator">
+            <div class="page-separator__text">Overview</div>
+        </div>
+
+        <div class="row ">
+            <div class="col-lg-6">
+                {% if request.user.gender == 'female' %}
+                <div class="mb-4">
+                    <img src="{% static 'assets/img/femalemanager.png' %}" width="450" height="280" id="peopleImage"  class="img-fluid shadow"
+                        style="cursor: pointer;" alt="Image">
+                </div>
+                
+                {% else %}
+                <div class="mb-4">
+                    <img src="{% static 'assets/img/projectmanager.png' %}" width="450" height="280" id="peopleImage"  class="img-fluid shadow"
+                        style="cursor: pointer;" alt="Image">
+                </div>
+                {% endif %}
+
+            </div>
+            <div class="col-lg-3">
+
+                
+                <div class="mb-4" data-toggle="tooltip" data-title="Click to Add Course"
+                    data-placement="top" data-boundary="window">
+                    <div class="card shadow hoverableSubjects subjects" id="subject">
+                        <div class="card-header d-flex align-items-center border-0 subjects">
+                            <div class="h2 mb-0 mr-3 text-light"><span id="subject_count">{{subject_count}}</span></div>
+                            <div class="flex">
+                                <p class="card-title text-light">Courses</p>
+                                <p class="card-subtitle text-light">Click To Add Courses</p>
+                            </div>
+                            <i class="material-icons text-muted ml-2 subjectsIcon">add</i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Class -->
+
+                <!-- Start Teachers -->
+                <div class="mb-4" data-toggle="tooltip" data-title="Click to Add Lecturers"
+                    data-placement="bottom" data-boundary="window">
+                    <div class="card shadow hoverableClasses teachers border-0 bgClassess">
+                        <div class="card-header d-flex align-items-center border-0 bgClassess">
+                            <div class="h2 mb-0 mr-3 text-light"><span id="teacher_count">{{teacher_count}}</span></div>
+                            <div class="flex">
+                                <p class="card-title text-light">Lecturers</p>
+                                <p class="card-subtitle text-light">Click To Add Lecturer</p>
+                            </div>
+                            <i class="material-icons text-muted ml-2 teachersIcon">add</i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Teachers -->
+
+            </div>
+            <div class="col-lg-3">
+                <!-- Start classes -->
+                <div class="mb-4" data-toggle="tooltip" data-title="Click to Add Program"
+                    data-placement="top" data-boundary="window">
+                    <div class="card shadow hoverableClasses classes border-0 bg-second" id="classes">
+
+                        <div class="card-header d-flex align-items-center border-0 bg-second">
+                            <div class="h2 mb-0 mr-3 text-light"><span id="classroom_count">{{classroom_count}}</span></div>
+                            <div class="flex">
+                                <p class="card-title text-light">Programs</p>
+                                <p class="card-subtitle text-light">Click To Add Programs</p>
+                            </div>
+                            <i class="material-icons text-muted ml-2 classIcon">add</i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End classes -->
+
+                <!-- Start Students -->
+                <div class="mb-4" data-toggle="tooltip" data-title="Click to Add Students"
+                    data-placement="bottom" data-boundary="window">
+                    <div class="card shadow hoverableStudents students bg-warning">
+                        <div class="card-header d-flex align-items-center border-0 students bg-warning">
+                            <div class="h2 mb-0 mr-3 text-light"><span id="student_count">{{student_count}}</span></div>
+                            <div class="flex">
+                                <p class="card-title text-light">Students</p>
+                                <p class="card-subtitle text-light">Click To Add Student</p>
+                            </div>
+                            <i class="material-icons text-muted ml-2 studentsIcon">add</i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Students -->
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- End Overview -->
+
+<!-- Start Chart -->
+<div class="container">
+    <div class="row mb-lg-16pt justify-content-center">
+      {% comment %} <div class="col-lg-6 mb-8pt mb-sm-0">
+        <div class="page-separator">
+          <div class="page-separator__text">Top Students</div>
+        </div>
+  
+        {% for student in students|slice:":5" %}
+        <div
+          class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 mb-16pt"
+          data-toggle="popover"
+          data-trigger="click"
+            >
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex align-items-center">
+              <div class="flex">
+                <div class="d-flex align-items-center">
+                  <div class="rounded mr-12pt z-0 o-hidden">
+                    <div class="overlay">
+                      <img
+                        src="{% static 'assets/images/user/user.png' %}"
+                        width="40"
+                        height="40"
+                        alt="Angular"
+                        class="rounded"
+                      />
+                      <span class="overlay__content overlay__content-transparent">
+                        <span
+                          class="overlay__action d-flex flex-column text-center lh-1"
+                        >
+                          <small
+                            class="h6 small text-white mb-0"
+                            style="font-weight: 500"
+                            >80%</small
+                          >
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="card-title">{{student.user.first_name}} {{student.user.last_name}}</div>
+                    <p class="flex text-50 lh-1 mb-0">
+                      <small>Grade : {{student.classroom}}</small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+  
+              <a
+                href="{% url 'student:detail_student' student.id %}"
+                class="ml-4pt btn btn-sm btn-link text-secondary border-1 border-secondary"
+                >View Student</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div> {% endcomment %}
+      <div class="col-lg-8">
+        <div class="page-separator">
+          <div class="page-separator__text">Calendar</div>
+        </div>
+  
+        <div class="position-relative carousel-card">
+          <div class="js-mdk-carousel row d-block" id="carousel-courses1"></div>
+        </div>
+        <div class="">
+  
+          <div class="mb-4">
+              <div class="card h-150 shadow border-0" id="chartGraphyy" style="cursor: pointer;">
+                  <div class="card-body pt-0">
+                      <div class="row" style="position: relative; top: 0px;">
+                          <div class="col-lg-12 d-flex align-items-center">
+                              <div class="">
+                                  <label class="form-label"></label>
+                                  <input type="hidden" data-toggle="flatpickr"
+                                      data-flatpickr-mode="range" data-flatpickr-inline="true"
+                                      value="">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+  
+              </div>
+          </div>
+          <!-- End Class -->
+  
+      </div>
+      </div>
+    </div>
+  </div>
+<!-- End Chart -->
+
+
+
+
+<div class="container page__container page-section" style="display: none">
+
+    <div class="row mb-32pt" style="display: none">
+        
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="flex"
+                 style="max-width: 100%">
+
+                <div class="chart"
+                     style="height: 250px;">
+                    <canvas id="performanceChart"
+                            class="chart-canvas js-update-chart-line"
+                            data-chart-line-border-color="primary"
+                            data-chart-prefix="$"
+                            data-chart-suffix="k"
+                            data-chart-points="true">
+                        </canvas>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row mb-32pt" style="display: none">
+        
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="flex"
+                 style="max-width: 100%">
+
+                <div class="chart">
+                    <canvas id="ordersChart"
+                            class="chart-canvas js-update-chart-bar"
+                            data-chart-line-background-color="gradient:primary"
+                            data-chart-prefix="$"
+                            data-chart-suffix="k"></canvas>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-32pt" style="display: none">
+        <div class="col-lg-4">
+            <div class="page-separator">
+                <div class="page-separator__text">Switch Toggle</div>
+            </div>
+            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Easily toggle an additional set of data with a simple interface based on the <code>data</code> attributes.</p>
+        </div>
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="flex"
+                 style="max-width: 100%">
+
+                <div class="form-group">
+                    <label class="form-label"
+                           for="chart-switch-toggle">Show affiliate:</label>
+                    <div class="custom-control custom-checkbox-toggle">
+                        <input id="chart-switch-toggle"
+                               type="checkbox"
+                               checked=""
+                               aria-checked="true"
+                               class="custom-control-input"
+                               role="switch"
+                               data-toggle="chart"
+                               data-target="#ordersChartSwitch"
+                               data-add='{"data":{"datasets":[{"data":[15,10,20,12,7,0,8,16,18,16,10,22],"backgroundColor":"#f75c7f","label":"Affiliate","barThickness":20}]}}'>
+                        <label class="custom-control-label"
+                               for="chart-switch-toggle"><span class="sr-only">Show affiliate</span></label>
+                    </div>
+                </div>
+                <div class="chart">
+                    <canvas id="ordersChartSwitch"
+                            class="chart-canvas js-update-chart-bar"
+                            data-chart-line-background-color="primary"
+                            data-chart-prefix="$"
+                            data-chart-suffix="k"></canvas>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Start izModal for adding classes -->
+<div id="modal" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="Add Program" data-iziModal-subtitle="Add a new Program"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form id="AddNewClass">
+            {% csrf_token %}
+            <div>
+                <h4>Add New Program</h4>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{class_form.name.label}}</label>
+                <div class="col-8">
+                    {{class_form.name}}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">Courses:</label>
+                <div class="col-8">
+                    {{class_form.subjects}}
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-floating pulse btn-md" id="addClass"
+                    >add Program</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for adding classes -->
+
+<!-- Start izModal for adding Subjects -->
+<div id="modals" class="SubjectModel" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="Add Subject" data-iziModal-subtitle="Add a new subject"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form name="AddNewSubject" id="AddNewSubject">
+            {% csrf_token %}
+
+            <div>
+                <h4>Add New Courses</h4>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">Course Name</label>
+                <div class="col-8">
+                    <input id="subjectname" name="subjectname" placeholder="" type="text" required="required"
+                        class="form-control">
+                </div>
+            </div>
+
+            <!-- <div class="form-group row">
+                <label for="select" class="col-4 col-form-label">Select Subject</label>
+                <div class="col-8">
+
+                    <div class="">
+                        <div class="" onclick="showCheckbox();">
+                            <select name="" id="" data-placeholder="Select Class" class="custom-select">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+                        <div id="checkbox" class="custom-control custom-checkbox shadow">
+                            <label for="one">
+                                <input type="checkbox" class="checkBoxes" id="grade_1">Grade 1
+                            </label>
+                            <label for="two">
+                                <input type="checkbox" class="checkBoxes" id="grade_2">Grade 2
+                            </label>
+                            <label for="three">
+                                <input type="checkbox" class="checkBoxes" id="grade_3">Grade 3
+                            </label>
+                            <label for="four">
+                                <input type="checkbox" class="checkBoxes" id="grade_4">Grade 4
+                            </label>
+                            <label for="five">
+                                <input type="checkbox" class="checkBoxes" id="grade_5">Grade 5
+                            </label>
+                            <label for="six">
+                                <input type="checkbox" class="checkBoxes" id="grade_6">Grade 6
+                            </label>
+                            <label for="seven">
+                                <input type="checkbox" class="checkBoxes" id="grade_7">Grade 7
+                            </label>
+                            <label for="eight">
+                                <input type="checkbox" class="checkBoxes" id="grade">Grade 8
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+
+            <!-- <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">Special Subject</label>
+                <div class="col-8">
+                    <div class="form-group">
+                        <div class="custom-controls-stacked">
+                            <div class="custom-control custom-radio">
+                                <input id="radioStacked1" name="radio-stacked" type="radio"
+                                    class="custom-control-input" checked="">
+                                <label for="radioStacked1" class="custom-control-label">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="radioStacked2" name="radio-stacked" type="radio"
+                                    class="custom-control-input">
+                                <label for="radioStacked2" class="custom-control-label">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div>
+                <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addSubjects"
+                    >add Course</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for adding Subjects -->
+
+<!-- Start izModal for adding Teachers -->
+<div id="modalss" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+                data-iziModal-title="ADD TEACHER" data-iziModal-subtitle="Adding of Lecturer"
+                data-iziModal-icon="icon-home">
+                <div style="padding: 50px">
+                    <form id="AddNewTeacher"  >
+                        {% csrf_token %}
+            
+                        <div>
+                            <h4>Add New Lecturer</h4>
+                        </div>
+                       
+                        
+                        <!--End image file upload here -->
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.profile.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.profile}}
+                               
+                            </div>
+                            <p >{{ form.first_name.errors }}</p>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.first_name.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.first_name}}
+                               
+                            </div>
+                            <p >{{ form.first_name.errors }}</p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-4 col-form-label">{{user_teacher_form.last_name.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.last_name}}
+                            </div>
+                            {{user_teacher_form.last_name.errors}}
+                            <p></p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-4 col-form-label">{{user_teacher_form.email.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.email}}
+                            </div>
+                            {{user_teacher_form.email.errors}}
+            
+                        </div>
+                        <div class="form-group row">
+                            <label for="contact" class="col-4 col-form-label">{{user_teacher_form.phone_number.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.phone_number}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.text.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.text}}
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="gender" class="col-4 col-form-label">{{user_teacher_form.gender.label}}:</label>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <div class="custom-controls-stacked">
+                                        {{user_teacher_form.gender}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                       
+            
+                        <div class="form-group row">
+                            <label for="notes" class="col-4 col-form-label">{{user_teacher_form.notes.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.notes}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="classTeacher" class="col-4 col-form-label">Course Lecturer.?</label>
+                            <div class="col-8">
+                                <div class="form-group">
+
+                                    <label for="yes" >Yes</label>
+                                    <input type="radio" value="yes" onclick="javascript:yesnoCheck();" name="yesno"
+                                        id="yesCheck" />
+                                        <label for="no"  class="ml-1">No</label>
+                                    <input type="radio" value="no" checked onclick="javascript:yesnoCheck();" class="" name="yesno"
+                                        id="noCheck" />
+                                </div>
+
+                                <div id="ifYes" style="visibility:hidden">
+                                    <div class="multi-selector">
+                                        <div class="select-field">
+                                            <select class="js-example-basic-multiple form-control custom-select" style="width:100% ;" id="subject_select"  name="subjects[]" multiple="multiple">
+                                                {% for subject in subjects %}
+                                                  
+                                                <option value="{{subject.id}}">{{subject}}</option>
+                                                {% endfor %}
+                                              </select>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <script>
+                            document.querySelector('.select-field').addEventListener('click', () => {
+                                document.querySelector('.list').classList.toggle('show');
+                                document.querySelector('.down-arrow').classList.toggle('rotate180');
+
+                            });
+
+                        </script>
+
+
+                    <div class="form-group row">
+                        <label for="classTeacher" class="col-4 col-form-label">Class Lecturer.?</label>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                <label for="yes" >Yes</label>
+                                <input type="radio" value="yes" onclick="javascript:yesnoCheck1();" name="yesno1"
+                                    id="yesCheck1" />
+                                    <label for="no" class="ml-1">No</label>
+                                <input type="radio" value="no" checked onclick="javascript:yesnoCheck1();" class="" name="yesno1"
+                                    id="noCheck" />
+                            </div>
+
+                            <div id="ifTYes" style="visibility:hidden">
+                                <div class="multi-selector">
+                                    <div class="select-field">
+                            <div>
+                                <select name="classroom_select" id="classroom_select" data-placeholder="Select class teacher" required="required"
+                                    class="custom-select">
+                                    {% for class in classrooms %}
+                                      
+                                    <option value="{{class.id}}">{{class}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addTeacher"
+                           >add Lecturer</button>
+                    </div>
+            
+                    </form>
+
+                </div>
+            </div>
+<!-- End izModal for adding Teachers -->
+
+<!-- Start izModal for adding Students -->
+<div id="modalsss" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="Add Student" data-iziModal-subtitle="Add a New Student"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form id="AddNewStudent"   >
+            {% csrf_token %}
+
+            <div>
+                <h4>Add New Student</h4>
+            </div>
+           
+            
+            <!--End image file upload here -->
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{student_user_form.profile.label}}:</label>
+                <div class="col-8">
+                    {{student_user_form.profile}}
+                   
+                </div>
+                <p >{{ form.first_name.errors }}</p>
+            </div>
+
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{student_user_form.first_name.label}}:</label>
+                <div class="col-8">
+                    {{student_user_form.first_name}}
+                   
+                </div>
+                <p >{{ form.first_name.errors }}</p>
+            </div>
+            <div class="form-group row">
+                <label for="lastName" class="col-4 col-form-label">{{student_user_form.last_name.label}}:</label>
+                <div class="col-8">
+                    {{student_user_form.last_name}}
+                </div>
+                {{student_user_form.last_name.errors}}
+                <p></p>
+            </div>
+            
+            <div class="form-group row">
+                <label for="contact" class="col-4 col-form-label">{{student_user_form.phone_number.label}}:</label>
+                <div class="col-8">
+                    {{student_user_form.phone_number}}
+                </div>
+            </div>
+            
+
+            <div class="form-group row">
+                <label for="gender" class="col-4 col-form-label">{{student_user_form.gender.label}}:</label>
+                <div class="col-8">
+                    <div class="form-group">
+                        <div class="custom-controls-stacked">
+                            {{student_user_form.gender}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="select" class="col-4 col-form-label">{{student_form.classroom.label}}</label>
+                <div class="col-8">
+                    {{student_form.classroom}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="notes" class="col-4 col-form-label">{{student_user_form.notes.label}}:</label>
+                <div class="col-8">
+                    {{student_user_form.notes}}
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addStudents"
+                    >add student</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for adding Students -->
+{% endblock content %}

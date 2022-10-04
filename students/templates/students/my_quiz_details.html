@@ -1,0 +1,85 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br><br><br>
+            <div class="container page__container">
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-warning alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Welcome to Your Quizes and Assignment Plateform: </strong> 
+                                    Have fun answering all the questions and answer the questions with a big smile on your face. <b>Happy face on!<span class="material-icons ml-1">
+                                            tag_faces
+                                        </span></b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pt-32pt">
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="index.html">student</a></li>
+                                <li class="breadcrumb-item active">
+                                    Quiz plateform
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    {{get_quiz.quiz_name}}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+
+            <div class="container page__container">
+                <hr style="width: 50%;">
+                <center>
+                    <div class="">
+                        <!-- This shows the title or topic of the quiz  -->
+                        <h1>Class Exercise</h1>
+                    </div>
+                    <div class="">
+                        <p>Please Answer All Questions</p>
+                    </div>
+
+                    <hr style="width: 30%;">
+                </center>
+            </div>
+
+            <!-- Start Overview -->
+            <div class="container page__container text-center">
+                
+                <div class="d-grid gap-2 d-md-block buttonsStartClose">
+                    <a href="{% url 'student:my_quizzes' %}" type="button" class="btn btn-danger btn-md shadow align-items-center" id=""
+                            data-toggle="tooltip" data-title="Close Quiz"
+                            data-placement="top" data-boundary="window"> close
+                        </a>
+                        
+                        <a onclick="myCallTimer({{pass_id}})" type="button" class="btn btn-success btn-md shadow ml-2"
+                        data-toggle="tooltip" data-title="Start Quiz" data-placement="top"
+                        data-boundary="window">start quiz</a>
+                  </div>
+                  <hr style="width: 50%;">
+        </div>
+            <br><br>
+
+{% endblock content %}

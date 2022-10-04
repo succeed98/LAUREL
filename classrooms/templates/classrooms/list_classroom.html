@@ -1,0 +1,763 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+
+<br><br>
+
+{% if request.user.is_project_manager %}
+<div class="container page__container">
+
+    <div class="row mb-lg-8pt">
+        <div class="col-lg-6 col-md-4">
+            <div class="mb-4">
+                <div class="form-group row">
+                    <div class="col-12" data-toggle="tooltip" data-title="Select Grade" data-placement="top" data-boundary="window">
+                        <select name="food_selector" data-placeholder="Select Grade" required="required"
+                            class="custom-select" >
+                            <option value="1">Grade 1</option>
+                            <option value="2">Grade 9</option>
+                            <option value="3">Grade 6</option>
+                            <option value="4">Class A</option>
+                            <option value="5">Grade 2</option>
+                            <option value="6">Grade 3</option>
+                            <option value="7">Grade 8</option>
+                            <option value="8">Grade 7</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- End Class -->
+
+        </div>
+
+        <div class="col-lg-6 col-md-8">
+            <!-- Start Subjects -->
+            <div class="mb-4">
+                <div class="button-list">
+                    <button type="button" class="btn btn-sm" id="delete_foreverButton" data-toggle="tooltip"
+                        data-title="Delete Class" data-placement="top" data-boundary="window">
+                        <i class="material-icons delete_foreverIcon"
+                            onclick="deleteForever();">delete_forever</i>
+                    </button>
+                    <button type="button" class="btn btn-sm" id="editButton" data-toggle="tooltip"
+                        data-title="Edit Class" data-placement="bottom" data-boundary="window">
+                        <i class="material-icons editIcon">edit</i>
+                    </button>
+                    <button type="button" class="btn btn-sm choosesgrades" id="chooseClassButton"
+                        data-toggle="tooltip" data-title="Class to promote" data-placement="top"
+                        data-boundary="window">
+                        <img src="{% static 'assets/img/icon2.png' %}" width="30" alt="">
+                    </button>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-md dropdown-toggle" id="addsubjectBotton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add
+                            subject to this class</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Science</a>
+                            <a class="dropdown-item" href="#">Mathematics</a>
+                            <a class="dropdown-item" href="#">ICT</a>
+                            <a class="dropdown-item" href="#">Social</a>
+                            <a class="dropdown-item" href="#">RME</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Subjects -->
+
+        </div>
+    </div>
+
+</div>
+{% endif %}
+
+<!-- Start Overview -->
+<div class="container page__container">
+
+   
+    <div class="page-separator d-block">
+        <div class="page-separator">
+            <div class="page-separator__text">CLASS SUBJECTS</div>
+        </div>
+
+    </div>
+
+    {% comment %} <div class="container">
+        <div class="row pt-1pt"">
+            <div class="col-lg-12">
+
+                <div class="d-flex flex-column flex-sm-row align-items-sm-center mb-24pt"
+                     style="white-space: nowrap;">
+                    <small class="flex  text-headings text-uppercase mr-3 mb-2 mb-lg-0">
+                    </small>
+                    <div class="w-auto ml-sm-auto table d-flex align-items-end mb-2 mb-sm-0">
+
+                         
+
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-md dropdown-toggle" id="addsubjectBotton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">add</i></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">English </a>
+                                <a class="dropdown-item" href="#">French</a>
+                                <a class="dropdown-item" href="#">Team Work</a>
+                                <a class="dropdown-item" href="#">Twi</a>
+                                <a class="dropdown-item" href="#">RME</a>
+                             
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>  {% endcomment %}
+
+
+    
+    <div class="page-section">
+
+
+
+
+
+        <div class="row">
+            
+            {% if get_teacher.is_subject_teacher %}
+
+
+
+            {% for subject in get_teacher.subjects.all %}
+            <div class="col-sm-6 col-xl-4" >
+
+                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary js-overlay mdk-reveal js-mdk-reveal "
+                     data-partial-height="44"
+                     data-toggle="popover"
+                     data-trigger="click">
+                    <a href="#"
+                       class="js-image"
+                       data-position="">
+                        <img src="{% static 'assets/img/subjectsa.jpg' %}"
+                             alt="course">
+                        <span class="overlay__content align-items-start justify-content-start">
+                            <span class="overlay__action card-body d-flex align-items-center">
+                                <i class="ml-4pt material-icons text-20 card-course__icon-favorite" >edit</i>
+                                <span class="card-title text-white">edit</span>
+                            </span>
+                        </span>
+                    </a>
+                    <div class="mdk-reveal__content">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex">
+                                    <a class="card-title mb-4pt"
+                                       href="{% url 'classroom:list_lessons' subject.id %}">{{subject.name}}</a>
+                                </div>
+                                {% comment %} <a href="{% url 'classroom:add_titles' %}"
+                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">add</a> {% endcomment %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+            {% endfor %}
+
+
+            {% elif get_teacher.is_class_teacher %}
+            {% for subject in get_teacher.classroom.subjects.all %}
+            <div class="col-sm-6 col-xl-4" >
+
+                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary js-overlay mdk-reveal js-mdk-reveal "
+                     data-partial-height="44"
+                     data-toggle="popover"
+                     data-trigger="click">
+                    <a href="#"
+                       class="js-image"
+                       data-position="">
+                        <img src="{% static 'assets/img/subjectsa.jpg' %}"
+                             alt="course">
+                        <span class="overlay__content align-items-start justify-content-start">
+                            <span class="overlay__action card-body d-flex align-items-center">
+                                <i class="ml-4pt material-icons text-20 card-course__icon-favorite" >edit</i>
+                                <span class="card-title text-white">edit</span>
+                            </span>
+                        </span>
+                    </a>
+                    <div class="mdk-reveal__content">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex">
+                                    <a class="card-title mb-4pt"
+                                       href="add_topics.html">{{subject.name}}</a>
+                                </div>
+                                {% comment %} <a href="{% url 'classroom:add_titles' %}"
+                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">add</a> {% endcomment %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+            {% endfor %}
+
+
+
+            {% else %}
+
+            {% for subject in subjects %}
+            <div class="col-sm-6 col-xl-4" >
+
+                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary js-overlay mdk-reveal js-mdk-reveal "
+                     data-partial-height="44"
+                     data-toggle="popover"
+                     data-trigger="click">
+                    <a href="#"
+                       class="js-image"
+                       data-position="">
+                        <img src="{% static 'assets/img/subjectsa.jpg' %}"
+                             alt="course">
+                        <span class="overlay__content align-items-start justify-content-start">
+                            <span class="overlay__action card-body d-flex align-items-center">
+                                <i class="ml-4pt material-icons text-20 card-course__icon-favorite" >edit</i>
+                                <span class="card-title text-white">edit</span>
+                            </span>
+                        </span>
+                    </a>
+                    <div class="mdk-reveal__content">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex">
+                                    <a class="card-title mb-4pt"
+                                       href="add_topics.html">{{subject.name}}</a>
+                                </div>
+                                {% comment %} <a href="{% url 'classroom:add_titles' %}"
+                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">add</a> {% endcomment %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+            {% endfor %}
+
+            {% endif %}
+                
+           
+
+        </div>
+
+      
+
+        <ul class="pagination justify-content-start pagination-xsm m-0">
+            <li class="page-item disabled">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Previous">
+                    <span aria-hidden="true"
+                          class="material-icons">chevron_left</span>
+                    <span>Prev</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Page 1">
+                    <span>1</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Page 2">
+                    <span>2</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Next">
+                    <span>Next</span>
+                    <span aria-hidden="true"
+                          class="material-icons">chevron_right</span>
+                </a>
+            </li>
+        </ul>
+
+
+        <br>
+        
+
+
+
+
+          <div class="page-separator d-block">
+            <div class="page-separator">
+                <div class="page-separator__text">Class Lessons</div>
+            </div>
+
+        </div>
+      
+
+
+
+        <!-- <div class="row mb-lg-8pt">
+            <div class="col-lg-6 col-md-4">
+                <div class="mb-4">
+                    <div class="form-group row">
+                        <div class="col-12" data-toggle="tooltip" data-title="Select lesson"
+                            data-placement="top" data-boundary="window">
+                            <select name="food_selector" data-placeholder="Filter lessons by Subject" required="required"
+                                class="custom-select">
+                                <option value="1">All</option>
+                                <option value="2">Mathematics</option>
+                                <option value="3">Science</option>
+                                <option value="4">English</option>
+                                <option value="5">ICT</option>
+                                <option value="4">French</option>
+                                <option value="4">Social Studies</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+
+
+
+        {% comment %} <div class="row"> {% endcomment %}
+
+            {% comment %} <div class="row card-group-row"> {% endcomment %}
+            <div class="row card-group-row">
+                {% for lesson in lessons %}
+                    <div class="card-group-row__col col-md-6">
+                        <div class="card card-group-row__card card-sm">
+                            <div class="card-body d-flex align-items-center">
+                                <a href="instructor-edit-quiz.html"
+                                class="avatar overlay overlay--primary avatar-4by3 mr-12pt">
+                                    <img src="{% static 'assets/img/lessons.jpeg' %}"
+                                        alt=" Evolution  Routing In-Depth"
+                                        class="avatar-img rounded">
+                                    <span class="overlay__content"></span>
+                                </a>
+                                <div class="flex">
+                                    <a class="card-title"
+                                    href="{% url 'teacher:lesson_content' lesson.id %}">{{lesson.name}}</a>
+                                    <div class="card-subtitle text-50">{{lesson.lessoncontent.topic}}</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex mr-2">
+                                        
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <a href="#"
+                                        data-toggle="dropdown"
+                                        data-caret="false"
+                                        class="text-muted"><i class="material-icons">more_horiz</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{% url 'teacher:lesson_content' lesson.id %}"
+                                            class="dropdown-item">Review Lesson</a>
+                                            {% comment %} class="dropdown-item">Edit Quiz</a> {% endcomment %}
+                                            {% comment %} <div class="dropdown-divider"></div> {% endcomment %}
+                                            {% comment %} <a href="javascript:void(0)"
+                                            class="dropdown-item text-danger">Delete Quiz</a> {% endcomment %}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+                {% comment %} <div class="card-group-row__col col-md-6">
+                    <div class="card card-group-row__card card-sm">
+                        <div class="card-body d-flex align-items-center">
+                            <a href="instructor-edit-quiz.html"
+                               class="avatar overlay overlay--primary avatar-4by3 mr-12pt">
+                                <img src="../../public/images/paths/ Evolution _testing_200x168.png"
+                                     alt=" Evolution  Unit Testing"
+                                     class="avatar-img rounded">
+                                <span class="overlay__content"></span>
+                            </a>
+                            <div class="flex">
+                                <a class="card-title"
+                                   href="instructor-edit-quiz.html"> Evolution  Unit Testing</a>
+                                <div class="card-subtitle text-50">Environmental Studies</div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex align-items-center">
+                                <div class="flex mr-2">
+                                     
+                                </div>
+
+                                <div class="dropdown">
+                                    <a href="#"
+                                       data-toggle="dropdown"
+                                       data-caret="false"
+                                       class="text-muted"><i class="material-icons">more_horiz</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="javascript:void(0)"
+                                           class="dropdown-item">Review Quiz</a>
+                                        <a href="instructor-edit-quiz.html"
+                                           class="dropdown-item">Edit Quiz</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)"
+                                           class="dropdown-item text-danger">Delete Quiz</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-group-row__col col-md-6">
+                    <div class="card card-group-row__card card-sm">
+                        <div class="card-body d-flex align-items-center">
+                            <a href="instructor-edit-quiz.html"
+                               class="avatar overlay overlay--primary avatar-4by3 mr-12pt">
+                                <img src="../../public/images/paths/typescript_200x168.png"
+                                     alt="Introduction to TypeScript"
+                                     class="avatar-img rounded">
+                                <span class="overlay__content"></span>
+                            </a>
+                            <div class="flex">
+                                <a class="card-title"
+                                   href="instructor-edit-quiz.html">Introduction to TypeScript</a>
+                                <div class="card-subtitle text-50">Environmental Studies</div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex align-items-center">
+                                <div class="flex mr-2">
+                                     
+                                </div>
+
+                                <div class="dropdown">
+                                    <a href="#"
+                                       data-toggle="dropdown"
+                                       data-caret="false"
+                                       class="text-muted"><i class="material-icons">more_horiz</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="javascript:void(0)"
+                                           class="dropdown-item">Review Quiz</a>
+                                        <a href="instructor-edit-quiz.html"
+                                           class="dropdown-item">Edit Quiz</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)"
+                                           class="dropdown-item text-danger">Delete Quiz</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>  {% endcomment %}
+
+                {% comment %} <div class="card-group-row__col col-md-6">
+                    <div class="card card-group-row__card card-sm">
+                        <div class="card-body d-flex align-items-center">
+                            <a href="instructor-edit-quiz.html"
+                               class="avatar overlay overlay--primary avatar-4by3 mr-12pt">
+                                <img src="../../public/images/paths/ Evolution _200x168.png"
+                                     alt=" Evolution  Fundamentals"
+                                     class="avatar-img rounded">
+                                <span class="overlay__content"></span>
+                            </a>
+                            <div class="flex">
+                                <a class="card-title"
+                                   href="instructor-edit-quiz.html"> Evolution  Fundamentals</a>
+                                <div class="card-subtitle text-50">Environmental Studies</div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex align-items-center">
+                                <div class="flex mr-2">
+                                     
+                                </div>
+
+                                <div class="dropdown">
+                                    <a href="#"
+                                       data-toggle="dropdown"
+                                       data-caret="false"
+                                       class="text-muted"><i class="material-icons">more_horiz</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="javascript:void(0)"
+                                           class="dropdown-item">Review Quiz</a>
+                                        <a href="instructor-edit-quiz.html"
+                                           class="dropdown-item">Edit Quiz</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)"
+                                           class="dropdown-item text-danger">Delete Quiz</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+
+            {% comment %} </div> {% endcomment %}
+
+
+         
+
+        {% comment %} </div> {% endcomment %}
+
+        <ul class="pagination justify-content-start pagination-xsm m-0">
+            <li class="page-item disabled">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Previous">
+                    <span aria-hidden="true"
+                          class="material-icons">chevron_left</span>
+                    <span>Prev</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Page 1">
+                    <span>1</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Page 2">
+                    <span>2</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Next">
+                    <span>Next</span>
+                    <span aria-hidden="true"
+                          class="material-icons">chevron_right</span>
+                </a>
+            </li>
+        </ul>
+
+
+<br>
+        <div class="page-separator d-block">
+            <div class="page-separator">
+                <div class="page-separator__text">STUDENTS IN CLASS</div>
+            </div>
+
+        </div>
+        <br>
+
+        {% if request.user.is_teacher %}
+
+        {% else %}
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-6 col-md-4">
+                <div class="mb-4">
+                    <div class="form-group row">
+                        <div class="col-12" data-toggle="tooltip" data-title="Select Grade"
+                            data-placement="top" data-boundary="window">
+                            <select name="food_selector" data-placeholder="Filter Students by Grade" required="required"
+                                class="custom-select">
+                                <option value="1">All</option>
+                                <option value="2">Grade 1</option>
+                                <option value="3">Grade 2</option>
+                                <option value="4">Grade 3</option>
+                                <option value="5">Grade 4</option>
+                                <option value="4">Grade 5</option>
+                                <option value="4">Grade 6</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Class -->
+
+            </div>
+        </div>
+        {% endif %}
+        
+    <div class="card shadow border-0" id="tableCard">
+        <div class="card-body">
+            <div class="row align-items-center ">
+                <div class="col-lg-12 table-responsive">
+                    <table id="example" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Fullname
+                                </th>
+                                <th class="th-sm">Email
+                                </th>
+                                <th class="th-sm">Contact
+                                </th>
+                                <th class="th-sm">Grade
+                                </th>
+                                <th class="th-sm">Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{student.user.first_name|title}} {{student.user.last_name|title}}</td>
+                                <td>{{student.user.email}}</td>
+                                <td>{{student.user.phone_number}}</td>
+                                <td>{{student.classroom}}</td>
+                                <td>
+                                    <a href="{% url 'student:detail_student' student.id %}">
+                                        <button type="button" class="btn btn-sm subject2Total"
+                                            id="chooseTopicButton" data-toggle=""
+                                            data-title="View Student" data-placement="top"
+                                            data-boundary="window">
+                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                        </button>
+                                    </a>
+                               
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+</div>
+<!-- End Overview -->
+
+
+
+<!-- Start izModal for Choose Grade -->
+<div id="modalChooseGrade" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="Class Promotion" data-iziModal-subtitle="Promote a Class"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form>
+            <div>
+                <h4>Choose Class</h4>
+            </div>
+            <center>
+                <div class="form-group row text-center">
+                    <label for="grade_9" class="col-4 col-form-label">Grade 1</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                            value="option1" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_6" class="col-4 col-form-label">Grade 2</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                            value="option2" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="class_a" class="col-4 col-form-label">Grade 3</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                            value="option3" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_2" class="col-4 col-form-label">Grade 4</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
+                            value="option4" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_3" class="col-4 col-form-label">Grade 5</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5"
+                            value="option5" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_8" class="col-4 col-form-label">Grade 6</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
+                            value="option6" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_7" class="col-4 col-form-label">Grade 7</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
+                            value="option6" />
+                    </div>
+                </div>
+            </center>
+            <div>
+                <button type="button" class="btn btn-floating pulse btn-md" id="promoteStudent"
+                    onclick="promoteStudents();">Promote</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for Choose Grade -->
+
+<!-- Start izModal for Subject 2 Total -->
+<div id="modalTotalTopics" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="This is for Total Topics"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+
+        <div class="page-separator">
+            <div class="page-separator__text" id="totalTopicsBackG">Total Topics 1 </div>
+        </div>
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-4">
+                <a href="course_overview.html">
+                    <div class="mb-4">
+                        <div class="card shadow hoverableEdify bgTopics" id="card">
+                            <!-- <img src="../assets/img/strong.jpg" class="card-img-top subject2Total" alt=" Palm
+                                Springs Road" /> -->
+                            <div class="card-body">
+                                <h5 class="card-title text-light">Conjugation</h5>
+                                <!-- <p class="card-text">
+                                    Taught by Class Teacher
+                                </p> -->
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- End Class -->
+
+            </div>
+            <div class="col-lg-4">
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

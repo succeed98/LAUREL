@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Edify | Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
+    <meta name="author" content="Edify" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <link href="{% static 'vendor/csss/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="{% static 'vendor/csss/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <!-- Main Css -->
+    <link href="{% static 'vendor/csss/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="{% static 'vendor/csss/colors/default.css' %}" rel="stylesheet" id="color-opt">
+
+    <link rel="stylesheet" href="{% static 'vendor/vendor/sweetalert/sweetalert.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/styles/sign_in.css' %}">
+
+
+
+    <script>
+        $(function () {
+            $(".login").click(function () {
+                var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+
+                // alert("jQuery is present");
+                // return;
+
+                var username = $(".username").val();
+                var password = $(".password").val();
+
+                if (username == "" || password == "") {
+                    swal("Info", "Enter your username and password", "info");
+                    return;
+                } 
+                else {
+                    $.ajax({
+                        
+                        url: "{% url 'authentication:login_process' %}",
+                        type: "POST",
+                        headers:{
+                            "X-CSRFToken": csrftoken
+                        },
+                        data: {
+                            'X-CSRFToken': '{% csrf_token %}',
+                            'username': $(".username").val(),
+                            'password': $(".password").val(),
+                        },
+                        dataType: 'json',
+                        success: function (data,response) {
+                            console.log(response.status);
+                            console.log(data.msg);
+                            console.log(data.is_admin);
+                            swal("Success",data.msg, "success");
+
+
+                            if (data.is_student == true) {
+                                setInterval(function() {
+                                window.location.href = "{% url 'student:dashboard' %}";
+                                }, 1000);
+                            }
+
+                            if (data.is_teacher == true) {
+                                setInterval(function() {
+                                window.location.href = "{% url 'teacher:dashboard' %}";
+                                }, 1000);
+                            }
+
+                            if (data.is_project_manager == true) {
+                                setInterval(function() {
+
+                                window.location.href = "{% url 'dashboard:index' %}";
+                                }, 1000);
+                            }
+                           
+                           
+                                
+                        
+                            
+                            
+                        },
+                        error: function (response) {
+                            swal("Error","Wrong password or username","error");
+                        }
+                    });
+
+                    
+                    // $.post("login_check.html", {
+                    //     username: username,
+                    //     password: password
+                    // }), function (result) {
+                    //     if (result.trim() == "success") {
+                    //         window.location.href = "dasboard.html";
+                    //     } else {
+                    //         swal("Error", "Username or password is incorrect", "error");
+                    //     }
+                    // }
+                }
+            });
+        })
+    </script>
+
+</head>
+
+<body>
+    <!-- Loader -->
+    <!-- <div id="preloader">
+            <div id="status">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div> -->
+    <!-- Loader -->
+
+    <!-- <div class="back-to-home rounded d-none d-sm-block">
+        <a href="index.html" class="btn btn-icon btn-soft-primary"><i data-feather="home" class="icons"></i></a>
+    </div> -->
+
+    <!-- Hero Start -->
+    <section class="cover-user bg-white">
+        <div class="container-fluid px-0">
+            <div class="row no-gutters position-relative">
+                <div class="col-lg-4 cover-my-30 order-2">
+                    <div class="cover-user-img d-flex align-items-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card login-page border-0" style="z-index: 1">
+                                    <div class="card-body p-0"><br><br><br>
+                                        <center>
+                                        <a href="index.html" class="sidebar-brand ">
+                                            Logo
+                                        </a>
+                                    </center>
+                                        <!-- <h4 class="card-title text-left welcome">Welcome to Edify</h4> -->
+                                        <p class="text-muted">Please sign-in to your account.</p>
+                                        <form class="login-form mt-4">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group position-relative">
+                                                        <label class="text-muted font-weight">Username</label>
+                                                        {% comment %} <i data-feather="user" class="fea icon-sm icons"></i> {% endcomment %}
+                                                        <input type="username" class="username form-control pl-5"
+                                                            placeholder="Username" id="login" name="email"
+                                                            >
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+
+                                                <div class="col-lg-12">
+                                                    <div class="form-group position-relative">
+                                                        <label class="text-muted font-weight">Password</label>
+                                                        {% comment %} <i data-feather="key" class="fea icon-sm icons"></i> {% endcomment %}
+                                                        <input type="password" class="password form-control pl-5"
+                                                            placeholder="Password" >
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    id="customCheck1">
+                                                                <label class="custom-control-label text-muted"
+                                                                    for="customCheck1">Remember me</label>
+                                                            </div>
+                                                        </div>
+                                                        <p class="forgot-pass mb-0"><a href="recover_password.html"
+                                                                class="text-muted font-weight-bold">Forgot password ?</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-12 mb-0">
+                                                    <button class="btn btn-block login" type="button">Sign in</button>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+                        <!--end row-->
+                    </div> <!-- end about detail -->
+                </div> <!-- end col -->
+                {% comment %} {% static 'assets/img/Login.gif' %} {% endcomment %}
+                <div class="col-lg-8 offset-lg-4 padding-less img order-1 d-none d-lg-flex"
+                    style="background-image:url('{% static 'assets/img/loginpage.jpg' %}')" data-jarallax='{"speed": 0.5}'></div>
+                <!-- end col -->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container fluid-->
+    </section>
+    <!--end section-->
+    <!-- Hero End -->
+
+    <!-- javascript -->
+    <script src="{% static 'vendor/js/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'vendor/js/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/js/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'vendor/js/js/scrollspy.min.js' %}"></script>
+    <!-- Icons -->
+    <script src="{% static 'vendor/js/js/feather.min.js' %}"></script>
+    <script src="https://unicons.iconscout.com/release/v2.1.9/script/monochrome/bundle.js"></script>
+    <!-- Main Js -->
+    <script src="{% static 'vendor/js/js/app.js' %}"></script>
+    <script src="{% static 'vendor/vendor/sweetalert/sweetalert.js' %}"></script>
+</body>
+
+
+</html>

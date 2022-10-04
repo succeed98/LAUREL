@@ -1,0 +1,209 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+<br><br>
+            <div class="container page__container">
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Welcome To Edify Students Dashboard: </strong> This page is for the <b>Students</b> to see announcements added by the teacher 
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-32pt">
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="index.html">Student dashboard</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Announcements
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+            
+            <!-- Start Overview -->
+            <div class="container page__container">
+
+                <div class="page-section">
+                    
+                    <div class="row mb-lg-8pt">
+                        <div class="col-lg-12">
+                            <div class="page-separator">
+                                <div class="page-separator__text">Recieved announcements</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="card shadow hoverableEdify" id="card">
+                                    <div class="card-body p-24pt">
+                                        <!-- Notifications dropdown -->
+                                        <div data-perfect-scrollbar class="position-relative">
+                                            
+                                            <div class="dropdown-header h5">
+                                                <strong><i class="fas fa-bullhorn " id="announ"></i>Announcements</strong>
+                                                <strong class="myCourseLeft">Apr 27, 2021 at 11:08 AM</strong>
+                                            </div>
+                                            <div class="list-group list-group-flush mb-0">
+
+                                                <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action unread">
+                                       
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-accent">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">Readers Corner</strong>
+                                                            <span class="text-black-70">4/26/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+
+                                                <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action">
+                                                    
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-primary">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">Knowledge</strong>
+                                                            <span class="text-black-70">4/26/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+
+                                                <a href="javascript:void(0);"
+                                                    class="list-group-item list-group-item-action">
+                                                    <span class="d-flex">
+                                                        <span class="avatar avatar-xs mr-2">
+                                                            <span class="avatar-title rounded-circle bg-light">
+                                                                <i
+                                                                    class="material-icons font-size-16pt text-warning">account_circle</i>
+                                                            </span>
+                                                        </span>
+                                                        <span class="flex d-flex flex-column">
+                                                            <strong class="text-black-100">English Language Vide...</strong>
+                                                            <span class="text-black-70">6/8/21</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+
+                                            </div>
+
+                                            <div class="dropdown-header h5">
+                                                <div class="card-header d-flex align-items-center border-0">
+                                                    <div class="h3 mb-0 mr-3 "><i class="fas fa-user-tie"></i></div>
+                                                    <div class="flex">
+                                                        <p class="card-title h5 cardNameTitle">Rex Adams</p>
+                                                        <p class="card-subtitle text-50 cardNameTitleSub">Teacher</p>
+                                                    </div>
+                                                   <a href="#">
+                                                    <strong class="">Show More</strong>
+                                                   </a>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- // END Notifications dropdown -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Overview -->
+
+             <!-- Start izModal for adding classes -->
+             <div id="modalAnnouncement" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+             data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="Adding of New Announcements"
+             data-iziModal-icon="icon-home">
+             <div style="padding: 50px">
+                 <form>
+                     <div>
+                         <h4>Add New Announcements</h4>
+                     </div>
+                     <div class="form-group row">
+                         <label for="announcement" class="col-4 col-form-label">Message:</label>
+                         <div class="col-8">
+                             <textarea id="announcement" name="announcement" placeholder="" type="text" required="required"
+                                 class="form-control"></textarea>
+                         </div>
+                     </div>
+
+                     <div class="form-group row">
+                         <label for="select" class="col-4 col-form-label">Select target audience</label>
+                         <div class="col-8">
+
+                             <div class="">
+                                 <div class="" onclick="showCheckboxes();">
+                                     <select name="" id="" data-placeholder="target audience" class="custom-select">
+                                         <option value=""></option>
+                                     </select>
+                                     <!-- <div class="overSelect"></div> -->
+                                 </div>
+
+                                 <div id="checkboxes" class="custom-control custom-checkbox shadow">
+                                     <label for="one">
+                                         <input type="checkbox" class="checkBoxes" id="one">Project Managers
+                                     </label>
+                                     <label for="two">
+                                         <input type="checkbox" class="checkBoxes" id="two">Headmaster
+                                     </label>
+                                     <label for="three">
+                                         <input type="checkbox" class="checkBoxes" id="three">Teachers
+                                     </label>
+                                     <label for="four">
+                                         <input type="checkbox" class="checkBoxes" id="four">Students
+                                     </label>
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div>
+                         <button type="button" class="btn btn-floating pulse btn-md" id="addAnnouncements"
+                             onclick="addAnnouncement();">Publish Announcements</button>
+                     </div>
+
+                 </form>
+             </div>
+            </div>
+{% endblock content %}

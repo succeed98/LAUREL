@@ -1,0 +1,239 @@
+
+/* Add Answer Button */
+#addAnswer{
+    border-radius: 2px; 
+    border: 0px !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: green;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#addAnswer:hover{
+    background-color: green !important;
+    box-shadow: 0px 5px 5px green !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+/* Upload Video Button */
+#uploadQuizLesson{
+    border-radius: 2px; 
+    border: 0px !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: #4E6C8F;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#uploadQuizLesson:hover{
+    background-color: #4E6C8F !important;
+    box-shadow: 0px 5px 5px #4E6C8F !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+
+
+.addAnswer_ButtonIcon{
+    font-size: 20px !important;
+}
+
+#quizeButton{
+    border-radius: 2px; 
+    border: 0px !important;
+    /* float: right; */
+    font-size: 12px; 
+    color: white; 
+    background-color: blue;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#quizeButton:hover{
+    background-color: blue !important;
+    box-shadow: 0px 5px 5px blue !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#quizeButtonn{
+    border-radius: 2px; 
+    border: 0px !important;
+    float: right !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: blue;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#quizeButtonn:hover{
+    background-color: blue !important;
+    box-shadow: 0px 5px 5px blue !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+/* Back Button */
+#backButtonn{
+    border-radius: 2px; 
+    border: 0px !important;
+    float: right !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: rgb(8, 143, 167);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#backButtonn:hover{
+    background-color: rgb(8, 143, 167) !important;
+    box-shadow: 0px 5px 5px rgb(8, 143, 167) !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+/* End Back Button */
+
+#answerButton{
+    border-radius: 2px; 
+    border: 0px !important;
+    /* float: right !important; */
+    font-size: 12px; 
+    color: white; 
+    background-color: green !important;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#answerButton:hover{
+    background-color: green !important;
+    box-shadow: 0px 5px 5px green !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#listDividedLine{
+    border: 0.5px solid #f7f7f7;
+}
+
+#closeLessons{
+    border-radius: 100%; 
+    border: 0px !important;
+    /* float: right; */
+    font-size: 12px; 
+    color: white; 
+    background-color: red;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#closeLessons:hover{
+    background-color: red !important;
+    box-shadow: 0px 5px 5px red !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#kidLearner{
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 20px;
+}
+
+#completeLessons{
+    border-radius: 2px; 
+    border: 0px !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: green;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#completeLessons:hover{
+    background-color: green !important;
+    box-shadow: 0px 5px 5px green !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+[dir] .btn-success {
+    border-radius: 2px;
+    background-color: green !important;
+    border: none !important;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+[dir] .btn-success:hover {
+    background-color: green !important;
+    box-shadow: 0px 5px 5px green !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+[dir] .btn-danger {
+    border-radius: 2px;
+    background-color: red !important;
+    border: none !important;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+[dir] .btn-danger:hover {
+    background-color: red !important;
+    box-shadow: 0px 5px 5px red !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.center{
+    position: relative;
+    left: 40% !important;
+}
+
+.buttonsStartClose{
+    display: flex !important;
+    justify-content: center !important;
+    /* float: right; */
+}
+
+/* .overflow{
+    overflow-y: scroll;
+    height: 100vh;
+} */
+
+.scroll {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden !important;
+    padding: 10px;
+}
+
+#style::-webkit-scrollbar {
+    width: 8px;
+    background-color: white !important;
+}
+
+#style::-webkit-scrollbar-thumb {
+    border-radius: 10px !important;
+    -webkit-box-shadow: inset 0 0 6px #4E6C8F !important;
+    border-radius: 10px !important;
+    background-color: #4E6C8F !important;
+}
+
+#me{
+    background-color: #4E6C8F !important;
+}
+
+.actions li[aria-disabled="false"]~li a:hover {
+    background: rgb(0 0 255) !important;
+}
+
+#questionCard{
+    /* border-top: solid 1px #4E6C8F !important; */
+    border-top-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+.stack{
+    border-top-right-radius: 0% !important;
+    border-bottom-left-radius: 0% !important;
+}

@@ -1,0 +1,419 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+<br><br>
+<div class="container page__container">
+    <div class="">
+        <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="d-flex flex-wrap align-items-start">
+                <div class="mr-8pt">
+                    <i class="material-icons">access_time</i>
+                </div>
+                <div class="flex" style="min-width: 180px">
+                    <small class="text-black-100">
+                        <strong>Info: </strong> This page about classrooms including students total and
+                        subjects total.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pt-32pt">
+
+    <div
+        class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="students_dashboard.html">Student Dashboard</a></li>
+
+                    <li class="breadcrumb-item active">
+
+                        Classroom
+
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+</div><br>
+
+<!-- Start Overview -->
+<div class="container page__container">
+    <div class="page-section">
+        <hr>
+        <div class="page-section border-bottom">
+            <div
+                class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
+                <img src="{% static 'edify/public/images/illustration/student/128/black.svg' %}" width="104"
+                    class="mr-md-32pt mb-32pt mb-md-0" alt="student">
+                <div class="flex mb-32pt mb-md-0">
+                    <h2 class="text-dark mb-0">{{request.user.first_name}} {{request.user.last_name}}</h2>
+                    <p class="lead text-dark d-flex align-items-center">Student <span
+                            class="ml-16pt d-flex align-items-center"><span
+                                class="material-icons sidebar-menu-icon sidebar-menu-icon--left">poll</span>
+                            {{request.user.student.classroom}}
+                        </span></p>
+                </div>
+                <a href="javascript:void(0)" class="btn btn-outline-dark btn-md">Profile</a>
+            </div>
+        </div><br>
+
+        {% comment %} <div class="row mb-lg-8pt">
+            <div class="col-lg-6 col-md-4">
+
+
+            </div>
+
+            <div class="col-lg-6 col-md-8">
+                <!-- Start Subjects -->
+                <div class="mb-4">
+                    <div class="button-list">
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-md dropdown-toggle" id="addsubjectBotton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add
+                                subject</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Operation </a>
+                                <a class="dropdown-item" href="#">Graphs</a>
+                                <a class="dropdown-item" href="#">English</a>
+                                <a class="dropdown-item" href="#">Teamwork</a>
+                                <a class="dropdown-item" href="#">Numeracy</a>
+                                <a class="dropdown-item" href="#">Mathematics</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Subjects -->
+
+            </div>
+        </div> {% endcomment %}
+        <div class="page-separator d-block">
+            <div class="page-separator">
+                <div class="page-separator__text">subjects in total</div>
+            </div>
+
+        </div>
+        <br>
+        <div class="card shadow border-0" id="tableCard">
+            <div class="card-body">
+                <div class="row align-items-center ">
+
+                    <div class="col-lg-12 ">
+                        <table id="example" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    {% comment %} <th class="th-sm">Teacher
+                                    </th> {% endcomment %}
+                                    <th class="th-sm">Subject
+                                    </th>
+
+                                    <th class="th-sm">Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for subject in subjects %}
+                                <tr>
+                                    {% comment %} <td></td> {% endcomment %}
+                                    <td>{{subject.name}}</td>
+                                    <td>
+                                        <a href="javascript:void(0)">
+                                            <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                id="quizeButton" data-toggle="tooltip"
+                                                data-title="View Lessons" data-placement="top"
+                                                data-boundary="window">
+                                                <i class="material-icons chooseClassIcon">visibility</i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <br>
+
+        <div class="page-separator">
+            <div class="page-separator__text">Lessons</div>
+        </div>
+
+        <div class="row card-group-row mb-lg-8pt">
+            {% for lesson in lessons %}
+            <div class="col-sm-4 card-group-row__col">
+
+                <div class="card card-lg overlay--primary-dodger-blue stack stack--1 card-group-row__card">
+
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded mr-12pt z-0 o-hidden">
+                                        <div class="overlay">
+                                            <img src="{% static  'assets/students/Math_kid.jpg' %}"
+                                                width="40" height="40" alt="Angular" class="rounded">
+                                            <!-- <span class="overlay__content overlay__content-transparent">
+                                                <span class="overlay__action d-flex flex-column text-center lh-1">
+                                                    <small class="h6 small text-white mb-0"
+                                                           style="font-weight: 500;">80%</small>
+                                                </span>
+                                            </span> -->
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="card-title">{{lesson.name}}</div>
+                                        {% comment %} <p class="flex text-50 lh-1 mb-0"><small>Story</small></p> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <p class="mt-16pt text-70 flex">
+                            {{lesson.lessoncontent}}
+                        </p>
+
+                        {% comment %} <div class="mb-16pt d-none">
+                            <div class="d-flex align-items-center">
+                                <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                <p class="flex text-50 lh-1 mb-0"><small>Fundamentals of working with
+                                        WordPress</small></p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                <p class="flex text-50 lh-1 mb-0"><small>Create complete WordPress
+                                        applications</small></p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                <p class="flex text-50 lh-1 mb-0"><small>Working with the WordPress
+                                        CLI</small></p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                <p class="flex text-50 lh-1 mb-0"><small>Understanding Dependency
+                                        Injection</small></p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                <p class="flex text-50 lh-1 mb-0"><small>Testing with WordPress</small></p>
+                            </div>
+                        </div> {% endcomment %}
+
+                        <div class="row align-items-center">
+                            {% comment %} <div class="col-auto">
+                                <div class="d-flex align-items-center mb-4pt">
+                                    <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
+                                    <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
+                                </div>
+                                <div class="d-flex align-items-center mb-4pt">
+                                    <span
+                                        class="material-icons icon-16pt text-50 mr-4pt">play_circle_outline</span>
+                                    <p class="flex text-50 lh-1 mb-0"><small>12 lessons</small></p>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
+                                    <p class="flex text-50 lh-1 mb-0"><small>Beginner</small></p>
+                                </div>
+                            </div> {% endcomment %}
+                            <div class="col text-center">
+                                <a href="{% url 'student:lesson_details' lesson.id %}" class="btn btn-outline-secondary">Begin Lesson</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-32pt">
+
+            <ul class="pagination justify-content-start pagination-xsm m-0">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true" class="material-icons">chevron_left</span>
+                        <span>Prev</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Page 1">
+                        <span>1</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Page 2">
+                        <span>2</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span>Next</span>
+                        <span aria-hidden="true" class="material-icons">chevron_right</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<!-- End Overview -->
+
+<div class="container page__container">
+    <div class="page-section">
+        <div class="page-separator">
+            <div class="page-separator__text">Classroom Information</div>
+        </div>
+        <div class="row card-group-row mb-lg-8pt">
+
+            <div class="col-sm-4 card-group-row__col">
+
+                <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 card-group-row__card"
+                    data-toggle="popover" data-trigger="click">
+
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded mr-12pt z-0 o-hidden">
+                                        <div class="overlay">
+                                            <img src="{% static 'edify/public/images/preview/icon/pages.png' %}" width="30"
+                                                height="30" alt="Angular" class="rounded">
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="card-title">Announcements</div>
+                                        <p class="flex text-50 lh-1 mb-0"><small>0</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'student:my_announcements' %}"
+                                class="ml-4pt btn btn-sm text-secondary border-1 border-secondary">view</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-4 card-group-row__col">
+                <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 card-group-row__card"
+                    data-toggle="popover" data-trigger="click">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded mr-12pt z-0 o-hidden">
+                                        <div class="overlay">
+                                            <img src="{% static 'edify/public/images/preview/icon/pages.png' %}" width="30"
+                                                height="30" alt="Angular" class="rounded">
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="card-title">Upcoming Quiz</div>
+                                        <p class="flex text-50 lh-1 mb-0"><small>0</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'student:my_quizzes' %}"
+                                class="ml-4pt btn btn-sm text-secondary border-1 border-secondary">Click to
+                                view</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 card-group-row__col">
+                <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 card-group-row__card"
+                    data-toggle="popover" data-trigger="click">
+
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded mr-12pt z-0 o-hidden">
+                                        <div class="overlay">
+                                            <img src="{% static 'assets/images/user/user.png' %}" width="40"
+                                                height="40" alt="Angular" class="rounded">
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        {% if teacher %}
+                                        <div class="card-title">{{teacher}}</div>
+                                        {% else %}
+                                        <div class="card-title">Class Teacher</div>
+                                        {% endif %}
+                                        <p class="flex text-50 lh-1 mb-0"><small>Class Teacher</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- // END Page Content -->
+
+
+
+<!-- Start izModal for Subject 2 Total -->
+<div id="modalTotalTopics" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="This is for Total Topics"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+
+        <div class="page-separator">
+            <div class="page-separator__text" id="totalTopicsBackG">Total Topics 1 </div>
+        </div>
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-4">
+                <a href="course_overview.html">
+                    <div class="mb-4">
+                        <div class="card shadow hoverableEdify bgTopics" id="card">
+                            <!-- <img src="../assets/img/strong.jpg" class="card-img-top subject2Total" alt=" Palm
+                                        Springs Road" /> -->
+                            <div class="card-body">
+                                <h5 class="card-title text-light">Conjugation</h5>
+                                <!-- <p class="card-text">
+                                            Taught by Class Teacher
+                                        </p> -->
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- End Class -->
+
+            </div>
+            <div class="col-lg-4">
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- End izModal for Choose Grade -->
+{% endblock content %}

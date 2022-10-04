@@ -1,0 +1,360 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="pt-32pt">
+
+    {% comment %} <div
+        class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="index.html">Project Manager</a></li>
+
+                    <li class="breadcrumb-item active">
+
+                        Students
+
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+
+    </div> {% endcomment %}
+</div><br>
+
+<!-- BEFORE Page Content -->
+
+<!-- // END BEFORE Page Content  background:#e5e5e5-->
+
+<!-- Page Content -->
+
+
+
+<!-- Start Overview -->
+<div class="container page__container">
+    <div class="page-section">
+        <div class="page-separator d-block">
+            <div class="page-separator">
+                <div class="page-separator__text ml-1">Total <span class="ml-1"></span> Students</div>
+            </div>
+
+            
+            <button type="button" class="btn pulse btn-md shadow addstudentButton" id="uploadStudentButton"
+                onclick="uploadStudent();">add student</button>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="card shadow border-0" id="tableCard">
+        <div class="card-body">
+            <div class="row align-items-center ">
+                <div class="col-lg-12 table-responsive">
+                    <table id="example" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Username
+                                </th>
+                                <th class="th-sm">Fullname
+                                </th>
+                                <th class="th-sm">Email
+                                </th>
+                                <th class="th-sm">Contact
+                                </th>
+                                <th class="th-sm">Program
+                                </th>
+                                <th class="th-sm">Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for list_student in list_students %}
+
+                            <tr>
+                                  
+                                <td>{{list_student.user.username}}</td>
+                                <td>{{list_student.user.first_name}} {{list_student.user.last_name}}</td>
+                                <td>{{list_student.user.email}}</td>
+                                <td>{{list_student.user.phone_number}}</td>
+                                <td>{{list_student.classroom}}</td>
+                                <td>
+                                    <a href="{% url 'student:detail_student' list_student.id %}">
+                                        <button type="button" class="btn btn-sm subject2Total"
+                                            id="chooseTopicButton" data-toggle="tooltip"
+                                            data-title="View Student" data-placement="top"
+                                            data-boundary="window">
+                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                        </button>
+                                    </a>
+                                    
+                                    <button type="button" class="btn btn-sm" id="delete_foreverButton"
+                                        data-toggle="tooltip" data-title="Delete Student"
+                                        data-placement="bottom" data-boundary="window">
+                                        <i class="material-icons delete_foreverIcon"
+                                            onclick="deleteStudent({{list_student.user.id}});">delete_forever</i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-warning" 
+                                        data-toggle="tooltip" data-title="Reset Password"
+                                        data-placement="bottom" data-boundary="window">
+                                        <i class="material-icons delete_foreverIcon"
+                                            onclick="ResetPassword({{list_student.user.id}});">restore</i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!-- End Overview -->
+
+<!-- // END Page Content -->
+
+<!-- Start izModal for adding Students -->
+<div id="modalsss" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="Adding of New Student Section"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form id="AddNewStudent">
+
+            <div>
+                <h4>Add New Student</h4>
+            </div>
+           
+            
+            <!--End image file upload here -->
+            {% csrf_token %}
+
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{user_form.profile.label}}:</label>
+                <div class="col-8">
+                    {{user_form.profile}}
+                   
+                </div>
+                <p >{{ form.first_name.errors }}</p>
+            </div>
+
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{user_form.first_name.label}}:</label>
+                <div class="col-8">
+                    {{user_form.first_name}}
+                   
+                </div>
+                <p >{{ form.first_name.errors }}</p>
+            </div>
+            <div class="form-group row">
+                <label for="lastName" class="col-4 col-form-label">{{user_form.last_name.label}}:</label>
+                <div class="col-8">
+                    {{user_form.last_name}}
+                </div>
+                {{user_form.last_name.errors}}
+                <p></p>
+            </div>
+            <!-- <div class="form-group row">
+                <label for="email" class="col-4 col-form-label">{{user_form.email.label}}:</label>
+                <div class="col-8">
+                    {{user_form.email}}
+                </div>
+                {{user_form.email.errors}}
+
+            </div> -->
+            <div class="form-group row">
+                <label for="contact" class="col-4 col-form-label">{{user_form.phone_number.label}}:</label>
+                <div class="col-8">
+                    {{user_form.phone_number}}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{user_form.text.label}}:</label>
+                <div class="col-8">
+                    {{user_form.text}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="gender" class="col-4 col-form-label">{{user_form.gender.label}}:</label>
+                <div class="col-8">
+                    <div class="form-group">
+                        <div class="custom-controls-stacked">
+                            {{user_form.gender}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="select" class="col-4 col-form-label">Program</label>
+                <div class="col-8">
+                    {{student_form.classroom}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="notes" class="col-4 col-form-label">{{user_form.notes.label}}:</label>
+                <div class="col-8">
+                    {{user_form.notes}}
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addStudents"
+                    >add student</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for adding Students -->
+
+<!-- Start izModal for Upload Students -->
+<div id="modalUploadStudents" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="Adding of New Student Section"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form>
+
+            <div>
+                <h4>Add students via uploading excel file</h4>
+            </div>
+            <!--Start image file upload here -->
+            <div class="form-group row">
+                <div class="col-12">
+                    <input type="file" id="file" name="myfiles" class="form-control-file" />
+                </div>
+            </div>
+            <!--End image file upload here -->
+            <div>
+                <button type="button" class="btn btn-floating pulse btn-md shadow ml-2" id="uploadStudent"
+                    onclick="uploadStudentExcel();">upload student</button>
+                    <button type="button" class="btn btn-floating pulse btn-md shadow " id="cancelStudent"
+                    onclick="cancelUploadExcel();">cancel upload</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for Upload Students -->
+
+
+<!-- Start izModal for adding Subjects -->
+<div id="modalEditStudents" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="Adding of New Student Section"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form>
+
+            <div>
+                <h4>Edit Students Details</h4>
+            </div>
+            <hr>
+            <!--Start image here -->
+            <div class="form-group row">
+                <div class="col-8">
+                    <img src="../assets/images/user/user.png" width="100" class="rounded shadow"
+                        alt="Student Image">
+                </div>
+            </div>
+            <!--End image here -->
+            <hr>
+
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">First Name:</label>
+                <div class="col-8">
+                    <input id="firstname" name="firstname" placeholder="" type="text" required="required"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lastName" class="col-4 col-form-label">Last Name:</label>
+                <div class="col-8">
+                    <input id="lastName" name="lastName" placeholder="" type="text" required="required"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-4 col-form-label">Email:</label>
+                <div class="col-8">
+                    <input id="email" name="email" placeholder="" type="email" required="required"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="contact" class="col-4 col-form-label">Phone Number:</label>
+                <div class="col-8">
+                    <input id="phoneNumber" name="phoneNumber" placeholder="" type="number"
+                        required="required" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">Text:</label>
+                <div class="col-8">
+                    <textarea id="text" name="text" placeholder="" type="text" required="required"
+                        class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="gender" class="col-4 col-form-label">Gender:</label>
+                <div class="col-8">
+                    <input id="phoneNumber" name="phoneNumber" placeholder="" type="text"
+                        required="required" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="select" class="col-4 col-form-label">Select Student Class</label>
+                <div class="col-8">
+                    <input id="phoneNumber" name="phoneNumber" placeholder="" type="text"
+                        required="required" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="notes" class="col-4 col-form-label">Notes:</label>
+                <div class="col-8">
+                    <textarea id="text" name="text" placeholder="" type="text" required="required"
+                        class="form-control"></textarea>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <button type="button" class="btn btn-floating pulse btn-md shadow ml-1"
+                    id="updateStudentButton" onclick="updateStudent();">update student</button>
+                <!-- <button type="button" class="btn btn-floating pulse btn-md shadow" id="cancelStudentButton"
+                    onclick="cancelStudent();">cancel edit</button> -->
+            </div>
+
+        </form>
+    </div>
+</div>
+<script>
+    //Pop-up for editting Students
+$('.student').click(function () {
+            $('#modalEditStudents').iziModal('open');
+            $('#modalEditStudents').iziModal('setTop', 100);
+            $('#modalEditStudents').iziModal('setBottom', 100);
+            $('#modalEditStudents').iziModal('setHeaderColor', '#128EC0');
+            $('#modalEditStudents').iziModal('setBackground', '#eeeeee');
+    
+});
+</script>
+
+{% endblock content %}

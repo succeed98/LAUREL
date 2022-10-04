@@ -1,0 +1,309 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+<br><br>
+            <div class="container page__container">
+                
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Info: </strong> This page shows the <b>Quizzes & assignments</b> for the
+                                    students.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+
+            <div class="pt-32pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="index.html">student dashboard</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Quizzes & assignments
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+            
+
+            <div class="pt-2pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <img src="../assets/students/students.png" class="img-fluid" alt=""> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+
+            <style>
+            </style>
+
+            <!-- Start Overview -->
+            <div class="container page__container">
+
+                <div class="col-lg-6 col-md-4">
+                    <div class="mb-4">
+                        <div class="form-group row">
+                            <div class="col-12 border-accent-dodger-blue" data-toggle="tooltip" data-title="Select Grade" data-placement="top" data-boundary="window">
+                                
+        
+                                <button type="button" class="btn  dropdown-toggle" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select Subject</button>
+                                <div class="dropdown-menu">
+                                    {% for subject in get_subjects %}
+                                    
+                                    <a class="dropdown-item" href="{% url 'student:get_specific_subject_quiz' subject.id %}">{{subject}}</a>
+                                    {% endfor %}
+                                    <a class="dropdown-item" href="{% url 'student:my_quizzes' %}">All</a>
+
+                                </div>
+        
+                                
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Class -->
+        
+                </div>
+
+
+                <br>
+                <div class="page-separator d-block">
+                    <div class="page-separator">
+                        
+                        {% if page_detail == 'get_specific_subject_quiz' %}
+                        <div class="page-separator__text"> {{get_subject}} Quizzes 
+                            <!-- total <span class="ml-2">9</span> -->
+                        </div>
+
+                        {% else %}
+                        <div class="page-separator__text">Quizzes 
+                            <!-- total <span class="ml-2">9</span> -->
+                        </div>
+                        {% endif %}
+                            
+                        
+                    </div>
+                </div>
+                <br>
+
+
+                
+                <div class="card shadow border-0" id="tableCard">
+                    <div class="card-body">
+                        <div class="row align-items-center ">
+                            <div class="col-lg-12 table-responsive">
+                                <table id="example" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-sm">subject Name
+                                            </th>
+                                            <th class="th-sm">activity title
+                                            </th>
+                                            <th class="th-sm">date
+                                            </th>
+                                            <th class="th-sm">Class
+                                            </th>
+                                            <th class="th-sm">Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for quiz in my_quizes %}
+                                          
+                                        <tr>
+                                            <td>{{quiz.subject}}</td>
+                                            <td>{{quiz.quiz_name}}</td>
+                                            <td>{{quiz.date_added}}</td>
+                                            <td>{{quiz.classroom}}</td>
+                                            <td>
+                                                {% if quiz in all_quizes_done %}
+                                                <a href="{% url 'exams:view_quiz_result' quiz.id %}">
+                                                    <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                        id="quizeButton" data-toggle="tooltip"
+                                                        data-title="View quizzes" data-placement="top"
+                                                        data-boundary="window">
+                                                        View Score
+                                                        <i class="material-icons chooseClassIcon">visibility</i>
+                                                    </button>
+                                                </a>
+
+                                                <a href="{% url 'exams:view_quiz_answers' quiz.id %}">
+                                                    <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                        id="quizeButton" data-toggle="tooltip"
+                                                        data-title="View quizzes" data-placement="top"
+                                                        data-boundary="window">
+                                                        View answers
+                                                        <i class="material-icons chooseClassIcon">visibility</i>
+                                                    </button>
+                                                </a>
+                                                {% else %}
+                                                <a href="{% url 'student:quiz_details' quiz.id %}">
+                                                    <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                        id="quizeButton" data-toggle="tooltip"
+                                                        data-title="View quizzes" data-placement="top"
+                                                        data-boundary="window">
+                                                        View Quiz
+                                                        <i class="material-icons chooseClassIcon">visibility</i>
+                                                    </button>
+                                                </a>
+
+                                                {% endif %}
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <br><br>
+                <!-- Start Overview -->
+                    <div class="page-separator d-block">
+                        <div class="page-separator">
+                            <div class="page-separator__text">Expired Quizzes
+                                <!-- total <span class="ml-2">1</span> -->
+                            </div>
+                        </div>
+                    </div>
+    
+                    <br><br>
+                    <hr>
+                    <div class="card border-0" id="tableCard">
+                        <div class="card-body">
+                            <div class="row align-items-center ">
+                                <div class="col-lg-12 table-responsive">
+                                    <table id="expired_list" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="th-sm">subject Name
+                                                </th>
+                                                <th class="th-sm">activity title
+                                                </th>
+                                                <th class="th-sm">date
+                                                </th>
+                                                <th class="th-sm">Class
+                                                </th>
+                                                <th class="th-sm">Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for quiz in expired_list_quizes %}
+                                              
+                                            <tr>
+                                                <td>{{quiz.subject}}</td>
+                                                <td>{{quiz.quiz_name}}</td>
+                                                <td>{{quiz.date_added}}</td>
+                                                <td>{{quiz.classroom}}</td>
+                                                <td>
+                                                    {% if quiz in all_quizes_done %}
+                                                    <a href="{% url 'exams:view_quiz_result' quiz.id %}">
+                                                        <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                            id="quizeButton" data-toggle="tooltip"
+                                                            data-title="View quizzes" data-placement="top"
+                                                            data-boundary="window">
+                                                            View Score
+                                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                                        </button>
+                                                    </a>
+    
+                                                    <a href="{% url 'exams:view_quiz_answers' quiz.id %}">
+                                                        <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                            id="quizeButton" data-toggle="tooltip"
+                                                            data-title="View quizzes" data-placement="top"
+                                                            data-boundary="window">
+                                                            View answers
+                                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                                        </button>
+                                                    </a>
+                                                    {% else %}
+                                                    <a href="{% url 'student:quiz_details' quiz.id %}">
+                                                        <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                            id="quizeButton" data-toggle="tooltip"
+                                                            data-title="View quizzes" data-placement="top"
+                                                            data-boundary="window">
+                                                            View Quiz
+                                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                                        </button>
+                                                    </a>
+    
+                                                    {% endif %}
+                                                    
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+    
+                                        </tbody>
+                                    </table>
+                                </div>
+    
+                            </div>
+                        </div>
+    
+                    </div>
+    
+
+
+            </div>
+{% endblock content %}

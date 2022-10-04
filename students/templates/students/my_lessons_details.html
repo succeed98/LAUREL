@@ -1,0 +1,633 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+
+            {% comment %} <div class="container page__container">
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Welcome to Your Lessons: </strong> This is the assigned lessons given to you
+                                    to read. <b>Happy reading!<span class="material-icons ml-1">
+                                            tag_faces
+                                        </span></b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+
+
+            <div class="pt-32pt">
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="index.html">student</a></li>
+                                <li class="breadcrumb-item active">
+                                    Lesson
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div
+  class="mdk-box bg-primary mdk-box--bg-gradient-primary2 js-mdk-box mb-0"
+  data-effects="blend-background"
+>
+  <div class="mdk-box__content">
+    <div class="hero py-64pt text-center text-sm-left">
+      <div class="container page__container">
+        <h2 class="text-white">Topic Title: {{lesson.name}}</h2>
+        <p class="lead text-white-50 measure-hero-lead">
+          {{lesson.lessoncontent.topic}}
+        </p>
+        {% comment %} {% if lesson.status == 'Approved' %}
+        <button href="#" class="btn btn-white">Approved Lesson</button>
+        {% elif lesson.status == 'Draft' %}
+        <button href="#" class="btn btn-accent">Declined Lesson</button>
+        {% elif lesson.status == 'Pending_Approval' %}
+        <button href="#" class="btn btn-accent">Pending Approval</button>
+        {% else %}
+
+        {% endif %} {% endcomment %}
+      </div>
+    </div>
+    <div
+      class="navbar navbar-expand-sm navbar-light bg-white border-bottom-2 navbar-list p-0 m-0 align-items-center"
+    >
+      <div class="container page__container">
+        <ul class="nav navbar-nav flex align-items-sm-center">
+          <li class="nav-item navbar-list__item">
+            <div class="media align-items-center">
+              <span class="media-left mr-16pt">
+                <img
+                  src="{% static 'edify/assets/images/user/user.png' %}"
+                  width="40"
+                  alt="avatar"
+                  class="rounded-circle"
+                />
+              </span>
+              <div class="media-body">
+                <a class="card-title m-0" href="teacher-profile.html"
+                  >{{lesson.teacher}}</a
+                >
+                <p class="text-50 lh-1 mb-0">Teacher</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="py-5">
+        <div class="d-flex align-items-center">
+          {% comment %} {% autoescape off %} {% endcomment %}
+            <div class="col-lg-12">
+              {{lesson.lessoncontent.content|safe}}
+            </div>
+          {% comment %} {% endautoescape %} {% endcomment %}
+
+          {% comment %} {% with description=lesson.lessoncontent.content|linebreaksbr %}
+                {{description}}
+          {% endwith %} {% endcomment %}
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-lg-5">
+      <div class="py-4"></div>
+
+      <div class="page-separator">
+        <div class="page-separator__text">Video Content</div>
+      </div>
+
+      {% if lesson.lessoncontent.video_content %}
+      <div class="js-player embed-responsive embed-responsive-16by9 mb-32pt">
+        <div class="player embed-responsive-item">
+          <div class="player__content">
+            <div
+              class="player__image"
+              style="
+                --player-image: url(../../public/images/illustration/player.svg);
+              "
+            ></div>
+            <a href="" class="player__play bg-primary">
+              <span class="material-icons">play_arrow</span>
+            </a>
+          </div>
+          <div class="player__embed d-none">
+            {% comment %} <iframe
+              class="embed-responsive-item"
+              src="{{lesson.lessoncontent.video_content.url}}"
+              allowfullscreen=""
+            ></iframe> {% endcomment %}
+            <video width="" preload="metadata" controls>
+              <source src="{{lesson.lessoncontent.video_content.url}}" type="video/mp4">
+        
+              Your browser does not support HTML video.
+            </video>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="mb-3">
+        <p class="lead">No video content available</p>
+      </div>
+      {% endif %}
+
+      
+
+      
+      <div class="page-separator">
+        <div class="page-separator__text">Audio Content</div>
+      </div>
+      {% if lesson.lessoncontent.audio_content %}
+      <div class="card p-2 py-2">
+        {% comment %} <audio controls autoplay muted>
+          <source src="horse.ogg" type="audio/ogg" />
+          <source src="horse.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <br /> {% endcomment %}
+        <audio controls>
+          <source src="{{lesson.lessoncontent.audio_content.url}}" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      {% else %}
+      <div class="mb-3">
+        <p class="lead">No audio content available</p>
+      </div>
+      {% endif %}
+
+
+      <div class="page-separator">
+        <div class="page-separator__text">Lesson Status</div>
+      </div>
+      <div>
+        {% if request.user in lesson.students.all %}
+        <button type="button" class="btn btn-primary">Lesson Completed</button>
+        {% else %}
+        <a href="{% url 'student:complete_lesson' lesson.id %}" class="btn btn-primary">Mark as Completed</a>
+        {% endif %}
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<style></style>
+
+<!-- Start izModal for adding Students -->
+<div
+  id="modalsss"
+  data-iziModal-fullscreen="true"
+  data-izimodal-group="alerts"
+  data-iziModal-title="WELCOME TO EDIFY"
+  data-iziModal-subtitle="Adding of New Student Section"
+  data-iziModal-icon="icon-home"
+>
+  <div style="padding: 50px">
+    <form>
+      <div>
+        <h4>Add New Teacher</h4>
+      </div>
+      <!--Start image file upload here -->
+      <div class="form-group row">
+        <label for="firstname" class="col-4 col-form-label"
+          >Upload Teacher's Image:</label
+        >
+        <div class="col-8">
+          <input
+            type="file"
+            id="file"
+            name="myfiles"
+            class="form-control-file"
+          />
+        </div>
+      </div>
+      <!--End image file upload here -->
+
+      <div class="form-group row">
+        <label for="firstname" class="col-4 col-form-label">First Name:</label>
+        <div class="col-8">
+          <input
+            id="firstname"
+            name="firstname"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lastName" class="col-4 col-form-label">Last Name:</label>
+        <div class="col-8">
+          <input
+            id="lastName"
+            name="lastName"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-4 col-form-label">Email:</label>
+        <div class="col-8">
+          <input
+            id="email"
+            name="email"
+            placeholder=""
+            type="email"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="contact" class="col-4 col-form-label">Phone Number:</label>
+        <div class="col-8">
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder=""
+            type="number"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">Text:</label>
+        <div class="col-8">
+          <textarea
+            id="text"
+            name="text"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="gender" class="col-4 col-form-label">Gender:</label>
+        <div class="col-8">
+          <div class="form-group">
+            <div class="custom-controls-stacked">
+              <div class="custom-control custom-radio">
+                <input
+                  id="radioStacked11"
+                  name="radio-stacked"
+                  type="radio"
+                  class="custom-control-input"
+                  checked=""
+                />
+                <label for="radioStacked11" class="custom-control-label"
+                  >Male</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="radioStacked21"
+                  name="radio-stacked"
+                  type="radio"
+                  class="custom-control-input"
+                />
+                <label for="radioStacked21" class="custom-control-label"
+                  >Female</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="classTeacher" class="col-4 col-form-label"
+          >Class Teacher.?</label
+        >
+        <div class="col-8">
+          <div class="form-group">
+            <div class="custom-controls-stacked">
+              <div class="custom-control custom-radio">
+                <input
+                  id="radioStacked12"
+                  name="radio-stacked"
+                  type="radio"
+                  class="custom-control-input"
+                  checked=""
+                />
+                <label for="radioStacked12" class="custom-control-label"
+                  >Yes</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="radioStacked22"
+                  name="radio-stacked"
+                  type="radio"
+                  class="custom-control-input"
+                />
+                <label for="radioStacked22" class="custom-control-label"
+                  >No</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="subjectTeacher" class="col-4 col-form-label"
+          >Subject Teacher.?</label
+        >
+        <div class="col-8">
+          <div class="form-group">
+            <div class="custom-controls-stacked">
+              <div class="custom-control custom-radio">
+                <input
+                  id="radioStacked13"
+                  name="radio-stacked"
+                  type="radio"
+                  class="custom-control-input"
+                  checked=""
+                />
+                <label for="radioStacked13" class="custom-control-label"
+                  >Yes</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="radioStacked23"
+                  name="radio-stacked"
+                  type="radio"
+                  class="custom-control-input"
+                />
+                <label for="radioStacked23" class="custom-control-label"
+                  >No</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="notes" class="col-4 col-form-label">Notes:</label>
+        <div class="col-8">
+          <textarea
+            id="text"
+            name="text"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          ></textarea>
+        </div>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="btn btn-floating pulse btn-md shadow"
+          id="addTeacher"
+          onclick="addTeachers();"
+        >
+          add teacher
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- End izModal for adding Students -->
+
+<!-- Start izModal for Upload Students -->
+<div
+  id="modalUploadStudents"
+  data-iziModal-fullscreen="true"
+  data-izimodal-group="alerts"
+  data-iziModal-title="WELCOME TO EDIFY"
+  data-iziModal-subtitle="Adding of New Student Section"
+  data-iziModal-icon="icon-home"
+>
+  <div style="padding: 50px">
+    <form>
+      <div>
+        <h4>Add students via uploading excel file</h4>
+      </div>
+      <!--Start image file upload here -->
+      <div class="form-group row">
+        <div class="col-12">
+          <input
+            type="file"
+            id="file"
+            name="myfiles"
+            class="form-control-file"
+          />
+        </div>
+      </div>
+      <!--End image file upload here -->
+      <div>
+        <button
+          type="button"
+          class="btn btn-floating pulse btn-md shadow ml-2"
+          id="uploadStudent"
+          onclick="uploadStudentExcel();"
+        >
+          upload student
+        </button>
+        <button
+          type="button"
+          class="btn btn-floating pulse btn-md shadow"
+          id="cancelStudent"
+          onclick="cancelUploadExcel();"
+        >
+          cancel upload
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- End izModal for Upload Students -->
+
+<!-- Start izModal for adding Subjects -->
+<div
+  id="modalEditStudents"
+  data-iziModal-fullscreen="true"
+  data-izimodal-group="alerts"
+  data-iziModal-title="WELCOME TO EDIFY"
+  data-iziModal-subtitle="Adding of New Student Section"
+  data-iziModal-icon="icon-home"
+>
+  <div style="padding: 50px">
+    <form>
+      <div>
+        <h4>Edit Teacher's Details</h4>
+      </div>
+      <hr />
+      <!--Start image here -->
+      <div class="form-group row">
+        <div class="col-8">
+          <img
+            src="../assets/images/user/user.png"
+            width="100"
+            class="rounded shadow"
+            alt="Student Image"
+          />
+        </div>
+      </div>
+      <!--End image here -->
+      <hr />
+
+      <div class="form-group row">
+        <label for="firstname" class="col-4 col-form-label">First Name:</label>
+        <div class="col-8">
+          <input
+            id="firstname"
+            name="firstname"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lastName" class="col-4 col-form-label">Last Name:</label>
+        <div class="col-8">
+          <input
+            id="lastName"
+            name="lastName"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-4 col-form-label">Email:</label>
+        <div class="col-8">
+          <input
+            id="email"
+            name="email"
+            placeholder=""
+            type="email"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="contact" class="col-4 col-form-label">Phone Number:</label>
+        <div class="col-8">
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder=""
+            type="number"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="firstname" class="col-4 col-form-label">Text:</label>
+        <div class="col-8">
+          <textarea
+            id="text"
+            name="text"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="gender" class="col-4 col-form-label">Gender:</label>
+        <div class="col-8">
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="select" class="col-4 col-form-label"
+          >Select Student Class</label
+        >
+        <div class="col-8">
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="notes" class="col-4 col-form-label">Notes:</label>
+        <div class="col-8">
+          <textarea
+            id="text"
+            name="text"
+            placeholder=""
+            type="text"
+            required="required"
+            class="form-control"
+          ></textarea>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <button
+          type="button"
+          class="btn btn-floating pulse btn-md shadow ml-1"
+          id="updateStudentButton"
+          onclick="updateStudent();"
+        >
+          update Teacher
+        </button>
+        <!-- <button type="button" class="btn btn-floating pulse btn-md shadow" id="cancelStudentButton"
+                    onclick="cancelStudent();">cancel edit</button> -->
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

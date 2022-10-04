@@ -1,0 +1,894 @@
+body{
+    background: #faf9f9 !important;
+}
+
+.hoverableClasses:hover {
+    box-shadow: 0 3px 3px 0 blue, 0 2px 2px 0px blue, 0 0px 0px 0 blue !important;
+    cursor: pointer;
+}
+
+.hoverableTeachers:hover {
+    box-shadow: 0 3px 3px 0 green, 0 2px 2px 0px green, 0 0px 0px 0 green !important;
+    cursor: pointer;
+}
+
+.hoverableSubjects:hover {
+    box-shadow: 0 3px 3px 0 purple, 0 2px 2px 0px purple, 0 0px 0px 0 purple !important;
+    cursor: pointer;
+}
+
+.hoverableStudents:hover {
+    box-shadow: 0 3px 3px 0 orangered, 0 2px 2px 0px orangered, 0 0px 0px 0 orangered !important;
+    cursor: pointer;
+}
+
+.bgClassess{
+    background-image: linear-gradient(to right, #00b4db, #0083b0);
+    border: none !important;
+}
+
+.teachers{
+    background-image: linear-gradient(to right, #00b09b, #96c93d);
+    border: none !important;
+}
+
+.subjects{
+    background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+    border: none !important;
+}
+
+.students{
+    background-image: linear-gradient(to right, #ff512f, #f09819);
+    border: none !important;
+}
+
+
+.classIcon{
+    color: #fff !important;
+}
+
+.teachersIcon{
+    color: #fff !important;
+}
+
+.subjectsIcon{
+    color: #fff !important;
+}
+
+.studentsIcon{
+    color: #fff !important;
+}
+
+.sidebar{
+    background: #fff !important;
+}
+
+.awselect .front_face .placeholder {
+    position: relative;
+    color: #cccccc;
+}
+/* Classes Add Button */
+#addClass{
+    border-radius: 2px; 
+    border: 0px !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: #5567FF;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#addClass:hover{
+    background-color: #5567FF !important;
+    box-shadow: 0px 5px 5px #5567FF !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+/* Add Subject Button */
+#addSubjects{
+    border-radius: 2px; 
+    border: none !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: #A200FF;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#addSubjects:hover{
+    background-color: #A200FF !important;
+    box-shadow: 0px 5px 5px #A200FF !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+/* Add Teacher  Button */
+#addTeacher{
+    border-radius: 2px; 
+    border: none !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: #04AF04;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#addTeacher:hover{
+    background-color: #04AF04 !important;
+    box-shadow: 0px 5px 5px #04AF04 !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#addStudents{
+    border-radius: 2px; 
+    border: none !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: #E4A93C;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#addStudents:hover{
+    background-color: #E4A93C !important;
+    box-shadow: 0px 5px 5px #E4A93C !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+/* File upoad */
+.uploadPicture {
+    border-radius: 20%;
+    border: solid 1px #cccccc;
+    width: 16%;
+    height: 100px;
+}
+
+#upload {
+    opacity: 0;
+    border: solid 1px crimson !important;
+}
+
+#upload-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    width: 100% !important;
+}
+
+.image-area {
+    border: 2px dashed rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    position: relative;
+}
+
+.image-area::before {
+    content: 'Uploaded image result';
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    z-index: 1;
+}
+
+.image-area img {
+    z-index: 2;
+    position: relative;
+}
+
+
+#checkboxes{
+    display: none;
+    /* border: 1px solid #42A9FF; */
+    background-color: #fff;
+    font-size: 12px;
+
+}
+.checkBoxes{
+    position: relative;
+    right: 1%;
+    top: 2.5px;
+    border-bottom: 1px solid #42A9FF;
+}
+
+#checkboxes label{
+    display: block;
+}
+
+#checkboxes label:hover{
+    /* background-color: #42A9FF; */
+}
+
+#checkbox{
+    display: none;
+    /* border: 1px solid #42A9FF; */
+    background-color: #fff;
+    font-size: 12px;
+
+}
+.checkBoxes{
+    position: relative;
+    right: 1%;
+    top: 2.5px;
+    border-bottom: 1px solid #42A9FF;
+}
+
+#checkbox label{
+    display: block;
+}
+
+#checkbox label:hover{
+    /* background-color: #42A9FF; */
+}
+
+.iziModal-navigate > button {
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    border: 0;
+    height: 100%;
+    width: 84px;
+    background-size: 100% !important;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+    pointer-events: all;
+    margin: 0;
+    outline: none;
+    display: none !important;
+}
+
+/* Achievements Css */
+.medals{
+    /* background: #E0E4FF !important; */
+    border: none !important;
+}
+
+.medalsIcon{
+    font-size: 20px;
+    color: #fff !important;
+}
+
+.badges{
+    /* background: #E0E4FF !important; */
+    border: none !important;
+}
+
+.badgesIcon{
+    font-size: 20px;
+    color: #fff !important;
+}
+
+.bg-second{
+    background: #7E84F2 !important;
+    border: none !important;
+}
+
+.trophiesIcon{
+    font-size: 20px;
+    color: #fff !important;
+}
+
+.points{
+    /* background: #E0E4FF !important; */
+    border: none !important;
+}
+
+.pointsIcon{
+    font-size: 20px;
+    color: #fff !important;
+}
+
+.hoverable:hover {
+    box-shadow: 0 3px 3px 0 #4E6C8F, 0 2px 2px 0px #4E6C8F, 0 0px 0px 0 #4E6C8F !important;
+    cursor: pointer;
+}
+
+.hoverables:hover {
+    box-shadow: 0 3px 3px 0 #FFBB2E, 0 2px 2px 0px #FFBB2E, 0 0px 0px 0 #FFBB2E !important;
+    cursor: pointer;
+}
+
+/* Project Manager Students Section Css */
+#topRightButtons{
+    float: right !important;
+}
+
+.page-separator__text{
+    background-color: #faf9f9 !important;
+}
+
+.button-list{
+    position: relative;
+    top: -10px;
+    float: right;
+}
+
+/* .dropdown-menu{
+    z-index: -999;
+} */
+
+/* Grade Button */
+#gradeButton{
+    background-color: transparent !important;
+    color: #0d0d0d;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+#gradeButton:hover{
+    background-color: transparent !important;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-10px) !important;
+    color: #0d0d0d;
+}
+
+/* Delete Button */
+#delete_foreverButton{
+    background-color: red !important;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+#delete_foreverButton:hover{
+    background-color: red !important;
+    box-shadow: 0px 5px 5px red !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.delete_foreverIcon{
+    font-size: 20px !important;
+}
+
+/* Edit Button */
+#editButton{
+    background-color: #577EF2 !important;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+#editButton:hover{
+    background-color: #577EF2 !important;
+    box-shadow: 0px 5px 5px #577EF2 !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.editIcon{
+    font-size: 20px !important;
+}
+
+/* Choose Class Button */
+#chooseClassButton{
+    background-color: #4E6C8F !important;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+#chooseClassButton:hover{
+    background-color: #4E6C8F !important;
+    box-shadow: 0px 5px 5px #4E6C8F !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.chooseClassIcon{
+    font-size: 20px !important;
+}
+
+/* Adding of subject button */
+#addsubjectBotton{
+    background-color: blue !important;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+#addsubjectBotton:hover{
+    background-color: blue !important;
+    box-shadow: 0px 5px 5px blue !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.chooseClassIcon{
+    font-size: 20px !important;
+}
+
+#promoteStudent{
+    width: 25%; 
+    height: 40px; 
+    border-radius: 2px; 
+    border: 0px !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: #4E6C8F;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#promoteStudent:hover{
+    background-color: #4E6C8F !important;
+    box-shadow: 0px 5px 5px #4E6C8F !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.accountIcon{
+    font-size: 50px !important;
+    color: #fff !important;
+}
+
+.accountIconn{
+    font-size: 50px !important;
+    /* color: #fff !important; */
+}
+
+.classesLessons{
+    background-color: #D8E5FF !important;
+}
+
+.classLessonIcon{
+    color: #006FFF !important;
+}
+
+.assignment{
+    background-color: #DAEFEC !important;
+    border: none !important;
+}
+#sendMessage{
+    background-color: #006FFF !important;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+    float: right;
+}
+
+#sendMessage:hover{
+    background-color: #006FFF !important;
+    box-shadow: 0px 5px 5px #006FFF !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+
+#cardAboutStudent{
+    background-color: transparent !important;
+}
+
+#card{
+    border: none;
+}
+
+.announcement{
+    background: #FF7373 !important;
+    border: none !important;
+}
+
+.hoverableAnnouncement:hover {
+    box-shadow: 0 3px 3px 0 crimson, 0 2px 2px 0px crimson, 0 0px 0px 0 crimson !important;
+    cursor: pointer;
+}
+
+.fa-bullhorn{
+    color: #fff !important;
+}
+
+.fa-file-alt{
+    color: #868D99 !important;
+}
+
+#quizIcon{
+    font-size: 25px !important; 
+}
+
+.hoverableEdify:hover {
+    box-shadow: 0 3px 3px 0 #4E6C8F, 0 2px 2px 0px #4E6C8F, 0 0px 0px 0 #4E6C8F !important;
+    cursor: pointer;
+}
+
+.hoverableAssignmentt:hover{
+    box-shadow: 0 3px 3px 0 #4E6C8F, 0 2px 2px 0px #4E6C8F, 0 0px 0px 0 #4E6C8F !important;
+    cursor: pointer;
+    border: none;
+}
+
+.myCourseLeft{
+    float: right;
+}
+
+.cardNameTitle{
+    font-size: 11px;
+}
+
+.cardNameTitleSub{
+    font-size: 9px;
+}
+
+
+.newAnnouncements{
+    position: relative;
+    left: 2% !important;
+    top: 1px;
+}
+
+#addAnnouncements{
+    border-radius: 2px; 
+    border: 0px !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: #4E6C8F;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#addAnnouncements:hover{
+    background-color: #4E6C8F !important;
+    box-shadow: 0px 5px 5px #4E6C8F !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.profileBackG{
+    background-color: #4E6C8F !important;
+}
+
+#announ{
+    color: rgb(71, 68, 68) !important; 
+    position: relative; right: 2%;
+}
+
+#totalTopicsBackG{
+    background: #eeeeee !important;
+}
+
+#avatarTitleBackG{
+    background-color: transparent;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+    border: none;
+    padding: 5px;
+    width: auto;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+#chooseTopicButton{
+    background-color: blue !important;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+#chooseTopicButton:hover{
+    background-color: blue !important;
+    box-shadow: 0px 5px 5px blue !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+.bgTopics{
+    background-color: blue !important;
+}
+
+.assignmentt{
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.classesLessonss{
+    background-image: linear-gradient(to right, #8360c3, #2ebf91);
+}
+
+.studentss{
+    background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+}
+
+.profile{
+    background-image: linear-gradient(to right, #00b4db, #0083b0);
+}
+
+#tableCard{
+    border-top-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+    border-top: 2px solid #4E6C8F !important;
+    border-bottom: 2px solid #4E6C8F !important;
+}
+
+#info-navbar{
+    /* background: crimson !important; */
+    background-image: linear-gradient(to right, #2c3e50, #4ca1af);
+    border: none !important;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+#default-navbar{
+    border: none !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+#editTopicButton{
+    background-color: rgb(18, 144, 194) !important;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+#editTopicButton:hover{
+    background-color: rgb(18, 144, 194) !important;
+    box-shadow: 0px 5px 5px rgb(18, 144, 194) !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#cancelStudentButton{
+    border-radius: 2px; 
+    border: none !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: red;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#cancelStudentButton:hover{
+    background-color: red !important;
+    box-shadow: 0px 5px 5px red !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#updateStudentButton{
+    border-radius: 2px; 
+    border: none !important;
+    float: right;
+    font-size: 12px; 
+    color: white; 
+    background-color: green;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#updateStudentButton:hover{
+    background-color: green !important;
+    box-shadow: 0px 5px 5px green !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#uploadStudentButton{
+    border-radius: 2px; 
+    border: none !important;
+    float: right !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: rgb(18, 144, 194);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#uploadStudentButton:hover{
+    background-color: rgb(18, 144, 194) !important;
+    box-shadow: 0px 5px 5px rgb(18, 144, 194) !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#addStudentButton{
+    border-radius: 2px; 
+    border: none !important;
+    float: right !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: blue;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#addStudentButton:hover{
+    background-color: blue !important;
+    box-shadow: 0px 5px 5px blue !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#file{
+    background-color: rgb(18, 144, 194);
+    padding: 8px;
+    width: 100%;
+    border-radius: 2px;
+    color: #fff;
+}
+
+#file input [type="file"]{
+    border: none !important;
+}
+
+#uploadStudent{
+    border-radius: 2px; 
+    border: none !important;
+    float: right !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: green;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#uploadStudent:hover{
+    background-color: green !important;
+    box-shadow: 0px 5px 5px green !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#cancelStudent{
+    border-radius: 2px; 
+    border: none !important;
+    float: right !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: red;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#cancelStudent:hover{
+    background-color: red !important;
+    box-shadow: 0px 5px 5px red !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+#lessons{
+    background-color: #fff !important;
+}
+
+#createEvents{
+    border-radius: 2px; 
+    border: none !important;
+    float: right !important;
+    font-size: 12px; 
+    color: white; 
+    background-color: rgb(18, 144, 194);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease 0s !important;
+}
+#createEvents:hover{
+    background-color: rgb(18, 144, 194) !important;
+    box-shadow: 0px 5px 5px rgb(18, 144, 194) !important;
+    transform: translateY(-10px) !important;
+    color: #fff;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+/* .multi-selector {
+    width: max-content;
+} */
+
+/* .select-field {
+    border: 1px solid rgb(187, 187, 187);
+} */
+
+.select-field,
+.task,
+.list {
+    width: 100%;
+    /* background-color: white; */
+    padding: 0.3rem;
+}
+
+.list {
+    box-shadow: 0 30px 60px rgb(0, 0, 0, 0.2);
+    display: none;
+}
+
+.down-arrow {
+    font-size: 1.2rem;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.task {
+    display: block;
+    padding-left: 0;
+}
+
+.task span {
+    float: right;
+    font-size: 0.6rem;
+    /* padding-top: 6px; */
+}
+
+.task:hover {
+    background-color: aliceblue;
+}
+
+.show {
+    display: block;
+}
+
+.rotate180 {
+    transform: rotate(-60deg);
+}
+
+#peopleImage{
+    height: 280px !important;
+    border-radius: 3%;
+}
+
+#topItemsRecords{
+    float: right !important;
+}
+
+#chartGraphy{
+    height: 405px 
+}
+
+#chartGraphyy{
+    height: 405px 
+}
+
+#people{
+    height: 255px !important;
+    border-radius: 3%;
+}
+
+[dir] .flatpickr-input[readonly] {
+    cursor: pointer;
+    display: none;
+}
+
+[dir] .flatpickr-input[readonly] {
+    cursor: pointer;
+    display: none;
+}
+
+#cardLearningMaterial{
+    height: 378px 
+}
+
+/* .sidebar-item .nav .nav-item.active > .nav-link {
+    background: rgb(75 73 172);
+    position: relative;
+} */
+
+[dir] .chart-legend-itemm {
+    padding: .25rem .5rem;
+    border: 1px solid #e9edf2;
+    border-radius: .2rem;
+}
+
+.chart-legend-itemm {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: .8125rem;
+    color: rgba(39, 44, 51, .5);
+}
+
+.chart-legendd {
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+}

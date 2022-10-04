@@ -1,0 +1,566 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %} {{title}} {% endblock title %}</title>
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
+        rel="stylesheet">
+
+    <!-- Preloader -->
+    <link type="text/css" href="{% static 'edify/vendor/public/vendor/spinkit.css' %}" rel="stylesheet">
+
+    <!-- Perfect Scrollbar -->
+    <link type="text/css" href="{% static 'edify/vendor/public/vendor/perfect-scrollbar.css' %}" rel="stylesheet">
+
+    <!-- Material Design Icons -->
+    <link type="text/css" href="{% static 'edify/vendor/public/css/material-icons.css' %}" rel="stylesheet">
+
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
+
+
+    <!-- Font Awesome Icons -->
+    <link type="text/css" href="{% static 'edify/vendor/public/css/fontawesome.css' %}" rel="stylesheet">
+
+    <!-- Preloader -->
+    <link type="text/css" href="{% static 'edify/vendor/public/css/preloader.css' %}" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'edify/vendor/public/css/app.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'edify/vendor/styles/projectManager.css' %}">
+    <link rel="stylesheet" href="{% static 'edify/vendor/styles/students.css' %}">
+
+    <!-- iModal Css -->
+    <link rel="stylesheet" href="{% static 'edify/vendor/vendor/iziModal/css/iziModal.css' %}">
+
+    <!-- aweSelect Css -->
+    <link rel="stylesheet" href="{% static 'edify/vendor/vendor/aweSelect/css/awselect.css' %}">
+
+    <!-- Dark Mode CSS -->
+    <link type="text/css" href="{% static 'edify/vendor/public/css/dark.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    {% comment %} affects calendars {% endcomment %}
+    <!-- Flatpickr -->
+    <link type="text/css" href="{% static 'edify/vendor/public/css/flatpickr.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'edify/vendor/public/css/flatpickr-airbnb.css' %}" rel="stylesheet">
+
+    <style>
+        .activenav{
+            background-color: #4E6C8F!important;
+            color: white;
+        }
+
+       
+
+    </style>
+
+    
+</head>
+
+<body class="layout-app ">
+
+    <div class="preloader">
+        <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+        </div>
+
+        <!-- <div class="sk-bounce">
+    <div class="sk-bounce-dot"></div>
+    <div class="sk-bounce-dot"></div>
+  </div> -->
+
+        <!-- More spinner examples at https://github.com/tobiasahlin/SpinKit/blob/master/examples.html -->
+    </div>
+
+    <!-- Drawer Layout -->
+
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+        <div class="mdk-drawer-layout__content page-content">
+
+            <!-- Header -->
+
+            <!-- Navbar -->
+
+            <div class="navbar navbar-expand pr-0 navbar-light border-bottom-2" id="default-navbar" data-primary>
+
+                <!-- Navbar Toggler -->
+
+                <button class="navbar-toggler w-auto mr-16pt d-block d-lg-none rounded-0" type="button"
+                    data-toggle="sidebar">
+                    <span class="material-icons">short_text</span>
+                </button>
+
+                <!-- // END Navbar Toggler -->
+
+                <!-- Navbar Brand -->
+
+                <a href="javascript:void(0)" class="navbar-brand mr-16pt d-lg-none">
+
+                    <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
+
+                        <span class="avatar-title" id="avatarTitleBackG">
+                            Logo
+
+                    </span>
+
+                    <!-- <span class="d-none d-lg-block">Edify</span> -->
+                </a>
+
+                <!-- // END Navbar Brand -->
+
+               
+
+                <div class="flex"></div>
+
+                <!-- Navbar Menu -->
+
+                <div class="nav navbar-nav flex-nowrap d-flex mr-16pt">
+
+
+
+ 
+
+                    <!-- User dropdown -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown"
+                            data-caret="false">
+
+                            <span class="avatar avatar-sm mr-8pt2">
+                                {% if request.user.profile %}
+                                <img class="avatar-title rounded-circle profileBackG" src="{{request.user.profile.url}}" alt="">
+                                {% else %}
+                                <span class="avatar-title rounded-circle profileBackG"><i
+                                    class="material-icons">account_circle</i></span>
+                                {% endif %}
+                                
+
+                            </span>
+
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-header"><strong>{{request.user.username}}</strong></div>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            {% comment %} <a class="dropdown-item" href="{% url 'dashboard:profile'%}">Profile</a> {% endcomment %}
+                            {% comment %} <a class="dropdown-item" href="javascript:void(0)">Profile Settings</a> {% endcomment %}
+                            <a class="dropdown-item" href="{% url 'authentication:edit_profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'authentication:logout' %}">Logout</a>
+                        </div>
+                    </div>
+                    <!-- // END User dropdown -->
+                </div>
+
+                <!-- // END Navbar Menu -->
+
+                
+
+            </div>
+
+            <!-- // END Navbar -->
+
+            
+            <!-- Navbar -->
+
+            {% block content %}
+
+            {% endblock content %}
+
+
+            <!-- Footer -->
+
+            <div class="bg-white border-top-1 mt-auto">
+                <div class="container page__container page-section d-flex flex-column">
+                    <p class="text-50 small mt-n1 mb-0 text-center">Copyright 2022 &copy Edify: All rights reserved.</p>
+                </div>
+            </div>
+
+            <!-- // END Footer -->
+
+        </div>
+
+        <!-- // END drawer-layout__content -->
+
+        <!-- Drawer -->
+
+        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+            <div class="mdk-drawer__content">
+                <div class="sidebar sidebar-dark-pickled-bluewood sidebar-left" data-perfect-scrollbar>
+
+                    <!-- Sidebar Content -->
+
+                    <div class="d-flex align-items-center navbar-height">
+                        <form action="index.html" class="search-form search-form--light mx-16pt pr-0 pl-16pt">
+                            <input type="text" class="form-control pl-0" placeholder="Search">
+                            <button class="btn" type="submit"><i class="material-icons">search</i></button>
+                        </form>
+                    </div>
+
+                    <!--Start Edify Logo -->
+                    <a href="javascript:void(0)" class="sidebar-brand ">
+                        logo
+
+                    </a>
+                    <!-- End Edify Logo -->
+                    {% comment %} parent if starts here ... {% endcomment %}
+                    {% if request.user.is_authenticated %}
+
+                        {% if request.user.is_student %}
+                        <div class="sidebar-heading">Student Dashboard</div>
+                        {% elif request.user.is_teacher %}
+                        <div class="sidebar-heading">Lecturer's Dashboard</div>
+                        {% elif request.user.is_headteacher %}
+                        <div class="sidebar-heading">HeadTeacher</div>
+                        {% elif request.user.is_project_manager %}
+                        <div class="sidebar-heading">Project Manager</div>
+                        {% else %}
+                        <div class="sidebar-heading">Dashboard</div>
+                        {% endif %}
+                    
+                    {% if request.user.is_student %}
+                        <ul class="sidebar-menu">
+
+                            <li class="sidebar-menu-item {% if page == 'dash' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'student:dashboard' %}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">home</span>
+                                    <span class="active sidebar-menu-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {% if page == 'classroom' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'student:classroom' %}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                    <span class="sidebar-menu-text">Programs</span>
+                                </a>
+                            </li>
+                            <!-- <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{% url 'student:my_courses' %}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">menu_book</span>
+                                    <span class="sidebar-menu-text">My Courses</span>
+                                </a>
+                            </li> -->
+                            <li class="sidebar-menu-item {% if page == 'forum' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'forum:forum' %}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">forum</span>
+                                    <span class="sidebar-menu-text">Forum</span>
+                                </a>
+                            </li>
+                          
+                  
+                    {% elif request.user.is_teacher %}
+                        <ul class="sidebar-menu">
+
+                            <li class="sidebar-menu-item {% if page == 'dash' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'teacher:dashboard' %}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">home</span>
+                                    <span class="active sidebar-menu-text">Dashboard</span>
+                                </a>
+                            </li>
+
+                            
+                                
+                                
+                            <li class="sidebar-menu-item {% if page == 'classroom' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'classroom:list_classroom'%}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                    <span class="sidebar-menu-text">Programs</span>
+                                </a>
+                            </li>
+
+                            
+
+                            
+                        </ul>
+                    {% elif request.user.is_headteacher %}
+                        <ul class="sidebar-menu">
+
+                            <li class="sidebar-menu-item {% if page == 'dash' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'headteacher:index' %}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">home</span>
+                                    <span class="active sidebar-menu-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {% if page == 'classroom' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'dashboard:all_classrooms'%}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                    <span class="sidebar-menu-text">Programs</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar-menu-item {% if page == 'student' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'student:list_student'%}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">people_alt</span>
+                                    <span class="sidebar-menu-text">Students</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {% if page == 'teacher' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'teacher:list_teacher'%}">
+                                    <span
+                                        class="material-icons sidebar-menu-icon sidebar-menu-icon--left">supervised_user_circle</span>
+                                    <span class="sidebar-menu-text">Lecturers</span>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                    {% elif request.user.is_project_manager %}
+                        <ul class="sidebar-menu">
+
+                            <li class="sidebar-menu-item {% if page == 'dash' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'dashboard:index' %}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">home</span>
+                                    <span class="active sidebar-menu-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {% if page == 'classroom' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'dashboard:all_classrooms'%}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                    <span class="sidebar-menu-text">Programs</span>
+                                </a>
+                            </li>
+
+
+                            <li class="sidebar-menu-item {% if page == 'subject' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'classroom:list_subject'%}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                    <span class="sidebar-menu-text">Courses</span>
+                                </a>
+                            </li>
+
+
+                           
+                            <li class="sidebar-menu-item {% if page == 'student' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'student:list_student'%}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">people_alt</span>
+                                    <span class="sidebar-menu-text">Students</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar-menu-item {% if page == 'teacher' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'teacher:list_teacher'%}">
+                                    <span
+                                        class="material-icons sidebar-menu-icon sidebar-menu-icon--left">supervised_user_circle</span>
+                                    <span class="sidebar-menu-text">Lecturer</span>
+                                </a>
+                            </li>
+                            
+                           
+                        </ul>
+                    {% else %}
+                        <ul class="sidebar-menu">
+
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="javascript:void(0)">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">home</span>
+                                    <span class="active sidebar-menu-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="javascript:void(0)">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                    <span class="sidebar-menu-text">Programs</span>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                    {% endif %}
+
+                    <!-- // END Sidebar Content -->
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- // END Drawer -->
+
+    </div>
+
+    <!-- // END Drawer Layout -->
+
+    <!-- jQuery -->
+    <script src="{% static 'edify/vendor/public/vendor/jquery.min.js' %}"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
+
+    <!-- Project Manager JS -->
+    <script src="{% static 'edify/vendor/scripts/projectManager.js' %}"></script>
+    <script src="{% static 'edify/vendor/scripts/projectsMana.js' %}"></script>
+
+    <!-- iModal JS -->
+    <script src="{% static 'edify/vendor/vendor/iziModal/js/iziModal.js' %}"></script>
+
+    <!-- aweSelect JS -->
+    <script src="{% static 'edify/vendor/vendor/aweSelect/js/awselect.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'edify/vendor/public/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'edify/vendor/public/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Perfect Scrollbar -->
+    <script src="{% static 'edify/vendor/public/vendor/perfect-scrollbar.min.js' %}"></script>
+
+    <!-- DOM Factory -->
+    <script src="{% static 'edify/vendor/public/vendor/dom-factory.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'edify/vendor/public/vendor/material-design-kit.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'edify/vendor/public/js/app.js' %}"></script>
+
+    <!-- Preloader -->
+    <script src="{% static 'edify/vendor/public/js/preloader.js' %}"></script>
+
+    <!-- Global Settings -->
+    <script src="{% static 'edify/vendor/public/js/settings.js' %}"></script>
+
+    <!-- Flatpickr -->
+    <script src="{% static 'edify/vendor/public/vendor/flatpickr/flatpickr.min.js' %}"></script>
+    <script src="{% static 'edify/vendor/public/js/flatpickr.js' %}"></script>
+
+    <!-- Moment.js -->
+    <script src="{% static 'edify/vendor/public/vendor/moment.min.js' %}"></script>
+    <script src="{% static 'edify/vendor/public/vendor/moment-range.js' %}"></script>
+
+    <!-- Chart.js -->
+    <script src="{% static 'edify/vendor/public/vendor/Chart.min.js' %}"></script>
+    <script src="{% static 'edify/vendor/public/js/chartjs.js' %}"></script>
+
+    <!-- Chart.js Samples -->
+    <script src="{% static 'edify/vendor/public/js/page.student-dashboard.js' %}"></script>
+
+    <!-- List.js -->
+    <script src="{% static 'edify/vendor/public/vendor/list.min.js' %}"></script>
+    <script src="{% static 'edify/vendor/public/js/list.js' %}"></script>
+
+    <!-- Tables -->
+    <script src="{% static 'edify/vendor/public/js/toggle-check-all.js' %}"></script>
+    <script src="{% static 'edify/vendor/public/js/check-selected-row.js' %}"></script>
+
+    <!-- UI Charts Page JS -->
+    <script src="{% static 'edify/vendor/public/js/chartjs-rounded-bar.js' %}"></script>
+    <script src="{% static 'edify/public/js/chartjs.js' %}"></script>
+
+    <!-- Chart.js Samples -->
+    <script src="{% static 'edify/vendor/public/js/page.ui-charts.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- Datatables  Js-->
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script src="{% static 'edify/vendor/scripts/teachers.js' %}"></script>
+
+    <script src=""></script>
+
+
+
+{% include "bases/javascript.html" %}
+
+
+
+<script>
+
+
+
+
+    var que = {{list_que}};
+    for (let x in que) {
+        $("#modal101".replace('101', que[x])).iziModal({
+            arrowKeys: false
+        });
+        console.log(que[x]);
+    }
+
+
+
+
+    
+
+
+    
+
+
+
+        function ShowAddAnswer(id) {
+            
+
+            $('#modal101'.replace('101', id)).iziModal('open');
+            $('#modal101'.replace('101', id)).iziModal('setTop', 100);
+            $('#modal101'.replace('101', id)).iziModal('setBottom', 80);
+            $('#modal101'.replace('101', id)).iziModal('setHeaderColor', '#184059');
+            $('#modal101'.replace('101', id)).iziModal('setBackground', '#eeeeee');
+    }
+    
+
+
+
+
+
+
+    var ans = {{list_ans}};
+    for (let x in ans) {
+        $("#modalans101".replace('101', ans[x])).iziModal({
+            arrowKeys: false
+        });
+        console.log(ans[x]);
+    }
+
+
+
+
+    var assignment = {{my_list_assignment}};
+    for (let x in assignment) {
+        $("#assignmentmodal101".replace('101', assignment[x])).iziModal({
+            arrowKeys: false
+        });
+        
+    }
+
+
+    
+
+
+
+        function ShowViewAnswer(id) {
+            
+
+            $('#modalans101'.replace('101', id)).iziModal('open');
+            $('#modalans101'.replace('101', id)).iziModal('setTop', 100);
+            $('#modalans101'.replace('101', id)).iziModal('setBottom', 80);
+            $('#modalans101'.replace('101', id)).iziModal('setHeaderColor', '#184059');
+            $('#modalans101'.replace('101', id)).iziModal('setBackground', '#eeeeee');
+    }
+
+
+
+    function ShowViewAssignment(id) {
+            
+
+            $('#assignmentmodal101'.replace('101', id)).iziModal('open');
+            $('#assignmentmodal101'.replace('101', id)).iziModal('setTop', 100);
+            $('#assignmentmodal101'.replace('101', id)).iziModal('setBottom', 80);
+            $('#assignmentmodal101'.replace('101', id)).iziModal('setHeaderColor', '#184059');
+            $('#assignmentmodal101'.replace('101', id)).iziModal('setBackground', '#eeeeee');
+    }
+    
+</script>
+</body>
+
+</html>

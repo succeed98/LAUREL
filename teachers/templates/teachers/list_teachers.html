@@ -1,0 +1,331 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<style>
+
+</style>
+<div class="container page__container">
+    <div class="">
+        <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="d-flex flex-wrap align-items-start">
+                <div class="mr-8pt">
+                    <i class="material-icons">access_time</i>
+                </div>
+                <div class="flex" style="min-width: 180px">
+                    <small class="text-black-100">
+                        <strong>Info: </strong> This page shows all the number of teachers in the system.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pt-32pt">
+
+    <div
+        class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="index.html">Project Manager</a></li>
+
+                    <li class="breadcrumb-item active">
+
+                        Teachers
+
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+
+    </div>
+</div><br>
+
+<!-- BEFORE Page Content -->
+
+<!-- // END BEFORE Page Content  background:#e5e5e5-->
+
+<!-- Page Content -->
+
+
+
+<!-- Start Overview -->
+<div class="container page__container">
+    <div class="page-section">
+        <div class="page-separator d-block">
+            <div class="page-separator">
+                <div class="page-separator__text ml-1">Teachers <span class="ml-1">{{list_teachers_count}}</span>  total</div>
+            </div>
+
+            <button type="button" class="btn pulse btn-md shadow teachers" style="background-color: rgb(18, 144, 194)!important;" id="uploadStudentButton"
+                data-toggle="tooltip" data-title="Click to Add Classes" data-placement="top" data-boundary="window">add Teacher</button>
+                <!-- <div class="mb-4" >
+                    <div class="card shadow hoverableTeachers teachers"> -->
+            <!-- <button type="button" class="btn pulse btn-md shadow addstudentButton" id="uploadStudentButton"
+                onclick="uploadStudent();">add student</button> -->
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="card shadow border-0" id="tableCard">
+        <div class="card-body">
+            <div class="row align-items-center ">
+                <div class="col-lg-12 table-responsive">
+                    <table id="example" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Username
+                                </th>
+                                <th class="th-sm">Fullname
+                                </th>
+                                <th class="th-sm">Email
+                                </th>
+                                <th class="th-sm">Contact
+                                </th>
+                               
+                                <th class="th-sm">Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for list_teacher in list_teachers %}
+
+                            <tr>
+                                  
+                                <td>{{list_teacher.user.username}}</td>
+                                <td>{{list_teacher.user.first_name}} {{list_teacher.user.last_name}}</td>
+                                <td>{{list_teacher.user.email}}</td>
+                                <td>{{list_teacher.user.phone_number}}</td>
+                                <td>
+                                    <a href="{% url 'teacher:detail_teacher' list_teacher.id %}">
+                                        <button type="button" class="btn btn-sm subject2Total"
+                                            id="chooseTopicButton" data-toggle="tooltip"
+                                            data-title="View Teacher" data-placement="top"
+                                            data-boundary="window">
+                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                        </button>
+                                    </a>
+                                    
+                                    <button type="button" class="btn btn-sm" id="delete_foreverButton"
+                                        data-toggle="tooltip" data-title="Delete Teacher"
+                                        data-placement="bottom" data-boundary="window">
+                                        <i class="material-icons delete_foreverIcon"
+                                            onclick="deleteTeacher({{list_teacher.user.id}});">delete_forever</i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-warning" 
+                                        data-toggle="tooltip" data-title="Reset Password"
+                                        data-placement="bottom" data-boundary="window">
+                                        <i class="material-icons delete_foreverIcon"
+                                            onclick="ResetPassword({{list_teacher.user.id}});">restore</i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!-- End Overview -->
+
+<!-- // END Page Content -->
+
+
+<!-- Start izModal for adding Teachers -->
+<div id="modalss" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+                data-iziModal-title="ADD TEACHER" data-iziModal-subtitle="Adding of Teachers"
+                data-iziModal-icon="icon-home">
+                <div style="padding: 50px">
+                    <form id="AddNewTeacher" >
+                        {% csrf_token %}
+            
+                        <div>
+                            <h4>Add New Teacher</h4>
+                        </div>
+                       
+                        
+                        <!--End image file upload here -->
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.profile.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.profile}}
+                               
+                            </div>
+                            <p >{{ form.first_name.errors }}</p>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.first_name.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.first_name}}
+                               
+                            </div>
+                            <p >{{ form.first_name.errors }}</p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-4 col-form-label">{{user_teacher_form.last_name.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.last_name}}
+                            </div>
+                            {{user_teacher_form.last_name.errors}}
+                            <p></p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-4 col-form-label">{{user_teacher_form.email.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.email}}
+                            </div>
+                            {{user_teacher_form.email.errors}}
+            
+                        </div>
+                        <div class="form-group row">
+                            <label for="contact" class="col-4 col-form-label">{{user_teacher_form.phone_number.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.phone_number}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.text.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.text}}
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="gender" class="col-4 col-form-label">{{user_teacher_form.gender.label}}:</label>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <div class="custom-controls-stacked">
+                                        {{user_teacher_form.gender}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                       
+            
+                        <div class="form-group row">
+                            <label for="notes" class="col-4 col-form-label">{{user_teacher_form.notes.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.notes}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="classTeacher" class="col-4 col-form-label">Subject Teacher.?</label>
+                            <div class="col-8">
+                                <div class="form-group">
+
+                                    <label for="yes" >Yes</label>
+                                    <input type="radio" value="yes" onclick="javascript:yesnoCheck();" name="yesno"
+                                        id="yesCheck" />
+                                        <label for="no"  class="ml-1">No</label>
+                                    <input type="radio" value="no" checked onclick="javascript:yesnoCheck();" class="" name="yesno"
+                                        id="noCheck" />
+                                </div>
+
+                                <div id="ifYes" style="visibility:hidden">
+                                    <div class="multi-selector">
+                                        <div class="select-field">
+                                            <select class="js-example-basic-multiple form-control custom-select" style="width:100% ;" id="subject_select"  name="subjects[]" multiple="multiple">
+                                                {% for subject in subjects %}
+                                                  
+                                                <option value="{{subject.id}}">{{subject}}</option>
+                                                {% endfor %}
+                                              </select>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <script>
+                            document.querySelector('.select-field').addEventListener('click', () => {
+                                document.querySelector('.list').classList.toggle('show');
+                                document.querySelector('.down-arrow').classList.toggle('rotate180');
+
+                            });
+
+                        </script>
+
+
+                    <div class="form-group row">
+                        <label for="classTeacher" class="col-4 col-form-label">Class Teacher.?</label>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                <label for="yes" >Yes</label>
+                                <input type="radio" value="yes" onclick="javascript:yesnoCheck1();" name="yesno1"
+                                    id="yesCheck1" />
+                                    <label for="no" class="ml-1">No</label>
+                                <input type="radio" value="no" checked onclick="javascript:yesnoCheck1();" class="" name="yesno1"
+                                    id="noCheck" />
+                            </div>
+
+                            <div id="ifTYes" style="visibility:hidden">
+                                <div class="multi-selector">
+                                    <div class="select-field">
+                            <div>
+                                <select name="classroom_select" id="classroom_select" data-placeholder="Select class teacher" required="required"
+                                    class="custom-select">
+                                    {% for class in classrooms %}
+                                      
+                                    <option value="{{class.id}}">{{class}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addTeacher"
+                           >add teacher</button>
+                    </div>
+            
+                    </form>
+
+                </div>
+            </div>
+<!-- End izModal for adding Teachers -->
+<script>
+    //Pop-up for editting Students
+$('.student').click(function () {
+            $('#modalEditStudents').iziModal('open');
+            $('#modalEditStudents').iziModal('setTop', 100);
+            $('#modalEditStudents').iziModal('setBottom', 100);
+            $('#modalEditStudents').iziModal('setHeaderColor', '#128EC0');
+            $('#modalEditStudents').iziModal('setBackground', '#eeeeee');
+    
+});
+</script>
+
+{% endblock content %}

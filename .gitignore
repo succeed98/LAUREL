@@ -1,0 +1,15 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+.devcontainer
+.idea
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media
+*/migrations/00*
+production_settings.py
+production_settings
+env

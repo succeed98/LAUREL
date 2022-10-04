@@ -1,0 +1,138 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br>
+            <div class="container page__container">
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-w1rap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Info: </strong> This page is about the <b>Lessons</b> the student has.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pt-32pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="index.html">student dashboard</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Lesson
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+          
+
+            <style>
+            </style>
+
+            <!-- Start Overview -->
+            <div class="container page__container">
+
+                {% comment %} <div class="row mb-lg-8pt">
+                    <div class="col-lg-6 col-md-4">
+                        <div class="mb-4">
+                            <div class="form-group row">
+                                <div class="col-12" data-toggle="tooltip" data-title="Select Subjects" data-placement="top"
+                                    data-boundary="window">
+                                    <select name="food_selector" data-placeholder="Select Subjects" required="required"
+                                        class="custom-select">
+                                        <option value="1">All</option>
+                                        <option value="2">Mathematics</option>
+                                        <option value="3">Science</option>
+                                        <option value="4">English</option>
+                                        <option value="4">Mathematics</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Class -->
+
+                    </div>
+                </div> {% endcomment %}
+
+                <div class="page-separator d-block">
+                    <div class="page-separator">
+                        <div class="page-separator__text">lessons total <span class="material-icons">
+                                arrow_right_alt
+                            </span> 3</div>
+                    </div>
+                </div>
+
+                <div class="card shadow border-0" id="tableCard">
+                    <div class="card-body">
+                        <div class="row align-items-center ">
+                            <div class="col-lg-12 table-responsive">
+                                <table id="example" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-sm">subject
+                                            </th>
+                                            <th class="th-sm">Topic
+                                            </th>
+                                            <th class="th-sm">Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for lesson in lessons %}
+                                        <tr>
+                                            <td>{{lesson.subject}}</td>
+                                            <td>{{lesson.name}}</td>
+                                            <td>
+                                                <a href="{% url 'student:lesson_details' lesson.id %}">
+                                                    <button type="button" class="btn btn-primary btn-sm quizeButton"
+                                                        id="quizeButton" data-toggle="tooltip"
+                                                        data-title="View Lessons" data-placement="top"
+                                                        data-boundary="window">
+                                                        <i class="material-icons chooseClassIcon">visibility</i>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+{% endblock content %}

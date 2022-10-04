@@ -1,0 +1,517 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+
+<br><br>
+<div class="container page__container">
+    <br><br>
+    <div class="">
+        <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="d-flex flex-wrap align-items-start">
+                <div class="mr-8pt">
+                    <i class="material-icons">access_time</i>
+                </div>
+                <div class="flex" style="min-width: 180px">
+                    <small class="text-black-100">
+                        <strong>Info: </strong> This page shows <b>Student Details</b> an activities.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pt-32pt">
+    <div
+        class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="index.html">Project Manager</a></li>
+
+                    <li class="breadcrumb-item active">
+
+                        Students
+
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- BEFORE Page Content -->
+
+<!-- // END BEFORE Page Content -->
+
+<!-- Page Content -->
+
+<!-- Start Overview -->
+<div class="container page__container">
+
+    <div class="page-section">
+
+        <div class="page-separator d-block">
+
+        </div>
+        <br>
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-4">
+                <div class="mb-4" data-toggle="tooltip"
+                data-title="Student Lessons" data-placement="top"
+                data-boundary="window">
+                    <a href="#">
+                        <div class="card shadow hoverableClasses classesLessonss border-0" id="classes">
+                            <div class="card-header d-flex align-items-center border-0 classesLessonss">
+                                <div class="h2 mb-0 mr-3 text-light">0</div>
+                                <div class="flex">
+                                    <p class="card-title text-light">Lessons</p>
+                                    <p class="card-subtitle text-light">No lessons yet</p>
+                                </div>
+                                <i class="material-icons ml-2 text-light">menu_book</i>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="chart" style="height: 18px;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="mb-4" data-toggle="tooltip"
+                data-title="Student Assignment" data-placement="top"
+                data-boundary="window">
+                    <a href="#">
+                        <div class="card shadow hoverableTeachers assignmentt">
+                            <div class="card-header d-flex align-items-center border-0 assignmentt">
+                                <div class="h2 mb-0 mr-3 ">0</div>
+                                <div class="flex">
+                                    <p class="card-title ">Assignment</p>
+                                    <p class="card-subtitle text-dark">No assignment yet</p>
+                                </div>
+                                <i
+                                class="material-icons text-muted ml-2 teachersIcon">library_books</i>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="chart" style="height: 18px;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- End Class -->
+
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Start Subjects -->
+                <div class="mb-4" data-toggle="tooltip"
+                data-title="Student Quizzes" data-placement="top"
+                data-boundary="window">
+                    <div class="card shadow hoverableStudents studentss" id="card">
+                        <div class="card-header d-flex align-items-center border-0 studentss">
+                            <div class="h2 mb-0 mr-3 text-warning">0</div>
+                            <div class="flex">
+                                <p class="card-title">Quizzes</p>
+                                <p class="card-subtitle text-dark">No quizzes yet</p>
+                            </div>
+                            <i class="material-icons text-muted ml-2 studentsIcon">list</i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Subjects -->
+
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+<!-- End Overview -->
+
+<div class="container page__container">
+    <div class="page-section">
+
+        <div class="page-separator">
+            <div class="page-separator__text"></div>
+        </div>
+<br>
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-6">
+                <div class="page-separator">
+                    <div class="page-separator__text">Complete Lessons</div>
+                </div> 
+                <h6 class="text-bold">Note:</h6>
+                <p class="text-dark"> This student has not completed any lessons yet</p>
+                <br>
+                <hr>
+
+                <h5 class="text-bold">Message</h5>
+                <div class="mb-4">
+                    <input type="text" name="message" id="message" placeholder="Type your message ..." class="form-control">
+                </div>
+                <button class="btn btn-md" id="sendMessage" type="button">Send Message <i class="fas fa-paper-plane"></i></button>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="page-separator">
+                    <div class="page-separator__text">Timeline</div>
+                </div>
+                <h6 class="text-bold">Note:</h6>
+                <p class="text-dark"> This user has not interacted with plateform</p>
+                <br>
+                <hr>
+                <h5 class="text-bold">Courses Enrolled:</h5>
+                <p class="text-dark"> This user has not enrolled in any course yet</p>
+                <br>
+                <hr>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Start Overview -->
+<div class="container page__container">
+<div class="page-section">
+
+<div class="page-separator">
+<div class="page-separator__text">About Student</div>
+</div>
+
+<div class="row mb-lg-8pt">
+<div class="col-lg-4">
+    <div class="mb-4">
+        <div class="card shadow border-0" id="cardAboutStudent">
+            <div class="card-body p-24pt">
+                
+                    {% if student_detail.user.profile %}
+                    <img src="{{student_detail.user.profile.url}}" class="img-fluid shadow"
+                    style="cursor: pointer;" alt="Image">
+                    {% else %}
+                    <img src="{% static 'assets/img/shape.jpg' %}" class="img-fluid shadow"
+                    style="cursor: pointer;" alt="Image">
+                {% endif %}
+                    
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col-lg-8">
+
+    <div class="row align-items-center">
+        <div class="col-lg-4">
+            <h6 class=""><b>Name:</b> </h6>
+            <div class="mb-4">
+                <h6 class=""><b>{{student_detail.user.first_name}} {{student_detail.user.last_name}}</b> </h6>
+                <!-- <input type="text" name="AssetType" id="AssetType" class="form-control"> -->
+            </div>
+            <h6 class=""><b>Phone Number:</b> </h6>
+            <div class="mb-4">
+                <h6 class=""><b>{{student_detail.user.phone_number}}</b> </h6>
+                <!-- <input type="text" name="Depreciate" id="Depreciate" class="form-control"> -->
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="" data-aos="" data-aos-delay="">
+                <h6 class=""><b>Email:</b> </h6>
+                <div class="mb-4">
+                    <h6 class=""><b>{{student_detail.user.email}}</b> </h6>
+                    <!-- <input type="number" name="Cost" id="Cost" class="form-control"> -->
+                </div>
+                <h6 class=""><b>Postal Adress:</b> </h6>
+                <div class="mb-4">
+                    <h6 class=""><b>Null</b> </h6>
+                    <!-- <input type="text" name="UsageType" id="UsageType" class="form-control"> -->
+                </div>  
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="" data-aos="" data-aos-delay="">
+                <h6 class=""><b>Class:</b> </h6>
+                <div class="mb-4">
+                    <h6 class=""><b>{{student_detail.classroom}}</b> </h6>
+                    <!-- <input type="text" name="CurrentStatus" id="CurrentStatus" class="form-control"> -->
+                </div>
+
+                <h6 class=""><b>Gender:</b> </h6>
+                <div class="mb-4">
+
+                    <h6 class=""><b>{{student_detail.user.gender}}</b> </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-separator d-block">
+        <div class="page-separator">
+            <div class="page-separator__text">Actions</div>
+        </div>
+
+    </div>
+
+    <div class="row mb-lg-8pt">
+        <div class="col-lg-6">
+
+        </div>
+
+        <div class="col-lg-6">
+            <!-- Start Subjects -->
+            <div class="mb-4">
+                <div class="button-list">
+                    <button type="button" class="btn btn-sm" id="delete_foreverButton">
+                        <i class="material-icons delete_foreverIcon"
+                            onclick="deleteStudent({{student_detail.user.id}});">delete_forever</i>
+                    </button>
+                        <button type="button" class="btn btn-sm student"
+                            id="editTopicButton" data-toggle="tooltip"
+                            data-title="Edit Student" data-placement="top"
+                            data-boundary="window">
+                            <i class="material-icons chooseClassIcon ">edit</i>
+                        </button>
+                    <button type="button" class="btn btn-sm" id="editButton">
+                        <i class="material-icons editIcon">do_not_disturb</i>
+                    </button>
+                    <button type="button" class="btn btn-sm choosesgrades" id="chooseClassButton">
+                        <i class="material-icons chooseClassIcon">flag</i>
+                    </button>
+                </div>
+
+            </div>
+            <!-- End Subjects -->
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+<!-- End Overview -->
+
+
+ <!-- Start Achievements -->
+ <div class="container page__container">
+    <div class="page-section">
+
+        <div class="page-separator">
+            <div class="page-separator__text">Achievements</div>
+        </div>
+
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-6">
+
+                <div class="mb-4">
+                    <div class="card shadow hoverable points border-0 bg-second" id="points">
+                        <div class="card-header d-flex align-items-center border-0 points bg-second">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Points</p>
+                                <p class="card-subtitle text-light">Points acquired</p>
+                            </div>
+                            <i class="fas fa-award text-muted ml-2 pointsIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Class -->
+
+                <!-- Start Teachers -->
+                <div class="mb-4">
+                    <div class="card shadow hoverable trophies bg-second">
+                        <div class="card-header d-flex align-items-center border-0 bg-second trophies">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Trophies</p>
+                                <p class="card-subtitle text-light">Trophies won</p>
+                            </div>
+                            <i
+                                class="fas fa-trophy text-muted ml-2 trophiesIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Teachers -->
+
+            </div>
+            <div class="col-lg-6">
+                <!-- Start Subjects -->
+                <div class="mb-4">
+                    <div class="card shadow hoverable badges bg-second" id="badges">
+                        <div class="card-header d-flex align-items-center border-0 badges bg-second">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Badges</p>
+                                <p class="card-subtitle text-light">Badges Achieved</p>
+                            </div>
+                            <i class="fas fa-certificate text-muted ml-2 badgesIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Subjects -->
+
+                <!-- Start Students -->
+                <div class="mb-4">
+                    <div class="card shadow hoverable medals bg-second">
+                        <div class="card-header d-flex align-items-center border-0 medals bg-second">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Medals</p>
+                                <p class="card-subtitle text-light">Medals won</p>
+                            </div>
+                            <i class="fas fa-medal text-muted ml-2 medalsIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Students -->
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- End Achievements -->
+
+
+<div id="modalEditStudents" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="Adding of New Student Section"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form id="EditStudent"  enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div>
+                <h4>Edit Student</h4>
+            </div>
+           
+            
+            <!--End image file upload here -->
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{user_form.profile.label}}:</label>
+                <div class="col-8">
+                    {{user_form.profile}}
+                   
+                </div>
+                <p >{{ form.first_name.errors }}</p>
+            </div>
+
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{user_form.first_name.label}}:</label>
+                <div class="col-8">
+                    {{user_form.first_name}}
+                   
+                </div>
+                <p >{{ form.first_name.errors }}</p>
+            </div>
+            <div class="form-group row">
+                <label for="lastName" class="col-4 col-form-label">{{user_form.last_name.label}}:</label>
+                <div class="col-8">
+                    {{user_form.last_name}}
+                </div>
+                {{user_form.last_name.errors}}
+                <p></p>
+            </div>
+            
+            <div class="form-group row">
+                <label for="contact" class="col-4 col-form-label">{{user_form.phone_number.label}}:</label>
+                <div class="col-8">
+                    {{user_form.phone_number}}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{user_form.text.label}}:</label>
+                <div class="col-8">
+                    {{user_form.text}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="gender" class="col-4 col-form-label">{{user_form.gender.label}}:</label>
+                <div class="col-8">
+                    <div class="form-group">
+                        <div class="custom-controls-stacked">
+                            {{user_form.gender}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="select" class="col-4 col-form-label">{{student_form.classroom.label}}</label>
+                <div class="col-8">
+                    {{student_form.classroom}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="notes" class="col-4 col-form-label">{{user_form.notes.label}}:</label>
+                <div class="col-8">
+                    {{user_form.notes}}
+                </div>
+            </div>
+
+            <input hidden name="student_id" id="student_id" type="text" value="{{student_detail.id}}">
+
+            <div>
+                <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addStudents"
+                    >Update student</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

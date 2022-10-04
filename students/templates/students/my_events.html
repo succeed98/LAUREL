@@ -1,0 +1,254 @@
+{% extends 'bases/base_main.html' %}
+{% load static %}
+
+{% block content %}
+<br><br>
+            <div class="container page__container">
+                <br><br>
+                <div class="">
+                    <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex flex-wrap align-items-start">
+                            <div class="mr-8pt">
+                                <i class="material-icons">access_time</i>
+                            </div>
+                            <div class="flex" style="min-width: 180px">
+                                <small class="text-black-100">
+                                    <strong>Info: </strong> This page shows the list of all the <b>events</b> you have, and about to have.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pt-32pt">
+
+                <div
+                    class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+                    <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+                        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                            <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="index.html">student dashboard</a></li>
+
+                                <li class="breadcrumb-item active">
+
+                                    Events
+
+                                </li>
+
+                            </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><br>
+
+            <style>
+            </style>
+
+            <!-- Start Overview -->
+            <div class="container page__container">
+
+                <div class="row mb-lg-8pt">
+                    <div class="col-lg-6 col-md-4">
+                        <div class="mb-4">
+                            <div class="form-group row">
+                                <div class="col-12" data-toggle="tooltip" data-title="Events Timeline" data-placement="top"
+                                    data-boundary="window">
+                                    <select name="food_selector" data-placeholder="Events Timeline" required="required"
+                                        class="custom-select">
+                                        <option value="1">All</option>
+                                        <option value="5">Upcoming Events</option>
+                                        <option value="4">Past Events</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Class -->
+
+                    </div>
+                </div>
+
+                <div class="page-separator d-block">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Events total <span class="material-icons">
+                                arrow_right_alt
+                            </span> 10</div>
+                    </div>
+                </div>
+
+                <div class="page-section">
+                    <div class="card shadow border-0" id="tableCard">
+                        <div class="card-body">
+                            <div class="dropdown-header h4">
+                                <strong class="h6"><i class="fas fa-calendar-day rounded-0 fa-1x"></i> Events</strong>
+                                <strong class="myCourseLeft ">Apr 27, 2021 at 11:08 AM</strong>
+                            </div>
+                            <hr>
+                            <div class="h5" style="color: green;">
+                                <span class="">
+                                    <span class="material-icons"> done </span>
+                                </span> Something is Happening
+                            </div>
+                            <hr>
+                            <div class="row align-items-center ">
+                                <div class="col-lg-12 ">
+                                    <div class="row mb-lg-8pt">
+                                        <div class="col-lg-6">
+                                            <div class="page-separator">
+                                                <div class="page-separator__text" id="lessons">Lessons 0</div>
+                                            </div>
+                                            <h6 class="text-bold">Due Date:</h6>
+                                            <p class="text-dark"><i class="fas fa-calendar-alt rounded-0 fa-1x"></i>Apr
+                                                27, 2021 <i class="fas fa-clock rounded-0 fa-1x"></i> 11:08 AM</p>
+
+                                            <hr>
+                                            <h6 class="text-bold">Status:</h6>
+                                            <p class="text-dark"><i class="fas fa-user-lock rounded-0 fa-1x"></i>Private</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="page-separator">
+                                                <div class="page-separator__text" id="lessons">Learning Materials</div>
+                                            </div>
+                                            <h6 class="text-bold">Schduled For:</h6>
+                                            <p class="text-dark">
+                                                <i class="fas fa-user-friends rounded-0 fa-1x"></i>Students, Teachers
+                                            </p>
+
+                                            <hr>
+                                            <h6 class="text-bold">Created By:</h6>
+                                            <p class="text-dark"><i class="fas fa-user-tie rounded-0 fa-1x"></i>Bright Akomeah-Bonsu (Headmasters) </p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="p">
+                                The 4th Annual graduation ceremony is upcoming. All students in graduating classes are to pay an amount of 100cedis to the administration
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Overview -->
+
+
+
+            <!-- Start izModal for Choose Grade -->
+            <div id="modalEvents" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+                data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="Creating of Events"
+                data-iziModal-icon="icon-home">
+                <div style="padding: 50px">
+                    <form>
+                        <div>
+                            <h4>Create Events</h4>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">Due Date:</label>
+                            <div class="col-8">
+                                <input id="firstname" name="firstname" placeholder="" type="date" required="required"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">Time</label>
+                            <div class="col-8">
+                                <input id="firstname" name="firstname" placeholder="" type="datetime" required="required"
+                                    class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="select" class="col-4 col-form-label">Schduled For:</label>
+                            <div class="col-8">
+
+                                <div class="">
+                                    <div class="" onclick="showCheckboxes();">
+                                        <select name="" id="" data-placeholder="Select Audience" class="custom-select">
+                                            <option value=""></option>
+                                        </select>
+                                        <!-- <div class="overSelect"></div> -->
+                                    </div>
+
+                                    <div id="checkboxes" class="custom-control custom-checkbox shadow">
+                                        <label for="one">
+                                            <input type="checkbox" class="checkBoxes" id="one">Headmasters
+                                        </label>
+                                        <label for="two">
+                                            <input type="checkbox" class="checkBoxes" id="two">Teachers
+                                        </label>
+                                        <label for="three">
+                                            <input type="checkbox" class="checkBoxes" id="three">Students
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- <select name="food_selector" data-placeholder="Select Subject" required="required" class="custom-select">
+                               <option value="01">Married</option>
+                               <option value="02">Single</option>
+                               <option value="03">Widowed</option>
+                           </select> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">Event Title:</label>
+                            <div class="col-8">
+                                <input id="firstname" name="firstname" placeholder="" type="datetime" required="required"
+                                    class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">Description:</label>
+                            <div class="col-8">
+                                <textarea id="description" name="description" placeholder="" type="datetime" required="required"
+                                    class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center ">
+                            <div class="col-lg-12 ">
+                                <div class="row mb-lg-8pt">
+                                    <div class="col-lg-6">
+                                        <div class="page-separator">
+                                            <div class="page-separator__text" id="lessons"></div>
+                                        </div>
+                                        <h6 class="text-bold">Status:</h6>
+                                        <p class="text-dark"><i class="fas fa-user-lock rounded-0 fa-1x"></i>Private</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="page-separator">
+                                            <div class="page-separator__text" id="lessons"></div>
+                                        </div>
+                                        <h6 class="text-bold">Created By:</h6>
+                                        <p class="text-dark"><i class="fas fa-user-tie rounded-0 fa-1x"></i>Mark Mensah (Project Manager) </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr>
+                        <div>
+                            <button type="button" class="btn btn-floating pulse btn-md" id="createEvents"
+                                onclick="creAteEvents();">Create Events</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+{% endblock content %}

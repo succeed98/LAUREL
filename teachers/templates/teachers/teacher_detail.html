@@ -1,0 +1,629 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+
+<br><br>
+<div class="container page__container">
+    <div class="">
+        <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="d-flex flex-wrap align-items-start">
+                <div class="mr-8pt">
+                    <i class="material-icons">access_time</i>
+                </div>
+                <div class="flex" style="min-width: 180px">
+                    <small class="text-black-100">
+                        <strong>Info: </strong> This page shows <b>Teacher Details</b> an activities.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pt-32pt">
+    <div
+        class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="index.html">Project Manager</a></li>
+
+                    <li class="breadcrumb-item active">
+
+                        Teachers
+
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- BEFORE Page Content -->
+
+<!-- // END BEFORE Page Content -->
+
+<!-- Page Content -->
+
+<!-- Start Overview -->
+<div class="container page__container">
+
+    <div class="page-section">
+
+        <div class="page-separator d-block">
+
+        </div>
+        <br>
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-4">
+                <div class="mb-4" data-toggle="tooltip"
+                data-title="Student Lessons" data-placement="top"
+                data-boundary="window">
+                    <a href="#">
+                        <div class="card shadow hoverableClasses classesLessonss border-0" id="classes">
+                            <div class="card-header d-flex align-items-center border-0 classesLessonss">
+                                <div class="h2 mb-0 mr-3 text-light">0</div>
+                                <div class="flex">
+                                    <p class="card-title text-light">Lessons</p>
+                                    <p class="card-subtitle text-light">No lessons yet</p>
+                                </div>
+                                <i class="material-icons ml-2 text-light">menu_book</i>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="chart" style="height: 18px;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="mb-4" data-toggle="tooltip"
+                data-title="Student Assignment" data-placement="top"
+                data-boundary="window">
+                    <a href="#">
+                        <div class="card shadow hoverableTeachers assignmentt">
+                            <div class="card-header d-flex align-items-center border-0 assignmentt">
+                                <div class="h2 mb-0 mr-3 ">0</div>
+                                <div class="flex">
+                                    <p class="card-title ">Assignment</p>
+                                    <p class="card-subtitle text-dark">No assignment yet</p>
+                                </div>
+                                <i
+                                class="material-icons text-muted ml-2 teachersIcon">library_books</i>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="chart" style="height: 18px;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- End Class -->
+
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Start Subjects -->
+                <div class="mb-4" data-toggle="tooltip"
+                data-title="Student Quizzes" data-placement="top"
+                data-boundary="window">
+                    <div class="card shadow hoverableStudents studentss" id="card">
+                        <div class="card-header d-flex align-items-center border-0 studentss">
+                            <div class="h2 mb-0 mr-3 text-warning">0</div>
+                            <div class="flex">
+                                <p class="card-title">Quizzes</p>
+                                <p class="card-subtitle text-dark">No quizzes yet</p>
+                            </div>
+                            <i class="material-icons text-muted ml-2 studentsIcon">list</i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Subjects -->
+
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+<!-- End Overview -->
+
+<div class="container page__container">
+    <div class="page-section">
+
+        <div class="page-separator">
+            <div class="page-separator__text"></div>
+        </div>
+<br>
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-6">
+                <div class="page-separator">
+                    <div class="page-separator__text">Complete Lessons</div>
+                </div> 
+                <h6 class="text-bold">Note:</h6>
+                <p class="text-dark"> This student has not completed any lessons yet</p>
+                <br>
+                <hr>
+
+                <h5 class="text-bold">Message</h5>
+                <div class="mb-4">
+                    <input type="text" name="message" id="message" placeholder="Type your message ..." class="form-control">
+                </div>
+                <button class="btn btn-md" id="sendMessage" type="button">Send Message <i class="fas fa-paper-plane"></i></button>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="page-separator">
+                    <div class="page-separator__text">Timeline</div>
+                </div>
+                <h6 class="text-bold">Note:</h6>
+                <p class="text-dark"> This user has not interacted with plateform</p>
+                <br>
+                <hr>
+                <h5 class="text-bold">Courses Enrolled:</h5>
+                <p class="text-dark"> This user has not enrolled in any course yet</p>
+                <br>
+                <hr>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Start Overview -->
+<div class="container page__container">
+<div class="page-section">
+
+<div class="page-separator">
+<div class="page-separator__text">About Teacher</div>
+</div>
+
+<div class="row mb-lg-8pt">
+<div class="col-lg-4">
+    <div class="mb-4">
+        <div class="card shadow border-0" id="cardAboutStudent">
+            <div class="card-body p-24pt">
+                
+                    {% if teacher_detail.user.profile %}
+                    <img src="{{teacher_detail.user.profile.url}}" class="img-fluid shadow"
+                    style="cursor: pointer;" alt="Image">
+                    {% else %}
+                    <img src="{% static 'assets/img/shape.jpg' %}" class="img-fluid shadow"
+                    style="cursor: pointer;" alt="Image">
+                {% endif %}
+                    
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col-lg-8">
+
+    <div class="row align-items-center">
+        <div class="col-lg-4">
+            <h6 class=""><b>Name:</b> </h6>
+            <div class="mb-4">
+                <h6 class=""><b>{{teacher_detail.user.first_name}} {{teacher_detail.user.last_name}}</b> </h6>
+                <!-- <input type="text" name="AssetType" id="AssetType" class="form-control"> -->
+            </div>
+            <h6 class=""><b>Phone Number:</b> </h6>
+            <div class="mb-4">
+                <h6 class=""><b>{{teacher_detail.user.phone_number}}</b> </h6>
+                <!-- <input type="text" name="Depreciate" id="Depreciate" class="form-control"> -->
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="" data-aos="" data-aos-delay="">
+                <h6 class=""><b>Email:</b> </h6>
+                <div class="mb-4">
+                    <h6 class=""><b>{{teacher_detail.user.email}}</b> </h6>
+                    <!-- <input type="number" name="Cost" id="Cost" class="form-control"> -->
+                </div>
+                <h6 class=""><b>Postal Adress:</b> </h6>
+                <div class="mb-4">
+                    <h6 class=""><b>Null</b> </h6>
+                    <!-- <input type="text" name="UsageType" id="UsageType" class="form-control"> -->
+                </div>  
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="" data-aos="" data-aos-delay="">
+                <h6 class=""><b>Class:</b> </h6>
+                <div class="mb-4">
+                    <h6 class=""><b>{{teacher_detail.classroom}}</b> </h6>
+                    <!-- <input type="text" name="CurrentStatus" id="CurrentStatus" class="form-control"> -->
+                </div>
+
+                <h6 class=""><b>Gender:</b> </h6>
+                <div class="mb-4">
+
+                    <h6 class=""><b>{{teacher_detail.user.gender}}</b> </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-separator d-block">
+        <div class="page-separator">
+            <div class="page-separator__text">Actions</div>
+        </div>
+
+    </div>
+
+    <div class="row mb-lg-8pt">
+        <div class="col-lg-6">
+
+        </div>
+
+        <div class="col-lg-6">
+            <!-- Start Subjects -->
+            <div class="mb-4">
+                <div class="button-list">
+                    <button type="button" class="btn btn-sm" id="delete_foreverButton">
+                        <i class="material-icons delete_foreverIcon"
+                            onclick="deleteTeacher({{teacher_detail.user.id}});">delete_forever</i>
+                    </button>
+                        <button type="button" class="btn btn-sm editteachers"
+                            id="editTopicButton" data-toggle="tooltip"
+                            data-title="Edit Student" data-placement="top"
+                            data-boundary="window">
+                            <i class="material-icons chooseClassIcon ">edit</i>
+                        </button>
+                    <button type="button" class="btn btn-sm" id="editButton">
+                        <i class="material-icons editIcon">do_not_disturb</i>
+                    </button>
+                    <button type="button" class="btn btn-sm choosesgrades" id="chooseClassButton">
+                        <i class="material-icons chooseClassIcon">flag</i>
+                    </button>
+                </div>
+
+            </div>
+            <!-- End Subjects -->
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+<!-- End Overview -->
+
+
+ <!-- Start Achievements -->
+ <div class="container page__container">
+    <div class="page-section">
+
+        <div class="page-separator">
+            <div class="page-separator__text">Achievements</div>
+        </div>
+
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-6">
+
+                <div class="mb-4">
+                    <div class="card shadow hoverable points border-0 bg-second" id="points">
+                        <div class="card-header d-flex align-items-center border-0 points bg-second">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Points</p>
+                                <p class="card-subtitle text-light">Points acquired</p>
+                            </div>
+                            <i class="fas fa-award text-muted ml-2 pointsIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Class -->
+
+                <!-- Start Teachers -->
+                <div class="mb-4">
+                    <div class="card shadow hoverable trophies bg-second">
+                        <div class="card-header d-flex align-items-center border-0 bg-second trophies">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Trophies</p>
+                                <p class="card-subtitle text-light">Trophies won</p>
+                            </div>
+                            <i
+                                class="fas fa-trophy text-muted ml-2 trophiesIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Teachers -->
+
+            </div>
+            <div class="col-lg-6">
+                <!-- Start Subjects -->
+                <div class="mb-4">
+                    <div class="card shadow hoverable badges bg-second" id="badges">
+                        <div class="card-header d-flex align-items-center border-0 badges bg-second">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Badges</p>
+                                <p class="card-subtitle text-light">Badges Achieved</p>
+                            </div>
+                            <i class="fas fa-certificate text-muted ml-2 badgesIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Subjects -->
+
+                <!-- Start Students -->
+                <div class="mb-4">
+                    <div class="card shadow hoverable medals bg-second">
+                        <div class="card-header d-flex align-items-center border-0 medals bg-second">
+                            <div class="h2 mb-0 mr-3 text-light">0</div>
+                            <div class="flex">
+                                <p class="card-title text-light">Medals</p>
+                                <p class="card-subtitle text-light">Medals won</p>
+                            </div>
+                            <i class="fas fa-medal text-muted ml-2 medalsIcon"></i>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="chart" style="height: 18px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Students -->
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- End Achievements -->
+
+
+
+<!-- Start izModal for adding Teachers -->
+<div id="modalss" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+                data-iziModal-title="EDIT TEACHER" data-iziModal-subtitle="Editing Teacher"
+                data-iziModal-icon="icon-home">
+                <div style="padding: 50px">
+                    <form id="EditTeacher" >
+                        {% csrf_token %}
+            
+                        <div>
+                            <h4>Edit Teacher</h4>
+                        </div>
+                       
+                        
+                        <!--End image file upload here -->
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.profile.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.profile}}
+                               
+                            </div>
+                            <p >{{ form.first_name.errors }}</p>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.first_name.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.first_name}}
+                               
+                            </div>
+                            <p >{{ form.first_name.errors }}</p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-4 col-form-label">{{user_teacher_form.last_name.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.last_name}}
+                            </div>
+                            {{user_teacher_form.last_name.errors}}
+                            <p></p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-4 col-form-label">{{user_teacher_form.email.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.email}}
+                            </div>
+                            {{user_teacher_form.email.errors}}
+            
+                        </div>
+                        <div class="form-group row">
+                            <label for="contact" class="col-4 col-form-label">{{user_teacher_form.phone_number.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.phone_number}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-4 col-form-label">{{user_teacher_form.text.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.text}}
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="gender" class="col-4 col-form-label">{{user_teacher_form.gender.label}}:</label>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <div class="custom-controls-stacked">
+                                        {{user_teacher_form.gender}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                       
+            
+                        <div class="form-group row">
+                            <label for="notes" class="col-4 col-form-label">{{user_teacher_form.notes.label}}:</label>
+                            <div class="col-8">
+                                {{user_teacher_form.notes}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="classTeacher" class="col-4 col-form-label">Subject Teacher.?</label>
+                            <div class="col-8">
+                                <div class="form-group">
+
+                                    <label for="yes" >Yes</label>
+                                    
+                                        
+                                        
+                                    <input type="radio" value="yes" 
+                                    {% if teacher_detail.is_subject_teacher %}
+                                    checked
+                                    {% endif %}
+                                    
+                                    onclick="javascript:yesnoCheck();" name="yesno"
+                                        id="yesCheck" />
+                                        <label for="no"  class="ml-1">No</label>
+                                    <input type="radio" value="no" 
+                                    {% if not teacher_detail.is_subject_teacher %}
+                                    checked
+                                    {% endif %}
+                                    onclick="javascript:yesnoCheck();" class="" name="yesno"
+                                        id="noCheck" />
+                                </div>
+
+                                <div id="ifYes" style="visibility:visible">
+                                    <div class="multi-selector">
+                                        <div class="select-field">
+                                            <select class="js-example-basic-multiple form-control custom-select" style="width:100% ;" id="edit_subject_select"  name="edit_subject_select[]" multiple="multiple">
+                                                {% for subject in subjects %}
+                                                {% if subject in teacher_detail.subjects.all %}
+                                                
+                                                <option selected value="{{subject.id}}">{{subject}}</option>
+
+                                                {% else %}
+                                                <option value="{{subject.id}}">{{subject}}</option>
+
+                                                {% endif %}
+                                                {% endfor %}
+                                              </select>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <script>
+                            document.querySelector('.select-field').addEventListener('click', () => {
+                                document.querySelector('.list').classList.toggle('show');
+                                document.querySelector('.down-arrow').classList.toggle('rotate180');
+
+                            });
+
+                        </script>
+
+
+                    <div class="form-group row">
+                        <label for="classTeacher" class="col-4 col-form-label">Class Teacher.?</label>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                <label for="yes" >Yes</label>
+                                <input type="radio" value="yes"
+                                {% if teacher_detail.is_class_teacher %}
+                                    checked
+                                    {% endif %}
+                                onclick="javascript:yesnoCheck1();" name="yesno1"
+                                    id="yesCheck1" />
+                                    <label for="no" class="ml-1">No</label>
+                                <input type="radio" value="no" 
+                                {% if not teacher_detail.is_class_teacher %}
+                                    checked
+                                    {% endif %}
+                                
+                                onclick="javascript:yesnoCheck1();" class="" name="yesno1"
+                                    id="noCheck" />
+                            </div>
+
+                            <div id="ifTYes" style="visibility:hidden">
+                                <div class="multi-selector">
+                                    <div class="select-field">
+                            <div>
+                                <select name="classroom_select" id="edit_classroom_select" id="edit_class_field" data-placeholder="Select class teacher" required="required"
+                                    class="custom-select">
+                                    {% for class in classrooms %}
+                                    {% if subject in teacher_detail.subjects.all %}
+                                    <option selected value="{{class.id}}">{{class}}</option>
+                                                
+
+                                    {% else %}
+                                    <option value="{{class.id}}">{{class}}</option>
+
+                                    {% endif %}
+                                      
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <input hidden name="teacher_id" id="teacher_id" type="text" value="{{teacher_detail.id}}">
+
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addTeacher"
+                           >add teacher</button>
+                    </div>
+            
+                    </form>
+
+                </div>
+            </div>
+<!-- End izModal for adding Teachers -->
+{% endblock content %}

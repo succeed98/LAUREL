@@ -1,0 +1,1702 @@
+<script>
+
+
+
+    
+
+
+
+
+
+
+    // Adding new Subject
+    $(document).ready(function(){
+        $("#AddNewSubject").on("submit", function(event){
+            event.preventDefault();
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+        var subjectname = $("#subjectname").val();
+        console.log("sdfsadf");
+        console.log(subjectname);
+    
+        console.log("working");
+        $.ajax({
+            url: "{% url 'classroom:add_subject'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: {
+                'X-CSRFToken': '{% csrf_token %}',
+                'subjectname':subjectname,
+            },
+            dataType: 'json',
+            success: function (data,response) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                
+                $( "#subject_count" ).load(window.location.href + " #subject_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+    
+                const subjectnameInput = document.getElementById('subjectname');
+                subjectnameInput.value = '';
+                $('#modals').iziModal('close');
+
+                var the_url = window.location.pathname;
+                if (the_url == "/dashboard/") {
+                    window.location.href = "/dashboard/";
+
+                }
+                
+    
+            },
+            error: function (response) {
+                console.log("did not work");
+                console.log(response)
+                }
+        });
+    
+    });
+    });
+    
+    
+    
+    
+    // Adding new Student
+    $(document).ready(function(){
+        $("#AddNewStudent").on("submit", function(event){
+            event.preventDefault();
+            var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+           
+            var profile = $("#id_profile").val();
+            var first_name = $("#id_first_name").val();
+            var last_name = $("#id_last_name").val();
+            var phone_number = $("#id_phone_number").val();
+            var gender = $("#id_gender").val();
+            var notes = $("#id_notes").val();
+            var classroom = $("#id_classroom").val();
+    
+            console.log(profile);
+            console.log(first_name);
+            var data1 = new FormData()
+            data1.append('profile', $('#id_profile').val())
+            data1.append('first_name', $('#id_first_name').val())
+            data1.append('last_name', $('#id_last_name').val())
+            data1.append('phone_number', $('#id_phone_number').val())
+            data1.append('gender', $('#id_gender').val())
+            data1.append('notes', $('#id_notes').val())
+            data1.append('classroom', $('#id_classroom').val())
+            data1.append('studentimagef', $('#id_profile')[0].files[0])
+    
+            if (gender == ""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please fill gender input`
+                })
+            }
+            else if(classroom == ""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please fill classroom input`
+                })
+            } 
+            else{
+    
+            $.ajax({
+            url: "{% url 'student:add_student'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: 
+            data1
+            
+            ,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function (data,response) {
+                console.log(data);
+                console.log(data.msg);
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                $('#modalsss').iziModal('close');
+                
+                $( "#student_count" ).load(window.location.href + " #student_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+    
+         
+                var the_url = window.location.pathname;
+                if (the_url == "/dashboard/") {
+                    window.location.href = "/dashboard/";
+
+                }
+    
+            },
+            error: function (data,response) {
+                console.log(data);
+                console.log(response);
+                var allerrors =JSON.stringify(data.responseJSON.errors_field);
+    
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'error',
+                    title: `${allerrors }`
+                })
+                }
+        });
+    
+    }
+            
+        });
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Edit Student
+    $(document).ready(function(){
+        $("#EditStudent").on("submit", function(event){
+            event.preventDefault();
+            var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+            
+            var profile = $("#id_profile").val();
+            var first_name = $("#id_first_name").val();
+            var last_name = $("#id_last_name").val();
+            var phone_number = $("#id_phone_number").val();
+            var gender = $("#id_gender").val();
+            var notes = $("#id_notes").val();
+            var classroom = $("#id_classroom").val();
+    
+            var data1 = new FormData()
+            data1.append('profile', $('#id_profile').val())
+            data1.append('first_name', $('#id_first_name').val())
+            data1.append('last_name', $('#id_last_name').val())
+            data1.append('phone_number', $('#id_phone_number').val())
+            data1.append('gender', $('#id_gender').val())
+            data1.append('notes', $('#id_notes').val())
+            data1.append('classroom', $('#id_classroom').val())
+            data1.append('student_id', $('#student_id').val())
+            data1.append('studentimagef', $('#id_profile')[0].files[0])
+    
+    
+    
+            if (gender == ""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please fill gender input`
+                })
+            }
+            else if(classroom == ""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please fill classroom input`
+                })
+            } 
+            else{
+                
+            $.ajax({
+            url: "{% url 'student:update_student'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: 
+            data1
+            
+            ,
+            processData: false,
+            contentType: false,
+            success: function (data,response) {
+                console.log(data);
+                console.log(data.msg);
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                $('#modalEditStudents').iziModal('close');
+                
+                $( "#student_count" ).load(window.location.href + " #student_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+          
+                
+    
+            },
+            error: function (data,response) {
+                console.log(data);
+                console.log(response);
+                var allerrors =JSON.stringify(data.responseJSON.errors_field);
+    
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'error',
+                    title: `${allerrors }`
+                })
+                }
+        });
+    
+    }
+            
+        });
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Adding new Class
+    
+    $(document).ready(function(){
+        $("#AddNewClass").on("submit", function(event){
+            event.preventDefault();
+            var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    
+            var name = $("#id_name").val();
+            var subjects = $(".class-subject-multiple").val();
+    
+            if (subjects == ""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please fill Subject input`
+                })
+            }
+            else{
+    
+            $.ajax({
+            url: "{% url 'classroom:add_class'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: {
+                'X-CSRFToken': '{% csrf_token %}',
+                name,
+                subjects,
+            
+            },
+            dataType: 'json',
+            success: function (data,response) {
+                console.log(data);
+                console.log(data.msg);
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                $('#modal').iziModal('close');
+                
+                $( "#classroom_count" ).load(window.location.href + " #classroom_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+    
+                const subjectnameInput = document.getElementById('subjectname');
+                subjectnameInput.value = '';
+                $('#modal').iziModal('close');
+                
+                var the_url = window.location.pathname;
+                if (the_url == "/dashboard/") {
+                    window.location.href = "/dashboard/";
+
+                }
+            },
+            error: function (data,response) {
+                console.log(data);
+                console.log(response);
+                var allerrors =JSON.stringify(data.responseJSON.errors_field);
+    
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'error',
+                    title: `${allerrors }`
+                })
+                }
+        });
+    
+    }
+            
+        });
+    });
+
+
+
+
+
+
+
+    // Editing Class
+    
+    $(document).ready(function(){
+        $("#EditClass").on("submit", function(event){
+            event.preventDefault();
+            var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    
+            var name = $("#id_name").val();
+            var class_id = $("#class_id").val();
+            var subjects = $(".class-subject-multiple").val();
+    
+            if (subjects == ""){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please fill Subject input`
+                })
+            }
+            else{
+    
+            $.ajax({
+            url: "{% url 'classroom:edit_class'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: {
+                'X-CSRFToken': '{% csrf_token %}',
+                name,
+                subjects,
+                class_id,
+            
+            },
+            dataType: 'json',
+            success: function (data,response) {
+                console.log(data);
+                console.log(data.msg);
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                $('#modal').iziModal('close');
+                
+                $( "#classroom_count" ).load(window.location.href + " #classroom_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+    
+                const subjectnameInput = document.getElementById('subjectname');
+                subjectnameInput.value = '';
+                $('#modal').iziModal('close');
+                
+    
+            },
+            error: function (data,response) {
+                console.log(data);
+                console.log(response);
+                var allerrors =JSON.stringify(data.responseJSON.errors_field);
+    
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'error',
+                    title: `${allerrors }`
+                })
+                }
+        });
+    
+    }
+            
+        });
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    // Initializing of Search input
+    
+    $(document).ready(function () {
+            $(".class-subject-multiple").select2({
+            placeholder:' ',
+            dropdownAutoWidth : true,
+            width: '100%',
+            height: '100%',
+            });
+        });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+    
+    
+    
+    // Delete student 
+        function deleteStudent(id){
+        console.log(id);
+    
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-danger ml-3',
+              cancelButton: 'btn btn-success'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{% url 'student:delete_student' %}",
+                    data: {
+                        'id': id,
+                    },
+                    dataType: 'json',
+                    success: function (data,response) {
+                        // $( "#example" ).load(window.location.href + " #example" );
+                        
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            `${data.msg}`,
+                            'success'
+                        )
+
+                        var the_url = window.location.pathname;
+                        if (the_url == "/student/list-student/") {
+                            $( "#example" ).load(window.location.href + " #example" );
+                        }
+                        else{
+                            window.location.href = "/student/list-student/";
+                        }
+    
+                        
+    
+                    },
+                    error: function (response) {
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            `Something went wrong`,
+                            'error'
+                        )
+                },
+            });
+              
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Your file is safe :)',
+                'error'
+              )
+            }
+          })
+    }
+    
+    
+    
+    
+    
+    // Delete Classroom 
+    function deleteClassroom(id){
+        console.log(id);
+    
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-danger ml-3',
+              cancelButton: 'btn btn-success'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{% url 'classroom:delete_classroom' %}",
+                    data: {
+                        'id': id,
+                    },
+                    dataType: 'json',
+                    success: function (data,response) {
+                        
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            `${data.msg}`,
+                            'success'
+                        )
+
+                        var the_url = window.location.pathname;
+                        window.location.href = "/dashboard/classrooms/";
+
+    
+                        
+    
+                    },
+                    error: function (response) {
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            `Something went wrong`,
+                            'error'
+                        )
+                },
+            });
+              
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Your file is safe :)',
+                'error'
+              )
+            }
+          })
+    }
+    
+    
+
+
+
+
+     // Delete Subject 
+     function deleteSubject(id){
+        console.log(id);
+    
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-danger ml-3',
+              cancelButton: 'btn btn-success'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{% url 'classroom:delete_subject' %}",
+                    data: {
+                        'id': id,
+                    },
+                    dataType: 'json',
+                    success: function (data,response) {
+                        $( "#example" ).load(window.location.href + " #example" );
+                        
+                        
+
+
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            `${data.msg}`,
+                            'success'
+                        )
+
+                        var the_url = window.location.pathname;
+                        if (the_url == "/classroom/list-subject/") {
+                            $( "#example" ).load(window.location.href + " #example" );
+                        }
+                        else{
+                            window.location.href = "/classroom/list-subject/";
+                        }
+    
+                        
+    
+                    },
+                    error: function (response) {
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            `Something went wrong`,
+                            'error'
+                        )
+                },
+            });
+              
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Your file is safe :)',
+                'error'
+              )
+            }
+          })
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    // Adding new Teacher
+    $(document).ready(function(){
+        $("#AddNewTeacher").on("submit", function(event){
+            const AddNewTeacherBtn = document.getElementById("addTeacher");
+            AddNewTeacherBtn.innerHTML  = "Please Wait...";
+            AddNewTeacherBtn.disabled = true;
+            event.preventDefault();
+            var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    
+            var profile = $("#teacher_profile").val();
+            var first_name = $("#teacher_first_name").val();
+            var last_name = $("#teacher_last_name").val();
+            var email = $("#teacher_email").val();
+            var phone_number = $("#teacher_phone_number").val();
+            var gender = $("#teacher_gender").val();
+            var notes = $("#teacher_notes").val();
+            var classroom = $("#classroom_select").val();
+            var subject = $("#subject_select").val();
+            var classroom_bool = document.querySelector("input[type='radio'][name=yesno1]:checked").value;
+            var subjects_bool = document.querySelector("input[type='radio'][name=yesno]:checked").value;
+            console.log(classroom_bool);
+            console.log(subjects_bool);
+
+            var selectedTextArray = $("#subject_select option:selected").map(function() {
+                return $(this).val();
+            }).get();
+            console.log(selectedTextArray);
+    
+            var data1 = new FormData()
+            data1.append('profile', $('#teacher_profile').val())
+            data1.append('first_name', $('#teacher_first_name').val())
+            data1.append('last_name', $('#teacher_last_name').val())
+            data1.append('email', $('#teacher_email').val())
+            data1.append('phone_number', $('#teacher_phone_number').val())
+            data1.append('gender', $('#teacher_gender').val())
+            data1.append('notes', $('#teacher_notes').val())
+            data1.append('yesCheck', $('#yesCheck').val())
+            data1.append('yesCheck1', $('#yesCheck1').val())
+            data1.append('classroom', $('#classroom_select').val())
+            data1.append('subject', selectedTextArray)
+            data1.append('classroom_bool', classroom_bool)
+            data1.append('subjects_bool', subjects_bool)
+            data1.append('teacherimagef', $('#teacher_profile')[0].files[0])
+    
+            if (gender == "" ){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please Gender field is important`
+                })
+            }
+            else{
+    
+            $.ajax({
+            url: "{% url 'teacher:add_teacher'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: 
+            data1,
+            processData: false,
+            contentType: false,
+            success: function (data,response) {
+                console.log(data);
+                console.log(data.msg);
+
+                document.getElementById('AddNewTeacher').reset();
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                $('#modalss').iziModal('close');
+                
+                $( "#teacher_count" ).load(window.location.href + " #teacher_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+    
+         
+                var the_url = window.location.pathname;
+                if (the_url == "/dashboard/") {
+                    window.location.href = "/dashboard/";
+
+                }
+    
+            },
+            error: function (data,response) {
+                console.log(data.responseJSON);
+                console.log(response);
+                var allerrors =JSON.stringify(data.responseJSON);
+    
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'error',
+                    title: `${allerrors }`
+                })
+                }
+        });
+    
+    }
+            
+        });
+    });
+    
+    
+    
+    
+    
+    // Editing a Teacher
+    $(document).ready(function(){
+        $("#EditTeacher").on("submit", function(event){
+            event.preventDefault();
+            var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    
+            var profile = $("#teacher_profile").val();
+            var first_name = $("#teacher_first_name").val();
+            var last_name = $("#teacher_last_name").val();
+            var email = $("#teacher_email").val();
+            var phone_number = $("#teacher_phone_number").val();
+            var gender = $("#teacher_gender").val();
+            var notes = $("#teacher_notes").val();
+            var classroom = $("#classroom_select").val();
+            var subject = $("#subject_select").val();
+            var classroom_bool = document.querySelector("input[type='radio'][name=yesno1]:checked").value;
+            var subjects_bool = document.querySelector("input[type='radio'][name=yesno]:checked").value;
+            console.log(classroom);
+            console.log(subject);
+    
+            var data1 = new FormData()
+            data1.append('profile', $('#teacher_profile').val())
+            data1.append('first_name', $('#teacher_first_name').val())
+            data1.append('last_name', $('#teacher_last_name').val())
+            data1.append('email', $('#teacher_email').val())
+            data1.append('phone_number', $('#teacher_phone_number').val())
+            data1.append('gender', $('#teacher_gender').val())
+            data1.append('notes', $('#teacher_notes').val())
+            data1.append('yesCheck', $('#yesCheck').val())
+            data1.append('yesCheck1', $('#yesCheck1').val())
+            data1.append('classroom', $('#edit_classroom_select').val())
+            data1.append('subject', $('#edit_subject_select').val())
+            data1.append('teacher_id', $('#teacher_id').val())
+            data1.append('classroom_bool', classroom_bool)
+            data1.append('subjects_bool', subjects_bool)
+            data1.append('teacherimagef', $('#teacher_profile')[0].files[0])
+    
+            if (gender == "" ){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+    
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please Gender field is important`
+                })
+            }
+            else{
+    
+            $.ajax({
+            url: "{% url 'teacher:update_teacher'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: 
+            data1,
+            processData: false,
+            contentType: false,
+            success: function (data,response) {
+                console.log(data);
+                console.log(data.msg);
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                $('#modalsss').iziModal('close');
+                
+                $( "#teacher_count" ).load(window.location.href + " #teacher_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+    
+         
+                
+    
+            },
+            error: function (data,response) {
+                console.log(data);
+                console.log(response);
+                var allerrors =JSON.stringify(data.responseJSON.errors_field);
+    
+    
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'error',
+                    title: `${allerrors }`
+                })
+                }
+        });
+    
+    }
+            
+        });
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Delete Teacher 
+    function deleteTeacher(id){
+        console.log(id);
+    
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-danger ml-3',
+              cancelButton: 'btn btn-success'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{% url 'teacher:delete_teacher' %}",
+                    data: {
+                        'id': id,
+                    },
+                    dataType: 'json',
+                    success: function (data,response) {
+                        $( "#example" ).load(window.location.href + " #example" );
+                        
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            `${data.msg}`,
+                            'success'
+                        )
+
+                        var the_url = window.location.pathname;
+                        if (the_url == "/teacher/list-teacher/") {
+                            $( "#example" ).load(window.location.href + " #example" );
+                        }
+                        else{
+                            window.location.href = "/teacher/list-teacher/";
+                        }
+    
+                        
+    
+                    },
+                    error: function (response) {
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            `Something went wrong`,
+                            'error'
+                        )
+                },
+            });
+              
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Your file is safe :)',
+                'error'
+              )
+            }
+          })
+    }
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+        // Reset Password
+        function ResetPassword(id){
+        console.log(id);
+    
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-danger ml-3',
+              cancelButton: 'btn btn-success'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You want to reset his password?. You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Reset it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{% url 'authentication:reset_password' %}",
+                    data: {
+                        'id': id,
+                    },
+                    dataType: 'json',
+                    success: function (data,response) {
+                        $( "#example" ).load(window.location.href + " #example" );
+                        
+                        swalWithBootstrapButtons.fire(
+                            'Complete!',
+                            `${data.msg}`,
+                            'success'
+                        )
+
+                       
+    
+                        
+    
+                    },
+                    error: function (response) {
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            `Something went wrong`,
+                            'error'
+                        )
+                },
+            });
+              
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Password has not been changed :)',
+                'error'
+              )
+            }
+          })
+    }
+    
+    
+    
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    
+    // Show if the class teacher checkbox is checked YES
+    function yesnoCheck() {
+        if (document.getElementById('yesCheck').checked) {
+            document.getElementById('ifYes').style.visibility = 'visible';
+        } else {
+            document.getElementById('ifYes').style.visibility = 'hidden';
+        }
+    }
+    
+    
+    // Show if the class teacher checkbox is checked YES
+    function yesnoCheck1() {
+        if (document.getElementById('yesCheck1').checked) {
+            document.getElementById('ifTYes').style.visibility = 'visible';
+        } else {
+            document.getElementById('ifTYes').style.visibility = 'hidden';
+        }
+    }
+    
+    
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+    
+    
+    $('.editteachers').click(function () {
+            $('#modalss').iziModal('open');
+            $('#modalss').iziModal('setTop', 100);
+            $('#modalss').iziModal('setBottom', 100);
+            $('#modalss').iziModal('setHeaderColor', '#04AF04');
+            $('#modalss').iziModal('setBackground', '#eeeeee');
+    
+        });
+    </script>
+
+
+<script>
+    localStorage.is_running = (localStorage.is_running || 0);
+
+    function myCallTimer(quize_id) {
+        localStorage.timer2 = 0;
+        localStorage.timer1 = 0;
+        localStorage.timer = 0;
+        localStorage.is_running =  1;
+        localStorage.case_id =  quize_id;
+        window.location.href = `/exam/my-quizzes/${quize_id}/start_quiz/`;
+
+
+    }
+
+    function myEndTimer() {
+        localStorage.is_running =  0;
+
+    }
+
+        if (window.localStorage && localStorage.is_running ==1) {
+
+
+            console.log("started");
+
+    window.onload = function jkm(){
+        i = setInterval(function() {
+        localStorage.timer = +localStorage.timer + 1;
+        chronoDiv.innerHTML = (+localStorage.timer).toFixed(0);
+    
+        if (localStorage.timer >59) {
+        localStorage.timer = 0;
+        localStorage.timer1 = +localStorage.timer1 + 1;
+        chronoDiv1.innerHTML = (+localStorage.timer1).toFixed(0);
+
+        
+        }
+
+        if (localStorage.timer1 >59) {
+        localStorage.timer1 = 0;
+        localStorage.timer2 = +localStorage.timer2 + 1;
+        chronoDiv2.innerHTML = (+localStorage.timer2).toFixed(0);
+
+        
+        }
+    
+    }, 1000);
+    }
+
+    
+    
+    // Initialize timer or get previous value
+    localStorage.timer = (localStorage.timer || 0);
+    localStorage.timer1 = (localStorage.timer1 || 0);
+    localStorage.timer2 = (localStorage.timer2 || 0);
+    
+    // Variable declaration
+    var chronoDiv = document.getElementById("chrono"),
+    chronoDiv1 = document.getElementById("chrono1"),
+    chronoDiv2 = document.getElementById("chrono2"),
+    playStopButton = document.getElementsByTagName("button")[1],
+    i = undefined;
+    j = undefined;
+    k = undefined;
+    
+    // Show current chrono value
+    chronoDiv.innerHTML = (+localStorage.timer).toFixed(1);
+    chronoDiv1.innerHTML = (+localStorage.timer1).toFixed(0);
+    chronoDiv2.innerHTML = (+localStorage.timer2).toFixed(0);
+    
+    // Start chrono and update each 0.1 seconds
+    function start() {
+        i = setInterval(function() {
+        localStorage.timer = +localStorage.timer + 0.1;
+        chronoDiv.innerHTML = (+localStorage.timer).toFixed(1);
+    
+        if (localStorage.timer >59) {
+        localStorage.timer = 0;
+        localStorage.timer1 = +localStorage.timer1 + 1;
+        chronoDiv1.innerHTML = (+localStorage.timer1).toFixed(0);
+
+        
+        }
+
+        if (localStorage.timer1 >59) {
+        localStorage.timer1 = 0;
+        localStorage.timer2 = +localStorage.timer2 + 1;
+        chronoDiv2.innerHTML = (+localStorage.timer2).toFixed(0);
+
+        
+        }
+    
+    }, 100);
+    
+    
+    }
+    
+    function changeToStart() {
+            playStopButton.className = "start";
+            var x = document.getElementById("start");
+           
+        }
+    
+    
+    
+    function changeToStop() {
+            playStopButton.className = "stop";
+            var x = document.getElementById("start");
+            
+        }
+    
+    // Reset event
+    document.getElementsByName("button-reset")[0].addEventListener("click", function() {
+    window.clearInterval(i);
+    i = undefined;
+    localStorage.timer = 0.0;
+    chronoDiv.innerHTML = (+localStorage.timer).toFixed(0);
+    
+    
+    window.clearInterval(j);
+    j = undefined;
+    localStorage.timer1 = 0;
+    chronoDiv1.innerHTML = (+localStorage.timer1).toFixed(0);
+
+
+    window.clearInterval(k);
+    k = undefined;
+    localStorage.timer2 = 0;
+    chronoDiv2.innerHTML = (+localStorage.timer2).toFixed(0);
+
+    localStorage.is_running = 0;
+
+
+    
+
+    location.reload();
+
+    });
+    
+    
+    // End event
+    document.getElementsByName("button-end")[0].addEventListener("click", function() {
+    window.clearInterval(i);
+    changeToStart();
+    i = undefined;
+    var jkm = Math.floor(localStorage.timer);
+    var jkm1 = localStorage.timer1;
+    var jkm2 = localStorage.timer2;
+    
+    
+    // changeToNumber(jkm2 , jkm1 , jkm);
+    
+    
+    });
+    
+    
+    
+    // Start/stop event
+    document.getElementsByName("button-stop")[0].addEventListener("click", function() {
+    // Stop chrono
+    if (i) {
+        window.clearInterval(i);
+        changeToStart();
+        i = undefined;
+    
+        window.clearInterval(j);
+        j = undefined;
+    }
+    // Start chrono
+    else {
+        changeToStop();
+        start();
+    }
+    });
+    
+    } else {
+    // Error message
+    document.getElementsByTagName("header")[0].innerHTML += "<h3 style=\"color:red\">Sorry, your browser doesn't suppot LocalStorage</h3>";
+    }
+
+
+
+
+
+
+    (function ($) {
+  'use strict';
+  var form = $("#example-form");
+  form.children("div").steps({
+    headerTag: "h3",
+    bodyTag: "section",
+    transitionEffect: "slideLeft",
+    onFinished: function (event, currentIndex) {
+        event.preventDefault();
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+        var queryString = $('#example-form').serialize();
+        console.log(csrftoken);
+
+        var fieldValuePairs = $('#example-form').serializeArray();
+        $.each(fieldValuePairs, function(index, fieldValuePair) {
+            console.log("Item " + index + " is [" + fieldValuePair.name + "," + fieldValuePair.value + "]");
+        });
+
+
+        $.ajax({
+            url: "/exam/my-quizzes/submit_quiz/",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: queryString,
+            dataType: 'json',
+            success: function (data,response) {
+                console.log(data);
+                console.log(data.msg);
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Quiz has been submitted successfully',
+                    showConfirmButton: false,
+                    // timer: 1500
+                  });
+                  setTimeout(function () {
+
+                    window.location.href = `/exam/my-quizzes/${data.quiz_id}/view_scores/`;
+                  }, 1000);
+    
+                
+         
+                
+    
+            },
+            error: function (data,response) {
+                console.log(data);
+                console.log(response);
+                
+    
+    
+              
+                }
+        });
+    
+
+    
+    }
+  });
+})(jQuery);
+
+
+
+
+
+    
+</script>

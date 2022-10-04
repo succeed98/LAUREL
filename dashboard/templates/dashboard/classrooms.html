@@ -1,0 +1,424 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+
+<br><br>
+
+{% if request.user.is_project_manager or request.user.is_headteacher %}
+<div class="container page__container">
+    {% if get_classroom %}
+    <div class="page-separator">
+        <div class="page-separator__text">{{get_classroom}}</div>
+    </div>
+    {% endif %}
+
+    <div class="row mb-lg-8pt">
+        <div class="col-lg-6 col-md-4">
+            <div class="mb-4">
+                <div class="form-group row">
+                    <div class="col-12 border-accent-dodger-blue" data-toggle="tooltip" data-title="Select Grade" data-placement="top" data-boundary="window">
+                        
+
+                        <button type="button" class="btn  dropdown-toggle" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select Programs</button>
+                        <div class="dropdown-menu">
+                            {% for grade in classrooms %}
+                            
+                            <a class="dropdown-item" href="{% url 'dashboard:get_classroom' grade.id %}">{{grade}}</a>
+                            {% endfor %}
+                        </div>
+
+                        
+                        {% comment %} <form action="." method="GET">
+                            <div class="input-group">
+                                <select name="grade_selector" id="grade_selector" data-placeholder="Select Grade" required="required"
+                                class="custom-select" >
+                                <option selected>Filter classroom by grade</option>
+                                {% for grade in classrooms %}
+                                    <option value="{{grade}}">{{grade}}</option>
+                                {% endfor %}
+                                </select>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            <!-- End Class -->
+
+        </div>
+
+        {% if request.user.is_project_manager %}
+            {% if get_classroom %}
+                    <div class="col-lg-6 col-md-8">
+                        <!-- Start Subjects -->
+                        <div class="mb-4">
+                            <div class="button-list">
+                                <button type="button" class="btn btn-sm" id="delete_foreverButton" data-toggle="tooltip"
+                                    data-title="Delete Class" data-placement="top" data-boundary="window">
+                                    <i class="material-icons delete_foreverIcon"
+                                        onclick="deleteClassroom({{get_classroom.id}});">delete_forever</i>
+                                </button>
+                                <button type="button" class="btn btn-sm classes" id="editButton" data-toggle="tooltip"
+                                    data-title="Edit Class" data-placement="bottom" data-boundary="window">
+                                    <i class="material-icons editIcon">edit</i>
+                                </button>
+                                {% comment %} <button type="button" class="btn btn-sm choosesgrades" id="chooseClassButton"
+                                    data-toggle="tooltip" data-title="Class to promote" data-placement="top"
+                                    data-boundary="window">
+                                    <img src="{% static 'assets/img/icon2.png' %}" width="30" alt="">
+                                </button> {% endcomment %}
+
+                                {% comment %} <div class="btn-group">
+                                    <button type="button" class="btn btn-md dropdown-toggle" id="addsubjectBotton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add
+                                        subject to this class</button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">English</a>
+                                        <a class="dropdown-item" href="#">Science</a>
+                                        <a class="dropdown-item" href="#">Mathematics</a>
+                                        <a class="dropdown-item" href="#">ICT</a>
+                                        <a class="dropdown-item" href="#">Social</a>
+                                        <a class="dropdown-item" href="#">RME</a>
+                                    </div>
+                                </div> {% endcomment %}
+                            </div>
+
+                        </div>
+                        <!-- End Subjects -->
+
+                    </div>
+            {% else %}
+
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+</div>
+{% endif %}
+
+<!-- Start Overview -->
+<div class="container page__container">
+
+   
+    <div class="page-separator d-block">
+        <div class="page-separator">
+            <div class="page-separator__text">CLASS SUBJECTS</div>
+        </div>
+
+    </div>
+    
+    <div class="page-section">
+
+        <div class="row">
+           {% for subject in subjects %}
+            <div class="col-sm-6 col-xl-4" >
+
+                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary js-overlay mdk-reveal js-mdk-reveal "
+                     data-partial-height="44"
+                     data-toggle="popover"
+                     data-trigger="click">
+                    <a href="#"
+                       class="js-image"
+                       data-position="">
+                        <img src="{% static 'assets/img/subjectsa.jpg' %}"
+                             alt="course">
+                        <span class="overlay__content align-items-start justify-content-start">
+                            <span class="overlay__action card-body d-flex align-items-center">
+                                <i class="ml-4pt material-icons text-20 card-course__icon-favorite" >edit</i>
+                                <span class="card-title text-white">edit</span>
+                            </span>
+                        </span>
+                    </a>
+                    <div class="mdk-reveal__content">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex">
+                                    <a class="card-title mb-4pt"
+                                       href="add_topics.html">{{subject.name}}</a>
+                                </div>
+                                {% comment %} <a href="{% url 'classroom:add_titles' %}"
+                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">add</a> {% endcomment %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+      
+
+        <ul class="pagination justify-content-start pagination-xsm m-0">
+            <li class="page-item disabled">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Previous">
+                    <span aria-hidden="true"
+                          class="material-icons">chevron_left</span>
+                    <span>Prev</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Page 1">
+                    <span>1</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Page 2">
+                    <span>2</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   href="#"
+                   aria-label="Next">
+                    <span>Next</span>
+                    <span aria-hidden="true"
+                          class="material-icons">chevron_right</span>
+                </a>
+            </li>
+        </ul>
+
+
+        <br>
+
+      
+
+
+
+     
+
+
+
+
+<br>
+        <div class="page-separator d-block">
+            <div class="page-separator">
+                <div class="page-separator__text">
+                    {% if class_filter %}
+                    STUDENTS IN {{class_filter}}
+                    {% else %}
+                    ALL STUDENTS
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        <br>
+
+        
+    <div class="card shadow border-0" id="tableCard">
+        <div class="card-body">
+            <div class="row align-items-center ">
+                <div class="col-lg-12 table-responsive">
+                    <table id="example" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Fullname
+                                </th>
+                                <th class="th-sm">Email
+                                </th>
+                                <th class="th-sm">Contact
+                                </th>
+                                <th class="th-sm">Grade
+                                </th>
+                                <th class="th-sm">Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{student.user.first_name|title}} {{student.user.last_name|title}}</td>
+                                <td>{{student.user.email}}</td>
+                                <td>{{student.user.phone_number}}</td>
+                                <td>{{student.classroom}}</td>
+                                <td>
+                                    <a href="{% url 'student:detail_student' student.id %}">
+                                        <button type="button" class="btn btn-sm subject2Total"
+                                            id="chooseTopicButton" data-toggle=""
+                                            data-title="View Student" data-placement="top"
+                                            data-boundary="window">
+                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                        </button>
+                                    </a>
+                               
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+</div>
+<!-- End Overview -->
+
+
+
+<!-- Start izModal for Choose Grade -->
+<div id="modalChooseGrade" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="Class Promotion" data-iziModal-subtitle="Promote a Class"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form>
+            <div>
+                <h4>Choose Class</h4>
+            </div>
+            <center>
+                <div class="form-group row text-center">
+                    <label for="grade_9" class="col-4 col-form-label">Grade 1</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                            value="option1" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_6" class="col-4 col-form-label">Grade 2</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                            value="option2" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="class_a" class="col-4 col-form-label">Grade 3</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                            value="option3" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_2" class="col-4 col-form-label">Grade 4</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
+                            value="option4" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_3" class="col-4 col-form-label">Grade 5</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5"
+                            value="option5" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_8" class="col-4 col-form-label">Grade 6</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
+                            value="option6" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grade_7" class="col-4 col-form-label">Grade 7</label>
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
+                            value="option6" />
+                    </div>
+                </div>
+            </center>
+            <div>
+                <button type="button" class="btn btn-floating pulse btn-md" id="promoteStudent"
+                    onclick="promoteStudents();">Promote</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for Choose Grade -->
+
+<!-- Start izModal for Subject 2 Total -->
+<div id="modalTotalTopics" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="This is for Total Topics"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+
+        <div class="page-separator">
+            <div class="page-separator__text" id="totalTopicsBackG">Total Topics 1 </div>
+        </div>
+        <div class="row mb-lg-8pt">
+            <div class="col-lg-4">
+                <a href="course_overview.html">
+                    <div class="mb-4">
+                        <div class="card shadow hoverableEdify bgTopics" id="card">
+                            <!-- <img src="../assets/img/strong.jpg" class="card-img-top subject2Total" alt=" Palm
+                                Springs Road" /> -->
+                            <div class="card-body">
+                                <h5 class="card-title text-light">Conjugation</h5>
+                                <!-- <p class="card-text">
+                                    Taught by Class Teacher
+                                </p> -->
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- End Class -->
+
+            </div>
+            <div class="col-lg-4">
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="modal" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="Edit Class" data-iziModal-subtitle="Editing of Classes"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form id="EditClass">
+            {% csrf_token %}
+            <div>
+                <h4>Edit Class</h4>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{class_form.name.label}}</label>
+                <div class="col-8">
+                    {{class_form.name}}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">{{class_form.subjects.label}}</label>
+                <div class="col-8">
+                    {{class_form.subjects}}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8">
+                    <input type="hidden" value="{{get_classroom.id}}" id="class_id">
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-floating pulse btn-md" id="addClass"
+                    >add class</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
