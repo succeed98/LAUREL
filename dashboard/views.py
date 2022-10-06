@@ -4,7 +4,10 @@ from classrooms.models import *
 from classrooms.forms import *
 from authentication.forms import *
 from django.contrib.auth.decorators import login_required
-
+from .models import *
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse, HttpResponseRedirect
+from django.core import serializers
+from django.http import JsonResponse
 
 @login_required(login_url='authentication:login')
 def index(request):
@@ -127,7 +130,6 @@ def get_classroom_details(request,pk):
     context = {
         'class_form':class_form,
         'subjects': get_classroom.subjects.all,
-        'lessons': Lesson.objects.filter(classroom = get_classroom),
         'classrooms': Classroom.objects.all(),
         'students': Student.objects.filter(classroom=get_classroom),
         'page': page,
@@ -135,3 +137,52 @@ def get_classroom_details(request,pk):
     }
     template_name = 'dashboard/classrooms.html'
     return render(request, template_name, context)
+
+
+
+
+
+
+@login_required(login_url='authentication:login')
+def list_department(request):
+    page = 'department'
+    list_department = Department.objects.all()
+
+
+
+    template_name = 'dashboard/list_department.html'
+    context = {
+        'list_department':list_department,
+        'page': page,
+
+
+    }
+    return render(request, template_name, context)
+
+
+
+
+@login_required(login_url='authentication:login')
+def add_department(request):
+    print("\n\n\n\n\n\n\n\n")
+    print(request.POST)
+    departmentname = request.POST['departmentname']
+    print(departmentname)
+
+    subjects = Department.objects.create(
+        name=departmentname
+        )
+
+
+    return JsonResponse({"msg": 'Department Added Successfully'}, status=200)
+
+
+
+
+
+@login_required(login_url='authentication:login')
+def delete_department(request):
+    pk = request.GET.get('id', None)
+    delete_department = Department.objects.get(id=pk)
+    delete_department.delete()
+    return JsonResponse({"msg": 'Department Deleted Successfully'}, status=200)

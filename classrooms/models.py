@@ -3,7 +3,7 @@ from authentication.models import *
 from django.conf import settings
 from ckeditor.fields import RichTextField
 from django.urls import reverse
-
+from dashboard.models import *
 
 class Subject(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
@@ -19,6 +19,7 @@ class Subject(models.Model):
 class Classroom(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     subjects = models.ManyToManyField(Subject, blank=True)
+    department = models.ForeignKey(Department, on_delete=models.SET_NULL, blank=True, null=True)
 
 
     def __str__(self):

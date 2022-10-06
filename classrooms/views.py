@@ -5,6 +5,7 @@ from authentication.models import *
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from dashboard.models import *
 
 # Create your views here.
 
@@ -37,15 +38,18 @@ def add_class(request):
     if request.method == "POST":
         print("@@@@@@@post")
         name = request.POST['name']
+        department = request.POST['department']
         subjects = request.POST.getlist('subjects[]')
         print(subjects)
         create_class = Classroom.objects.create(
             name = name,
+            department = get_object_or_404(Department, id = department),
         )
 
 
         for subject in subjects:
             create_class.subjects.add(subject)
+
         return JsonResponse({"msg": 'Class Added Successfully'}, status=200)
     return JsonResponse({"msg": 'Something Went Wrong', "errors_field": "Something went wrong"}, status=400)
 
@@ -69,7 +73,9 @@ def edit_class(request):
             form_status = form.save(commit=False)
             # for subject in subjects:
             # form_status.subjects.clear()
+            form_status.department = get_object_or_404(Department, id = request.POST['department'])
             form_status.subjects.add(subjects)
+            form_status.save()
             return JsonResponse({"msg": 'Class Updated Successfully'}, status=200)
         else:
             return JsonResponse({"msg": 'Something Went Wrong', "errors_field": "Something went wrong"}, status=400)

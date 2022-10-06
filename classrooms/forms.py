@@ -25,12 +25,13 @@ class ClassroomForm(forms.ModelForm):
     
     class Meta:
         model = Classroom
-        fields = ('name','subjects',)
+        fields = ('name','subjects', 'department',)
 
 
         widgets = {
             'subjects':forms.SelectMultiple(attrs={'class': 'form-control class-subject-multiple', 'required ' : 'False'}),
             'name': forms.TextInput(attrs={'class': 'form-control', 'required ' : 'True'}),
+            'department':forms.Select(attrs={'class': 'form-control'}),
 
 
             }

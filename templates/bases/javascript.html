@@ -2,7 +2,80 @@
 
 
 
+
+// Adding new Subject
+$(document).ready(function(){
+        $("#AddNewDepartment").on("submit", function(event){
+            event.preventDefault();
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+        var subjectname = $("#departmentname").val();
+        console.log("sdfsadf");
+        console.log(subjectname);
     
+        console.log("working");
+        $.ajax({
+            url: "{% url 'dashboard:add_department'%}",
+            type:'POST',
+            headers:{
+            "X-CSRFToken": csrftoken
+            },
+            data: {
+                'X-CSRFToken': '{% csrf_token %}',
+                'departmentname':subjectname,
+            },
+            dataType: 'json',
+            success: function (data,response) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+            
+                Toast.fire({
+                    icon: 'success',
+                    title: `${data.msg}`
+                })
+    
+                
+                $( "#subject_count" ).load(window.location.href + " #subject_count" );
+                $( "#example" ).load(window.location.href + " #example" );
+    
+                const subjectnameInput = document.getElementById('departmentname');
+                subjectnameInput.value = '';
+                $('#modals').iziModal('close');
+
+                var the_url = window.location.pathname;
+                if (the_url == "/dashboard/") {
+                    window.location.href = "/dashboard/";
+
+                }
+                
+    
+            },
+            error: function (response) {
+                console.log("did not work");
+                console.log(response)
+                }
+        });
+    
+    });
+    });
+
+
+
+    
+
+
+
+
+
+
 
 
 
@@ -385,6 +458,7 @@
             var csrftoken = $("[name=csrfmiddlewaretoken]").val();
     
             var name = $("#id_name").val();
+            var department = $("#id_department").val();
             var subjects = $(".class-subject-multiple").val();
     
             if (subjects == ""){
@@ -417,6 +491,7 @@
                 'X-CSRFToken': '{% csrf_token %}',
                 name,
                 subjects,
+                department,
             
             },
             dataType: 'json',
@@ -501,6 +576,7 @@
     
             var name = $("#id_name").val();
             var class_id = $("#class_id").val();
+            var department = $("#id_department").val();
             var subjects = $(".class-subject-multiple").val();
     
             if (subjects == ""){
@@ -534,6 +610,7 @@
                 name,
                 subjects,
                 class_id,
+                department,
             
             },
             dataType: 'json',
@@ -850,6 +927,96 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Delete Subject 
+    function deleteDepartment(id){
+        console.log(id);
+    
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-danger ml-3',
+              cancelButton: 'btn btn-success'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{% url 'dashboard:delete_department' %}",
+                    data: {
+                        'id': id,
+                    },
+                    dataType: 'json',
+                    success: function (data,response) {
+                        $( "#example" ).load(window.location.href + " #example" );
+                        
+                        
+
+
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            `${data.msg}`,
+                            'success'
+                        )
+
+                        var the_url = window.location.pathname;
+                        if (the_url == "/classroom/list-subject/") {
+                            $( "#example" ).load(window.location.href + " #example" );
+                        }
+                        else{
+                            window.location.href = "/dashboard/list_department/";
+                        }
+    
+                        
+    
+                    },
+                    error: function (response) {
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            `Something went wrong`,
+                            'error'
+                        )
+                },
+            });
+              
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Your file is safe :)',
+                'error'
+              )
+            }
+          })
+    }
 
 
 

@@ -1,0 +1,222 @@
+
+{% extends 'bases/base_main.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="container page__container">
+    <div class="">
+        <div class="alert alert-soft-info alert-dismissible fade show mb-0" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="d-flex flex-wrap align-items-start">
+                <div class="mr-8pt">
+                    <i class="material-icons">access_time</i>
+                </div>
+                <div class="flex" style="min-width: 180px">
+                    <small class="text-black-100">
+                        <strong>Info: </strong> This page shows all the number of courses in the system.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pt-32pt">
+
+    <div
+        class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <!-- <h2 class="mb-0">Dashboard</h2> -->
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="index.html">Project Manager</a></li>
+
+                    <li class="breadcrumb-item active">
+
+                        Department
+
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+
+    </div>
+</div><br>
+
+<!-- BEFORE Page Content -->
+
+<!-- // END BEFORE Page Content  background:#e5e5e5-->
+
+<!-- Page Content -->
+
+
+
+<!-- Start Overview -->
+<div class="container page__container">
+    <div class="page-section">
+        <div class="page-separator d-block">
+            <div class="page-separator">
+                <div class="page-separator__text ml-1">Departments <span class="ml-1">{{list_subjects_count}}</span>  total</div>
+            </div>
+
+           
+            <button type="button" class="btn pulse btn-md shadow hoverableSubjects subjects" id="uploadStudentButton"
+                data-toggle="tooltip" data-title="Click to Add Department" data-placement="top" data-boundary="window">add Department</button>
+            
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="card shadow border-0" id="tableCard">
+        <div class="card-body">
+            <div class="row align-items-center ">
+                <div class="col-lg-12 table-responsive">
+                    <table id="example" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Name
+                                </th>
+                               
+                                <th class="th-sm">Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for list_subject in list_department %}
+
+                            <tr>
+                                  
+                                <td>{{list_subject.name}}</td>
+                                
+
+                                <td>
+                                    <!-- <a href="{% url 'classroom:list_lessons' list_subject.id%}">
+                                        <button type="button" class="btn btn-sm subject2Total"
+                                            id="chooseTopicButton" data-toggle="tooltip"
+                                            data-title="View Courses" data-placement="top"
+                                            data-boundary="window">
+                                            <i class="material-icons chooseClassIcon">visibility</i>
+                                        </button>
+                                    </a> -->
+                                    <button type="button" class="btn btn-sm" id="delete_foreverButton"
+                                        data-toggle="tooltip" data-title="Delete Courses"
+                                        data-placement="bottom" data-boundary="window">
+                                        <i class="material-icons delete_foreverIcon"
+                                            onclick="deleteDepartment({{list_subject.id}});">delete_forever</i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!-- End Overview -->
+
+
+<!-- Start izModal for adding Subjects -->
+<div id="modals" class="SubjectModel" data-iziModal-fullscreen="true" data-izimodal-group="alerts"
+    data-iziModal-title="WELCOME TO EDIFY" data-iziModal-subtitle="Adding of Department"
+    data-iziModal-icon="icon-home">
+    <div style="padding: 50px">
+        <form name="AddNewSubject" id="AddNewDepartment">
+            {% csrf_token %}
+
+            <div>
+                <h4>Add New Department</h4>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">Department Name</label>
+                <div class="col-8">
+                    <input id="departmentname" name="departmentname" placeholder="" type="text" required="required"
+                        class="form-control">
+                </div>
+            </div>
+
+            <!-- <div class="form-group row">
+                <label for="select" class="col-4 col-form-label">Select Subject</label>
+                <div class="col-8">
+
+                    <div class="">
+                        <div class="" onclick="showCheckbox();">
+                            <select name="" id="" data-placeholder="Select Class" class="custom-select">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+                        <div id="checkbox" class="custom-control custom-checkbox shadow">
+                            <label for="one">
+                                <input type="checkbox" class="checkBoxes" id="grade_1">Grade 1
+                            </label>
+                            <label for="two">
+                                <input type="checkbox" class="checkBoxes" id="grade_2">Grade 2
+                            </label>
+                            <label for="three">
+                                <input type="checkbox" class="checkBoxes" id="grade_3">Grade 3
+                            </label>
+                            <label for="four">
+                                <input type="checkbox" class="checkBoxes" id="grade_4">Grade 4
+                            </label>
+                            <label for="five">
+                                <input type="checkbox" class="checkBoxes" id="grade_5">Grade 5
+                            </label>
+                            <label for="six">
+                                <input type="checkbox" class="checkBoxes" id="grade_6">Grade 6
+                            </label>
+                            <label for="seven">
+                                <input type="checkbox" class="checkBoxes" id="grade_7">Grade 7
+                            </label>
+                            <label for="eight">
+                                <input type="checkbox" class="checkBoxes" id="grade">Grade 8
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+
+            <!-- <div class="form-group row">
+                <label for="firstname" class="col-4 col-form-label">Special Subject</label>
+                <div class="col-8">
+                    <div class="form-group">
+                        <div class="custom-controls-stacked">
+                            <div class="custom-control custom-radio">
+                                <input id="radioStacked1" name="radio-stacked" type="radio"
+                                    class="custom-control-input" checked="">
+                                <label for="radioStacked1" class="custom-control-label">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="radioStacked2" name="radio-stacked" type="radio"
+                                    class="custom-control-input">
+                                <label for="radioStacked2" class="custom-control-label">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div>
+                <button type="submit" class="btn btn-floating pulse btn-md shadow" id="addSubjects"
+                    >add Department</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- End izModal for adding Subjects -->
+
+{% endblock content %}

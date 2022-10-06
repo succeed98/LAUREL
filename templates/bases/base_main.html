@@ -60,6 +60,10 @@
             color: white;
         }
 
+        div#awselect_id_subjects {
+    visibility: hidden;
+}
+
        
 
     </style>
@@ -325,6 +329,14 @@
                                     <span class="active sidebar-menu-text">Dashboard</span>
                                 </a>
                             </li>
+                            <li class="sidebar-menu-item {% if page == 'department' %} activenav {% endif %}">
+                                <a class="sidebar-menu-button" href="{% url 'dashboard:list_department'%}">
+                                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
+                                    <span class="sidebar-menu-text">Department</span>
+                                </a>
+                            </li>
+
+
                             <li class="sidebar-menu-item {% if page == 'classroom' %} activenav {% endif %}">
                                 <a class="sidebar-menu-button" href="{% url 'dashboard:all_classrooms'%}">
                                     <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">class</span>
