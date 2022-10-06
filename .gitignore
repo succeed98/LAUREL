@@ -13,3 +13,4 @@ media
 production_settings.py
 production_settings
 env
+myenv/
