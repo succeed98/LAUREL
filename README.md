@@ -1,10 +1,18 @@
-## READ ME
+# LAUREL
+Laurel is an E-portal designed to manage students and lecturers activities.These systems work to coordinate scheduling and communications between faculty regarding students.> 
+## INTRODUCTION :slightly_smiling_face:
 
-To run this project
-1. create your virtual environment by runing virtualenv <name_of_environment>
-2. install requirements in the requirements.txt by running "pip install -r requirements.txt"
-3. run "python manage.py makemigrations"
-4. run "python manage.py migrate"
-5. run "python manage.py runserver"
+<p>The Faculty needs an E-Portal that will manage students,staffs,keep records. The Faculty wants to migrate from the legacy system of using papers to digitalized environment. </p>.0
 
-you are good to go!
+
+##  TECHNOLOGIES USED :fire:
+
+1. Python :snake: --- Backend 
+2. HTML   --- Frontend
+3. CSS    --- Frontend
+4. JavaScript  --- Frontend / Backend
+
+## METHODOLOGY USED :recycle:
+
+> Agile Methodology: To get feedback from users / testers in order to improve upon the system.
+
