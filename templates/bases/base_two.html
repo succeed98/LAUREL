@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Edify | Project Manager</title>
+    <title>Edify | Administrator</title>
 
     <!-- Prevent the demo from appearing in search engines -->
     <meta name="robots" content="noindex">
@@ -249,7 +249,7 @@
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-header"><strong>Project Manager</strong></div>
+                            <div class="dropdown-header"><strong>Administrator</strong></div>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -322,7 +322,7 @@
                         {% elif request.user.is_headteacher %}
                         <div class="sidebar-heading">HeadTeacher</div>
                         {% elif request.user.is_project_manager %}
-                        <div class="sidebar-heading">Project Manager</div>
+                        <div class="sidebar-heading">Administrator</div>
                         {% else %}
                         <div class="sidebar-heading">Dashboard</div>
                         {% endif %}
@@ -685,7 +685,7 @@
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 
-    <!-- Project Manager JS -->
+    <!-- Administrator JS -->
     <script src="{% static 'edify/vendor/scripts/projectManager.js' %}"></script>
     <script src="{% static 'edify/vendor/scripts/projectsMana.js' %}"></script>
 
