@@ -78,7 +78,7 @@ $(function () {
 
     });
 
-    //Project Manager Student section
+    //Administrator Student section
     //Pop-up for choosing grade
     $('.choosesgrades').click(function () {
         $('#modalChooseGrade').iziModal('open');
@@ -89,7 +89,7 @@ $(function () {
 
     });
 
-    //Project Manager Total Topic
+    //Administrator Total Topic
     //Pop-up for Seletion
     $('.subject2Total').click(function () {
         $('#modalTotalTopics').iziModal('open');
@@ -100,7 +100,7 @@ $(function () {
 
     });
 
-    //Project Manager Announcement section
+    //Administrator Announcement section
     //Pop-up for adding announcement
     $('.addAnnouncements').click(function () {
         $('#modalAnnouncement').iziModal('open');
