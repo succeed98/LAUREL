@@ -11,7 +11,6 @@
     <meta name="author" content="Edify" />
     <!-- favicon -->
     <link rel="shortcut icon" href="images/favicon.ico">
-
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -27,7 +26,23 @@
     <link rel="stylesheet" href="{% static 'vendor/vendor/sweetalert/sweetalert.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/styles/sign_in.css' %}">
 
+    <style>
+        .move-to-middle {
+            border: 1px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        label {
+            width: 50px;
+            height: 30px;
+        }
+
+        .login {
+            background-color: #00bfff !important;
+        }
+    </style>
 
     <script>
         $(function () {
@@ -114,36 +129,23 @@
 </head>
 
 <body>
-    <!-- Loader -->
-    <!-- <div id="preloader">
-            <div id="status">
-                <div class="spinner">
-                    <div class="double-bounce1"></div>
-                    <div class="double-bounce2"></div>
-                </div>
-            </div>
-        </div> -->
-    <!-- Loader -->
 
-    <!-- <div class="back-to-home rounded d-none d-sm-block">
-        <a href="index.html" class="btn btn-icon btn-soft-primary"><i data-feather="home" class="icons"></i></a>
-    </div> -->
 
     <!-- Hero Start -->
     <section class="cover-user bg-white">
         <div class="container-fluid px-0">
-            <div class="row no-gutters position-relative">
+            <div class="row no-gutters position-relative  move-to-middle">
                 <div class="col-lg-4 cover-my-30 order-2">
                     <div class="cover-user-img d-flex align-items-center">
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-12">
                                 <div class="card login-page border-0" style="z-index: 1">
-                                    <div class="card-body p-0"><br><br><br>
+                                    <div class="card-body p-0 shift-left"><br><br><br>
                                         <center>
                                         <a href="index.html" class="sidebar-brand ">
-                                            Logo
+                                           <img src="{% static 'assets/img/logo.png' %}" alt="logo">
                                         </a>
-                                    </center>
+                                        </center>
                                         <!-- <h4 class="card-title text-left welcome">Welcome to Edify</h4> -->
                                         <p class="text-muted">Please sign-in to your account.</p>
                                         <form class="login-form mt-4">
@@ -151,7 +153,7 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="form-group position-relative">
-                                                        <label class="text-muted font-weight">Username</label>
+<!--                                                        <label class="text-muted font-weight">Username</label>-->
                                                         {% comment %} <i data-feather="user" class="fea icon-sm icons"></i> {% endcomment %}
                                                         <input type="username" class="username form-control pl-5"
                                                             placeholder="Username" id="login" name="email"
@@ -162,7 +164,7 @@
 
                                                 <div class="col-lg-12">
                                                     <div class="form-group position-relative">
-                                                        <label class="text-muted font-weight">Password</label>
+<!--                                                        <label class="text-muted font-weight">Password</label>-->
                                                         {% comment %} <i data-feather="key" class="fea icon-sm icons"></i> {% endcomment %}
                                                         <input type="password" class="password form-control pl-5"
                                                             placeholder="Password" >
@@ -176,8 +178,8 @@
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input"
                                                                     id="customCheck1">
-                                                                <label class="custom-control-label text-muted"
-                                                                    for="customCheck1">Remember me</label>
+<!--                                                                <label class="custom-control-label text-muted"-->
+<!--                                                                    for="customCheck1">Remember me</label>-->
                                                             </div>
                                                         </div>
                                                         <p class="forgot-pass mb-0"><a href="recover_password.html"
@@ -202,9 +204,9 @@
                     </div> <!-- end about detail -->
                 </div> <!-- end col -->
                 {% comment %} {% static 'assets/img/Login.gif' %} {% endcomment %}
-                <div class="col-lg-8 offset-lg-4 padding-less img order-1 d-none d-lg-flex"
-                    style="background-image:url('{% static 'assets/img/loginpage.jpg' %}')" data-jarallax='{"speed": 0.5}'></div>
-                <!-- end col -->
+<!--                <div class="col-lg-8 offset-lg-4 padding-less img order-1 d-none d-lg-flex"-->
+<!--                    style="background-image:url('{% static 'assets/img/loginpage.jpg' %}')" data-jarallax='{"speed": 0.5}'></div>-->
+<!--                &lt;!&ndash; end col &ndash;&gt;-->
             </div>
             <!--end row-->
         </div>
